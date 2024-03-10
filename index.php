@@ -27,8 +27,6 @@ require_once './includes/db_connection.php';
             echo '<h3>' . $profile['name'] . '</h3>';
             echo '<p>' . $profile['summary'] . '</p>';
             echo '<a href="/pages/profile.php?id=' . $profile['_id'] . '">View Full Profile</a>';
-            echo '<a href="/pages/edit_profile.php?id=' . $profile['_id'] . '">Edit</a>';
-            echo '<a href="/pages/delete_profile.php?id=' . $profile['_id'] . '">Delete</a>';
             echo '</div>';
         }
         ?>
