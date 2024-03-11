@@ -11,6 +11,8 @@ $webhookData = json_decode($PaystackCallbackResponse, true);
 
 if ($webhookData) {
     try {
+        //send sms
+        require_once __DIR__ . '/sms_message.php';
         // Insert data into MongoDB
         $result = $db->transactions->insertOne($webhookData);
 

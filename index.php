@@ -35,6 +35,21 @@ require_once './includes/db_connection.php';
                 <button type="submit" onclick="payWithPaystack()"> Donate </button>
             </div>
         </form>
+        <?php
+        if (isset($_GET['logout'])) {
+            // Call the logout function
+            logout();
+        }
+        ?>
+        <?php
+        if (!isLoggedIn()) {
+            echo '<p>Have an elderly who needs help? Create profile</p>';
+            echo '<a href="./pages/login.php">here</a>';
+        } else {
+            echo '<a href="./pages/homepage.php">View my created profiles </a>';
+            echo '<a href="?logout=true">Logout</a>';
+        }
+        ?>
 
         <?php include './includes/donation.php'; ?>
 
