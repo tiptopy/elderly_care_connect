@@ -26,13 +26,13 @@ require_once './includes/db_connection.php';
             echo '<img src="' . $profile['picture'] . '" alt="' . $profile['name'] . '">';
             echo '<h3>' . $profile['name'] . '</h3>';
             echo '<p>' . $profile['summary'] . '</p>';
-            echo '<a href="/pages/profile.php?id=' . $profile['_id'] . '">View Full Profile</a>';
+            echo '<a href="./pages/profile.php?id=' . $profile['_id'] . '">View Full Profile</a>';
             echo '</div>';
         }
         ?>
         <form id="paymentForm">
             <div class="form-submit">
-                <button type="submit" onclick="payWithPaystack()"> Pay </button>
+                <button type="submit" onclick="payWithPaystack()"> Donate </button>
             </div>
         </form>
 

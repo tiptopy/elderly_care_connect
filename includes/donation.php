@@ -26,7 +26,7 @@ $currency = "KES";
             callback: function(response) {
                 let message = 'Payment complete! Reference: ' + response.reference;
                 alert(message);
-                window.location.href = "http://localhost/PayStack-With-PHP/verify_transaction.php?reference=" + response.reference;
+                window.location.href = "./includes/verify_transaction.php?reference=" + response.reference;
             }
         });
 
