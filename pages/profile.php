@@ -24,19 +24,26 @@ if (!$profile) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $profile['name']; ?> - Elderly Care Connect</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
     <div class="container">
         <h1><?php echo $profile['name']; ?></h1>
         <div class="profile">
-            <img src="<?php echo $profile['picture']; ?>" alt="<?php echo $profile['name']; ?>">
+            <?php
+            $imageData = base64_encode($profile['pictureData']->getData());
+            $imageSrc = 'data:' . $profile['pictureMimeType'] . ';base64,' . $imageData;
+            echo '<img src="' . $imageSrc . '" alt="' . $profile['name'] . '">';
+            ?>
             <p><?php echo $profile['summary']; ?></p>
         </div>
     </div>
 </body>
+
 </html>
