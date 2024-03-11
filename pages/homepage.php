@@ -10,14 +10,23 @@ if (!isLoggedIn()) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle form submission for creating profile
-    // Assuming the form fields are 'name', 'summary', 'picture'
+    // Assuming the form fields are 'name', 'summary', and 'picture'
     $name = $_POST['name'];
     $summary = $_POST['summary'];
-    $picture = $_POST['picture'];
     $user_id = $_SESSION['user_id'];
 
-    // Insert profile into MongoDB with associated user ID
-    $insertResult = $db->profiles->insertOne(['name' => $name, 'summary' => $summary, 'picture' => $picture, 'created_by' => $user_id]);
+    // File upload handling
+    $pictureData = file_get_contents($_FILES['picture']['tmp_name']);
+    $pictureMimeType = mime_content_type($_FILES['picture']['tmp_name']);
+
+    // Insert profile into MongoDB with associated user ID and image data
+    $insertResult = $db->profiles->insertOne([
+        'name' => $name,
+        'summary' => $summary,
+        'pictureData' => new MongoDB\BSON\Binary($pictureData, MongoDB\BSON\Binary::TYPE_GENERIC),
+        'pictureMimeType' => $pictureMimeType,
+        'created_by' => $user_id
+    ]);
 
     if ($insertResult) {
         echo "Profile created successfully";
@@ -45,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         foreach ($profiles as $profile) {
             echo '<div class="profile">';
-            echo '<img src="' . $profile['picture'] . '" alt="' . $profile['name'] . '">';
+            echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['name'] . '">';
             echo '<h3>' . $profile['name'] . '</h3>';
             echo '<p>' . $profile['summary'] . '</p>';
             echo '<a href="profile.php?id=' . $profile['_id'] . '">View Full Profile</a>';
@@ -56,13 +65,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ?>
         
         <h2>Create New Profile</h2>
-        <form action="homepage.php" method="post">
+        <form action="homepage.php" method="post" enctype="multipart/form-data">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
             <label for="summary">Summary:</label>
             <textarea id="summary" name="summary" required></textarea>
-            <label for="picture">Picture URL:</label>
-            <input type="text" id="picture" name="picture" required>
+            <label for="picture">Picture:</label>
+            <input type="file" id="picture" name="picture" accept="image/*" required>
             <button type="submit">Create Profile</button>
         </form>
     </div>

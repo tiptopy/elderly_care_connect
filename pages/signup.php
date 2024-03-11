@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <h1>Signup</h1>
-        <form action="signup.php" method="post">
+        <form action="signup.php" method="post" enctype="multipart/form-data">
             <label for="FullName">Full Name:</label>
             <input type="text" id="FullName" name="FullName" required>
             <label for="PhoneNumber">Phone Number:</label>
@@ -30,6 +30,8 @@
 
             <label for="security_answer">Answer:</label>
             <input type="text" id="security_answer" name="security_answer" required>
+            <label for="image">Profile Image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
             <button type="submit">Signup</button>
         </form>
         <p>Have an account? <a href="./login.php">Login</a></p>
@@ -49,13 +51,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $security_question = $_POST['security_question'];
     $security_answer = $_POST['security_answer'];
 
+    // File upload handling
+    $imageData = file_get_contents($_FILES['image']['tmp_name']);
+    $imageMimeType = mime_content_type($_FILES['image']['tmp_name']);
 
     $existing_user = $db->users->findOne(['username' => $username]);
 
     if ($existing_user) {
         echo "Username already exists";
     } else {
-        $insertResult = $db->users->insertOne(['FullName' => $FullName, 'username' => $username, 'password' => $password, 'security_question' => $security_question, 'security_answer' => $security_answer]);
+        $insertResult = $db->users->insertOne([
+            'FullName' => $FullName,
+            'PhoneNumber' => $PhoneNumber,
+            'username' => $username,
+            'password' => $password,
+            'security_question' => $security_question,
+            'security_answer' => $security_answer,
+            'imageData' => new MongoDB\BSON\Binary($imageData, MongoDB\BSON\Binary::TYPE_GENERIC),
+            'imageMimeType' => $imageMimeType
+        ]);
+
         if ($insertResult) {
             echo "User created successfully";
         } else {
