@@ -17,6 +17,8 @@
             <input type="password" id="password" name="password" required>
             <button type="submit">Login</button>
         </form>
+        <a href="./forgot_password.php">forgort password</a>
+        <a href="./signup.php">Sign Up</a>
     </div>
 </body>
 </html>
