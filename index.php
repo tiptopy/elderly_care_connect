@@ -23,7 +23,10 @@ require_once './includes/db_connection.php';
 
         foreach ($profiles as $profile) {
             echo '<div class="profile">';
-            echo '<img src="' . $profile['picture'] . '" alt="' . $profile['name'] . '">';
+            // Base64 encode the image data and set it as the src attribute
+            $imageData = base64_encode($profile['pictureData']->getData());
+            $imageSrc = 'data:' . $profile['pictureMimeType'] . ';base64,' . $imageData;
+            echo '<img src="' . $imageSrc . '" alt="' . $profile['name'] . '">';
             echo '<h3>' . $profile['name'] . '</h3>';
             echo '<p>' . $profile['summary'] . '</p>';
             echo '<a href="./pages/profile.php?id=' . $profile['_id'] . '">View Full Profile</a>';
