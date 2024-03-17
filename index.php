@@ -35,9 +35,20 @@ require_once './includes/db_connection.php';
         ?>
         <form id="paymentForm">
             <div class="form-submit">
+                <label for="donorName"><b>Donor Name</b></label>
+                <input type="text" placeholder="Enter Name" name="donorName" id="donorName" required>
+
+                <label for="donorEmail"><b>Donor Email</b></label>
+                <input type="email" placeholder="Enter Email" name="donorEmail" id="donorEmail" required>
+
+                <label for="donorAmount"><b>Donation Amount</b></label>
+                <input type="number" placeholder="Enter Amount" name="donorAmount" id="donorAmount" required>
                 <button type="submit" onclick="payWithPaystack()"> Donate </button>
             </div>
         </form>
+
+
+
         <?php
         if (isset($_GET['logout'])) {
             // Call the logout function

@@ -1,135 +1,181 @@
 /* css/style.css */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
 }
 
-h1, h2, h3 {
-    margin-top: 0;
+h1,
+h2,
+h3 {
+  margin-top: 0;
 }
 
 form {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
+
 .form-group {
-    margin-bottom: 20px;
-  }
+  margin-bottom: 20px;
+}
 
 label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 input[type="email"],
 input[type="tel"],
-input[type="text"], textarea {
+input[type="text"],
+textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
 }
+
 .form-submit {
-    margin-top: 20px;
-  }
+  margin-top: 20px;
+}
 
 button[type="submit"] {
-    background-color: #008803;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+  background-color: #008803;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
 button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
+
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .profile {
-    display: inline-block;
-    width: calc(33.33% - 20px); /* Adjust as needed for grid spacing */
-    margin: 10px;
-    text-align: center;
+  display: inline-block;
+  width: calc(33.33% - 20px);
+  /* Adjust as needed for grid spacing */
+  margin: 10px;
+  text-align: center;
 }
 
 .profile img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .profile h3 {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .profile p {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .profile a {
-    display: block;
-    margin-top: 10px;
-    text-decoration: none;
-    color: #007bff;
+  display: block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #007bff;
 }
+
 /* Popup container */
 .form-popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9;
-  }
-  
-  /* Popup Form */
-  .form-container {
-    max-width: 300px;
-    padding: 20px;
-    background-color: #f2f2f2;
-  }
-  
-  /* Full-width input fields */
-  .form-container input[type=text], .form-container input[type=email] {
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0 15px 0;
-    border: none;
-    background: #f1f1f1;
-  }
-  
-  /* Buttons */
-  .form-container .btn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom: 10px;
-    opacity: 0.8;
-  }
-  
-  .form-container .btn:hover, .open-button:hover {
-    opacity: 1;
-  }
-  
-  /* Cancel button */
-  .form-container .cancel {
-    background-color: #f44336;
-  }
-  
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9;
+}
+
+/* Popup Form */
+.form-container {
+  max-width: 300px;
+  padding: 20px;
+  background-color: #f2f2f2;
+}
+
+/* Full-width input fields */
+.form-container input[type=text],
+.form-container input[type=email] {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0 15px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Buttons */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.form-container .btn:hover,
+.open-button:hover {
+  opacity: 1;
+}
+
+/* Cancel button */
+.form-container .cancel {
+  background-color: #f44336;
+}
+
+/* Popup container */
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Popup content */
+.popup-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+}
+
+/* Close button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
