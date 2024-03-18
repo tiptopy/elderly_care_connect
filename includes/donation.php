@@ -11,6 +11,8 @@ $currency = "KES";
     paymentForm.addEventListener("submit", payWithPaystack, false);
 
     function payWithPaystack(e) {
+        let donorName = document.getElementById('donorName').value;
+        sessionStorage.setItem('donorName', donorName);
         e.preventDefault();
         let handler = PaystackPop.setup({
             key: '<?php echo $PublicKey; ?>',
@@ -20,6 +22,7 @@ $currency = "KES";
             ref: '' + Math.floor((Math.random() * 1000000000) + 1),
             onClose: function() {
                 alert('Transaction was not completed, window closed.');
+
             },
             callback: function(response) {
                 let message = 'Payment complete! Reference: ' + response.reference;
@@ -27,6 +30,7 @@ $currency = "KES";
                 window.location.href = "./includes/verify_transaction.php?reference=" + response.reference;
             }
         });
+        
 
         handler.openIframe();
     }
