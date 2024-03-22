@@ -7,15 +7,16 @@ use Dotenv\Dotenv as Dotenv;
 $Dotenv = Dotenv::createImmutable(__DIR__ . '/../');
 $Dotenv->load();
 
-$donorName = isset($_SESSION['donorName']) ? $_SESSION['donorName'] : 'none';
-// Now you can use $donorName variable wherever needed
+$donorName = $_POST['donorName'];
+$donorPhone = $_POST['donorPhone'];
+$donorAmount = $_POST['donorAmount'];
+ // Retrieve donor name from session
 
 
 $mobile_iden = $_ENV['IDEN']; // as you have copied from the url, explained above
 $mobile_token = $_ENV['TOKEN']; // as per your creation of token
-
-$addresses = '+254741816281'; // mobile number to send text to
-$sms = 'hi' . $donorName;
+$addresses = "+254". substr($donorPhone,-9); // mobile number to send text to
+$sms = "Greetings $donorName, your donation of KES $donorAmount was received. Thank you for your donation. May God bless you.";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, 'https://api.pushbullet.com/v2/texts');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

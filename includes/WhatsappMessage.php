@@ -5,8 +5,13 @@ use Dotenv\Dotenv as Dotenv;
 $Dotenv = Dotenv::createImmutable(__DIR__ . '/../');
 $Dotenv->load();
 
+$donorName = $_POST['donorName'];
+$donorPhone = $_POST['donorPhone'];
+$donorAmount = $_POST['donorAmount'];
+
 $baseUrl = $_ENV['BASE_URL'];
-$message = "{{MESSAGE}}";
+$phoneNumber = "+254". substr($donorPhone,-9); // mobile number to send text to
+$message = "Greetings $donorName, your donation of KES $donorAmount was received. Thank you for your donation. May God bless you.";
 $messageType = "text";
 $apiKey = $_ENV['APIKEY'];
 
