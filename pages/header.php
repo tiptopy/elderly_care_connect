@@ -8,10 +8,8 @@
     <link rel="stylesheet" href="../css/header.css">
 
 </head>
-
 <?php
 require_once '../includes/authenticate.php';
-require_once '../includes/db_connection.php';
 ?>
 
 <body>

@@ -1,9 +1,7 @@
-<?php include './pages/header.php'; ?>
-
 
 <?php
-require_once '../includes/authenticate.php';
-require_once '../includes/db_connection.php';
+require_once './includes/authenticate.php';
+require_once './includes/db_connection.php';
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +12,26 @@ require_once '../includes/db_connection.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elderly Care Connect</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <div class="container-header">
+        <h1>EC Care</h1>
+        <nav>
+            <ul>
+                <?php
+            if (!isLoggedIn()) {
+                echo '<a href="./pages/login.php"> Create profile here</a>';
+
+            }
+            else
+            {
+                echo '<a href="./pages/homepage.php">View my created profiles </a>';
+            echo '<a href="?logout=true">Logout</a>';
+            }
+            ?>
+
+            </ul>
+        </nav>
+    </div>
     <form id="paymentForm" method="post" style = "display: none;">
             <div class="form-submit">
                 <label for="donorName"><b>Donor Name</b></label>
