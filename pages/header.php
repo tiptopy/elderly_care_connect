@@ -16,17 +16,25 @@ require_once '../includes/authenticate.php';
 <header>
     <div class="container-header">
         <h1>EC Care</h1>
-        <nav>
+        <nav class="nav-header">
             <ul>
                 <?php
             if (!isLoggedIn()) {
-                echo '<a href="./pages/login.php"> Create profile here</a>';
+                echo '<a href="#"> Home</a>';
+                echo '<a href="#"> About Us</a>';
+                echo '<a href="#"> Login</a>';
+                echo '<a href="#"> Sign Up</a>';
+                
 
             }
             else
             {
-                echo '<a href="./pages/homepage.php">View my created profiles </a>';
-            echo '<a href="?logout=true">Logout</a>';
+                echo '<a href="#"> Home</a>';
+                echo '<a href="#"> About Us</a>';
+                echo '<a href="#">My Profiles </a>';
+                echo '<a href="../index.php?logout=true">Logout</a>';
+
+            
             }
             ?>
 

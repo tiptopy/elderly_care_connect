@@ -46,24 +46,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="../css/homepage.css">
 </head>
 <body>
-    <div class="container">
+   <div class="homepage-container">
+   <div class="container-homepage">
 
-        <?php
-        // Retrieve and display elderly profiles created by the logged-in user
-        $profiles = $db->profiles->find(['created_by' => $_SESSION['user_id']]);
+<?php
+// Retrieve and display elderly profiles created by the logged-in user
+$profiles = $db->profiles->find(['created_by' => $_SESSION['user_id']]);
 
-        foreach ($profiles as $profile) {
-            echo '<div class="profile">';
-            echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['name'] . '">';
-            echo '<h3>' . $profile['name'] . '</h3>';
-            echo '<p>' . $profile['summary'] . '</p>';
-            echo '<a href="profile.php?id=' . $profile['_id'] . '" class="view-profile-link ">View Profile</a>';
+foreach ($profiles as $profile) {
+    echo '<div class="profile">';
+    echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['name'] . '">';
+    echo '<h3>' . $profile['name'] . '</h3>';
+    echo '<p>' . $profile['summary'] . '</p>';
+    echo '<a href="profile.php?id=' . $profile['_id'] . '" class="view-profile-link ">View Profile</a>';
 
-            echo '</div>';
-        }
-        ?>
-        
-        <a href="createprofile.php" class="create-profile-link">Create Profile</a>
-    </div>
+    echo '</div>';
+}
+?>
+
+
+</div>
+<a href="createprofile.php" class="create-profile-link">Create Profile</a>
+   </div>
 </body>
 </html>
+<?php include '../pages/footer.php'; ?>
