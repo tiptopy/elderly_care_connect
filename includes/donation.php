@@ -13,6 +13,9 @@ $currency = "KES";
     function payWithPaystack(e) {
         let donorName = document.getElementById('donorName').value;
         sessionStorage.setItem('donorName', donorName);
+
+        let formData = new FormData(paymentForm);
+        formData.append('donorName', donorName);
         e.preventDefault();
         let handler = PaystackPop.setup({
             key: '<?php echo $PublicKey; ?>',
@@ -30,7 +33,16 @@ $currency = "KES";
                 window.location.href = "./includes/verify_transaction.php?reference=" + response.reference;
             }
         });
-        
+        // Pass form data to PHP file
+        fetch('./includes/sms_message.php', {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            // Handle response if needed
+        }).catch(error => {
+            // Handle error if needed
+        });
+
 
         handler.openIframe();
     }
