@@ -1,0 +1,47 @@
+/* styles.css (or any other CSS file) */
+
+header {
+    background-color: #333; /* Dark background color */
+    color: #fff; /* Text color */
+    height: auto;
+    padding: 20px 10px;
+}
+
+.container-index-header{
+    width: 100%; /* Width of the container */
+    margin: 0 auto; /* Center the container */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space items evenly */
+    align-items: center; /* Center items vertically */
+    
+    
+  
+}
+
+.container-index-header h1 {
+    margin: 0; /* Remove margin */
+    color: #fff;
+}
+
+.container-index-header nav ul {
+    list-style-type: none; 
+    margin: 0;
+}
+
+.container-index-header nav ul li {
+    display: inline-block; /* Display list items horizontally */
+    margin-right: 20px; /* Add right margin between items */
+}
+
+.container-index-header nav ul li:last-child {
+    margin-right: 10px; /* Remove margin from last list item */
+}
+
+.container-index-header nav ul li a {
+    color: #fff; /* Link text color */
+    text-decoration: none; /* Remove underline */
+}
+
+.container-index-header nav ul li a:hover {
+    text-decoration: underline; /* Add underline on hover */
+}

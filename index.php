@@ -1,6 +1,9 @@
+<?php include './pages/header.php'; ?>
+
+
 <?php
-require_once './includes/authenticate.php';
-require_once './includes/db_connection.php';
+require_once '../includes/authenticate.php';
+require_once '../includes/db_connection.php';
 ?>
 
 <!DOCTYPE html>

@@ -1,3 +1,5 @@
+<?php include 'header.php'; ?>
+
 <!-- pages/profile.php -->
 <?php
 require_once '../includes/authenticate.php';
@@ -29,11 +31,11 @@ if (!$profile) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $profile['name']; ?> - Elderly Care Connect</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/profile.css">
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-profile">
         <h1><?php echo $profile['name']; ?></h1>
         <div class="profile">
             <?php
@@ -47,3 +49,5 @@ if (!$profile) {
 </body>
 
 </html>
+
+<?php include 'footer.php'; ?>

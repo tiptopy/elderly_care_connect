@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Elderly Care Connect</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/forgotpassword.css">
+    <link rel="stylesheet" href="../css/general.css">
 </head>
 
 <body>
@@ -29,8 +30,10 @@
 
             <input type="submit" value="Submit">
         </form>
+       <div class="forgot-passsword-item">
         <a href="./login.php">Login</a>
         <a href="./signup.php">Sign Up</a>
+       </div>
     </div>
 </body>
 <?php

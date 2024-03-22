@@ -5,20 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Elderly Care Connect</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/login_style.css">
+    <link rel="stylesheet" href="../css/general.css">
+
 </head>
 <body>
-    <div class="container">
-        <h1>Login</h1>
-        <form action="login.php" method="post">
-            <label for="username">Username:</label>
+    <div class="container-login">
+        
+       
+       <div class="box form-box">
+       <h1>Login</h1>
+       <div class="contain-box">
+       <form action="login.php" method="post">
+           <div class="field input">
+           <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
-            <label for="password">Password:</label>
+           </div>
+           <div class="field input">
+           <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
             <button type="submit">Login</button>
+           </div>
         </form>
-        <a href="./forgot_password.php">forgort password</a>
-        <a href="./signup.php">Sign Up</a>
+        <div class="links">
+           <a href="./forgot_password.php">forgort password?</a>
+          <div class=links-items2> Dont have an account?<a href="./signup.php" id="item2">Sign Up</a></div>
+        </div>
+       </div>
+       
+       </div>
     </div>
 </body>
 </html>

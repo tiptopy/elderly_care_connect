@@ -6,13 +6,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup - Elderly Care Connect</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/sign-up.css">
+    <link rel="stylesheet" href="../css/general.css">
 </head>
 
 <body>
-    <div class="container">
-        <h1>Signup</h1>
+<div class="container-signup">
+    <div class="box form-box">
+    <h1>Sign Up</h1>
+    <div class="contain-box">     
         <form action="signup.php" method="post" enctype="multipart/form-data">
+        <div class="field input">
             <label for="FullName">Full Name:</label>
             <input type="text" id="FullName" name="FullName" required>
             <label for="PhoneNumber">Phone Number:</label>
@@ -33,8 +37,13 @@
             <label for="image">Profile Image:</label>
             <input type="file" id="image" name="image" accept="image/*" required>
             <button type="submit">Signup</button>
+        </div>
         </form>
+     <div class="links">
         <p>Have an account? <a href="./login.php">Login</a></p>
+  </div>
+    </div>
+    </div>
     </div>
 </body>
 

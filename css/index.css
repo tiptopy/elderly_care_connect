@@ -1,0 +1,122 @@
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e6e1e1;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container styles */
+.container-index {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Heading styles */
+.container-index h1 {
+    font-size: 20px;
+    text-align: center;
+    color: #666; 
+}
+
+h2 {
+    font-size: 24px;
+    margin-top: 20px;
+    color: #666; 
+}
+
+/* Profile styles */
+.profile {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.profile img {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.profile h3 {
+    font-size: 20px;
+    color: #333; 
+}
+
+.profile p {
+    color: #666; 
+}
+
+.profile a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 20px;
+    background-color: #007bff; 
+    color: #fff; 
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.profile a:hover {
+    background-color: #0056b3; 
+}
+
+/* Form styles */
+.form-submit {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-submit button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-submit button:hover {
+    background-color: #0056b3;
+}
+
+/* Login/Logout/Create profile styles */
+.actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.actions p {
+    color: #666; 
+}
+
+.actions a {
+    color: #007bff; 
+    text-decoration: none;
+    margin-left: 10px;
+    transition: color 0.3s ease;
+}
+
+.actions a:hover {
+    color: #0056b3;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px 0;
+    background-color: #f9f9f9; 
+    border-top: 1px solid #ccc;
+}
+
+footer p {
+    color: #666; 
+}
