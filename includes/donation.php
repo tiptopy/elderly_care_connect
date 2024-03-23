@@ -9,6 +9,7 @@ $currency = "KES";
 <script type="text/javascript">
     const paymentForm = document.getElementById('paymentForm');
     paymentForm.addEventListener("submit", payWithPaystack, false);
+    var Path = getPath();
 
     function payWithPaystack(e) {
         let donorName = document.getElementById('donorName').value;
@@ -43,7 +44,7 @@ $currency = "KES";
             callback: function(response) {
                 let message = 'Payment complete! Reference: ' + response.reference;
                 
-                fetch('../includes/sms_message.php', {
+                fetch(Path + 'includes/sms_message.php', {
                     method: 'POST',
                     body: formData
                 }).then(response => {
@@ -51,7 +52,7 @@ $currency = "KES";
                 }).catch(error => {
                     // Handle error if needed
                 });
-                fetch('../includes/WhatsappMessage.php', {
+                fetch(Path+'includes/WhatsappMessage.php', {
                     method: 'POST',
                     body: formData
                 }).then(response => {
@@ -60,7 +61,7 @@ $currency = "KES";
                     // Handle error if needed
                 });
                 alert(message);
-                window.location.href = "../includes/verify_transaction.php?reference=" + response.reference;
+                window.location.href = Path +"includes/verify_transaction.php?reference=" + response.reference;
             }
         });
         // Pass form data to PHP file
@@ -69,6 +70,23 @@ $currency = "KES";
 
         handler.openIframe();
     }
+    function getPath() {
+    // Get the current path
+    var currentPath = window.location.pathname;
+
+    // Check if the current path is in the root directory
+    if (currentPath === '/') {
+        return './';
+    } else {
+        // If the current path is inside a folder, construct the correct path
+        var pathSegments = currentPath.split('/');
+        var relativePath = '';
+        for (var i = 1; i < pathSegments.length; i++) {
+            relativePath += '../';
+        }
+        return relativePath;
+    }
+}
 </script>
 
 
