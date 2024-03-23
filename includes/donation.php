@@ -64,7 +64,6 @@ $currency = "KES";
                 window.location.href = Path +"includes/verify_transaction.php?reference=" + response.reference;
             }
         });
-        // Pass form data to PHP file
 
 
 
