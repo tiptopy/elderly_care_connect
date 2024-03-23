@@ -20,10 +20,15 @@ $currency = "KES";
         let donorAmount = document.getElementById('donorAmount').value;
         sessionStorage.setItem('donorAmount', donorAmount);
 
+        let creator_phone_number = document.getElementById('creator_phone_number').value;
+        sessionStorage.setItem('creator_phone_number', creator_phone_number);
+
         let formData = new FormData(paymentForm);
         formData.append('donorName', donorName);
         formData.append('donorPhone', donorPhone);
         formData.append('donorAmount', donorAmount);
+        formData.append('creator_phone_number', creator_phone_number);
+        
         e.preventDefault();
         let handler = PaystackPop.setup({
             key: '<?php echo $PublicKey; ?>',
@@ -37,24 +42,25 @@ $currency = "KES";
             },
             callback: function(response) {
                 let message = 'Payment complete! Reference: ' + response.reference;
+                
+                fetch('../includes/sms_message.php', {
+                    method: 'POST',
+                    body: formData
+                }).then(response => {
+                    // Handle response if needed
+                }).catch(error => {
+                    // Handle error if needed
+                });
+                fetch('../includes/WhatsappMessage.php', {
+                    method: 'POST',
+                    body: formData
+                }).then(response => {
+                    // Handle response if needed
+                }).catch(error => {
+                    // Handle error if needed
+                });
                 alert(message);
-                fetch('./includes/sms_message.php', {
-                    method: 'POST',
-                    body: formData
-                }).then(response => {
-                    // Handle response if needed
-                }).catch(error => {
-                    // Handle error if needed
-                });
-                fetch('./includes/WhatsappMessage.php', {
-                    method: 'POST',
-                    body: formData
-                }).then(response => {
-                    // Handle response if needed
-                }).catch(error => {
-                    // Handle error if needed
-                });
-                window.location.href = "./includes/verify_transaction.php?reference=" + response.reference;
+                window.location.href = "../includes/verify_transaction.php?reference=" + response.reference;
             }
         });
         // Pass form data to PHP file

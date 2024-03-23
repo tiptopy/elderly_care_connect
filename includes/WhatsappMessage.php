@@ -8,6 +8,7 @@ $Dotenv->load();
 $donorName = $_POST['donorName'];
 $donorPhone = $_POST['donorPhone'];
 $donorAmount = $_POST['donorAmount'];
+$creator_phone_number = $_POST['creator_phone_number'];
 
 $baseUrl = $_ENV['BASE_URL'];
 $phoneNumber = "+254". substr($donorPhone,-9); // mobile number to send text to
@@ -15,8 +16,19 @@ $message = "Greetings $donorName, your donation of KES $donorAmount was received
 $messageType = "text";
 $apiKey = $_ENV['APIKEY'];
 
-$data = sendWhatsAppMessage($baseUrl, $phoneNumber, $message, $messageType, $apiKey);
-echo json_encode($data);
+// Send message to donor
+$data_donor = sendWhatsAppMessage($baseUrl, $phoneNumber, $message, $messageType, $apiKey);
+
+// Check if creator_phone_number is not empty and send a different message
+if (!empty($creator_phone_number)) {
+    $creator_message = "Hello, a donation of KES $donorAmount was received from $donorName. Thank you.";
+    $creator_phone_number = "+254". substr($creator_phone_number,-9);
+    $data_creator = sendWhatsAppMessage($baseUrl, $creator_phone_number, $creator_message, $messageType, $apiKey);
+    // Handle response for creator's message if necessary
+}
+
+// Handle response for donor's message if necessary
+echo json_encode($data_donor);
 
 function sendWhatsAppMessage($baseUrl, $phoneNumber, $message, $messageType, $apiKey) {
     $url = $baseUrl . "/whatsapp/send-message";
