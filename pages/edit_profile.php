@@ -33,7 +33,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pictureMimeType = mime_content_type($_FILES['picture']['tmp_name']);
 
     // Update profile in MongoDB
-    $updateResult = $db->profiles->updateOne(['_id' => new MongoDB\BSON\ObjectId($profile_id)], ['$set' => ['name' => $name, 'age' => $age, 'summary' => $summary, 'pictureData' => new MongoDB\BSON\Binary($pictureData, MongoDB\BSON\Binary::TYPE_GENERIC), 'pictureMimeType' => $pictureMimeType]]);
+    $updateResult = $db->profiles->updateOne(['_id' => new MongoDB\BSON\ObjectId($profile_id)], ['$set' => [
+        'name' => $name, 
+        'age' => $age, 
+        'summary' => $summary, 
+        'pictureData' => new MongoDB\BSON\Binary($pictureData, MongoDB\BSON\Binary::TYPE_GENERIC), 
+        'pictureMimeType' => $pictureMimeType]]);
 
     if ($updateResult) {
         echo "Profile updated successfully";
@@ -56,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="container">
         <h1>Edit Profile</h1>
-        <form action="edit_profile.php?id=<?php echo $profile_id; ?>" method="post">
+        <form action="edit_profile.php?id=<?php echo $profile_id; ?>" method="post" enctype="multipart/form-data">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" value="<?php echo $profile['name']; ?>" required>
             <label for="age">Age:</label>
