@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $existing_user = $db->users->findOne(['username' => $username]);
 
     if ($existing_user) {
-        echo "Username already exists";
+        echo '<div class="user-name-exists">Username already exists</div>';
     } else {
         $insertResult = $db->users->insertOne([
             'FullName' => $FullName,

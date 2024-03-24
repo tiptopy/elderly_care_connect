@@ -90,10 +90,28 @@ button[type="submit"]:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 9999;
     cursor: pointer;
-    animation: fadeOut 5gits forwards; /* Adjust the duration as needed */
+    animation: fadeOut 5s forwards; /* Adjust the duration as needed */
 }
 
 @keyframes fadeOut {
     0% { opacity: 1; }
     100% { opacity: 0; display: none; }
+}
+.user-name-exists{
+  position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #f13202; /* Green color */
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    cursor: pointer;
+    animation: fadeOut 5s forwards; /* Adjust the duration as needed */
+
+}
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; display: none; }
 }
