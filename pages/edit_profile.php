@@ -22,43 +22,37 @@ if (!$profile) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Handle form submission for creating profile
-    // Assuming the form fields are 'name', 'summary', and 'picture'
+    // Handle form submission for updating profile
+    // Assuming the form fields are 'name', 'summary', 'picture'
     $name = $_POST['name'];
     $age = $_POST['age'];
     $summary = $_POST['summary'];
-    $user_id = $_SESSION['user_id'];
 
     // File upload handling
     $pictureData = file_get_contents($_FILES['picture']['tmp_name']);
     $pictureMimeType = mime_content_type($_FILES['picture']['tmp_name']);
 
-    // Insert profile into MongoDB with associated user ID and image data
-    $insertResult = $db->profiles->insertOne([
-        'name' => $name,
-        'age' => $age,
-        'summary' => $summary,
-        'pictureData' => new MongoDB\BSON\Binary($pictureData, MongoDB\BSON\Binary::TYPE_GENERIC),
-        'pictureMimeType' => $pictureMimeType,
-        'created_by' => $user_id
-    ]);
+    // Update profile in MongoDB
+    $updateResult = $db->profiles->updateOne(['_id' => new MongoDB\BSON\ObjectId($profile_id)], ['$set' => ['name' => $name, 'age' => $age, 'summary' => $summary, 'pictureData' => new MongoDB\BSON\Binary($pictureData, MongoDB\BSON\Binary::TYPE_GENERIC), 'pictureMimeType' => $pictureMimeType]]);
 
-    if ($insertResult) {
-        echo "Profile created successfully";
+    if ($updateResult) {
+        echo "Profile updated successfully";
     } else {
-        echo "Error creating profile";
+        echo "Error updating profile";
     }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile - Elderly Care Connect</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
     <div class="container">
         <h1>Edit Profile</h1>
@@ -69,11 +63,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="number" id="age" name="age" value="<?php echo $profile['age']; ?>" required>
             <label for="summary">Summary:</label>
             <textarea id="summary" name="summary" required><?php echo $profile['summary']; ?></textarea>
-            <label for="picture">Picture URL:</label>
-            <?php echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['name'] . '">';?>
+            <label for="picture">Picture:</label>
+            <div class="image-container">
+                <?php echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['name'] . '">'; ?>
+            </div>
             <input type="file" id="picture" name="picture" accept="image/*" required>
             <button type="submit">Update Profile</button>
         </form>
     </div>
-</body>
-</html>
