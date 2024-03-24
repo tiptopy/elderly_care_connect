@@ -45,10 +45,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile - Elderly Care Connect</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/edit_profile.css">
+    <link rel="stylesheet" href="../css/general.css">
+
+
 </head>
 <body>
-    <div class="container">
+    <div class="container-edit-profile">
         <h1>Edit Profile</h1>
         <form action="edit_profile.php?id=<?php echo $profile_id; ?>" method="post">
             <label for="name">Name:</label>
