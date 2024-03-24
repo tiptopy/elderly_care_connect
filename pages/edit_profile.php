@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="age">Age:</label>
             <input type="number" id="age" name="age" value="<?php echo $profile['age']; ?>" required>
             <label for="summary">Summary:</label>
-            <textarea id="summary" name="summary" required><?php echo $profile['summary']; ?></textarea>
+            <textarea id="summary" name="sugmmary" required><?php echo $profile['summary']; ?></textarea>
             <label for="picture">Picture URL:</label>
                   <div class="image-container">
                                   <?php echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['name'] . '">';?>
