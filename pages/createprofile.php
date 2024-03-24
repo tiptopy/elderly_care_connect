@@ -13,6 +13,8 @@
         <form action="homepage.php" method="post" enctype="multipart/form-data">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
             <label for="summary">Summary:</label>
             <textarea id="summary" name="summary" required></textarea>
             <label for="picture">Picture:</label>

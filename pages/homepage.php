@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle form submission for creating profile
     // Assuming the form fields are 'name', 'summary', and 'picture'
     $name = $_POST['name'];
+    $age = $_POST['age'];
     $summary = $_POST['summary'];
     $user_id = $_SESSION['user_id'];
 
@@ -23,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Insert profile into MongoDB with associated user ID and image data
     $insertResult = $db->profiles->insertOne([
         'name' => $name,
+        'age' => $age,
         'summary' => $summary,
         'pictureData' => new MongoDB\BSON\Binary($pictureData, MongoDB\BSON\Binary::TYPE_GENERIC),
         'pictureMimeType' => $pictureMimeType,
@@ -57,7 +59,7 @@ foreach ($profiles as $profile) {
     echo '<div class="profile">';
     echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['name'] . '">';
     echo '<h3>' . $profile['name'] . '</h3>';
-    echo '<p>' . $profile['summary'] . '</p>';
+    echo 'age: ' . '<p>' . $profile['age'] . '</p>';
     echo '<a href="profile.php?id=' . $profile['_id'] . '" class="view-profile-link ">View Profile</a>';
 
     echo '</div>';

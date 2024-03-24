@@ -20,16 +20,15 @@ require_once './includes/db_connection.php';
             <ul>
                 <?php
             if (!isLoggedIn()) {
-                echo '<a href="./pages/homepage.php"> Home</a>';
+                echo '<a href="#"> Home</a>';
                 echo '<a href="#"> About Us</a>';
                 echo '<a href="./pages/login.php"> Login</a>';
                 echo '<a href="./pages/signup.php"> Sign Up</a>';
-                
 
             }
             else
             {
-                echo '<a href="./pages/homepage.php"> Home</a>';
+                echo '<a href="#"> Home</a>';
                 echo '<a href="#"> About Us</a>';
                 echo '<a href="./pages/profile.php">My profiles</a>';
                 echo '<a href="./pages/logout.php">Logout</a>';
@@ -73,11 +72,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <div class="form-group">
+            <label for="donorPhone"><b>Donor Phone Number</b></label>
+            <input type="number" placeholder="Enter Phone Number" name="donorPhone" id="donorPhone" required>
+        </div>
+
+        <div class="form-group">
             <label for="donorAmount"><b>Donation Amount</b></label>
             <input type="number" placeholder="Enter Amount" name="donorAmount" id="donorAmount" min="1" max="1000" required>
             <?php if(isset($errorMessage)) { echo "<p class='error'>$errorMessage</p>"; } ?>
         </div>
 
+        <input type="hidden" name="creator_phone_number" id="creator_phone_number" value="">
         <input type="hidden" name="donorEmail" id="hiddenEmail">
         <input type="hidden" name="donorAmount" id="hiddenAmount">
         <button type="submit" onclick="payWithPaystack()" class="submit-button">Donate</button>
@@ -113,11 +118,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       }
       ?>
       
-      <?php
-      if ($_SERVER["REQUEST_METHOD"] == "POST") {
-          $_SESSION['donorName'] = $_POST['donorName']; // Store donor name in session
-      }
-      ?>
 
 
       <?php

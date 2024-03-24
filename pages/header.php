@@ -20,18 +20,18 @@ require_once '../includes/authenticate.php';
             <ul>
                 <?php
             if (!isLoggedIn()) {
-                echo '<a href="#"> Home</a>';
+                echo '<a href="../"> Home</a>';
                 echo '<a href="#"> About Us</a>';
-                echo '<a href="#"> Login</a>';
-                echo '<a href="#"> Sign Up</a>';
+                echo '<a href="./pages/login.php"> Login</a>';
+                echo '<a href="../pages/signup.php"> Sign Up</a>';
                 
 
             }
             else
             {
-                echo '<a href="#"> Home</a>';
+                echo '<a href="../"> Home</a>';
                 echo '<a href="#"> About Us</a>';
-                echo '<a href="#">My Profiles </a>';
+                echo '<a href="../pages/profile.php">My Profiles </a>';
                 echo '<a href="../index.php?logout=true">Logout</a>';
 
             
