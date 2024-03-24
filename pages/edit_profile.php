@@ -32,9 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $updateResult = $db->profiles->updateOne(['_id' => new MongoDB\BSON\ObjectId($profile_id)], ['$set' => ['name' => $name, 'summary' => $summary, 'picture' => $picture]]);
 
     if ($updateResult) {
-       <div class="notification"> 
        echo "Profile updated successfully";
-       </div>
     } else {
         echo "Error updating profile";
     }
