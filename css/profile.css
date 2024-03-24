@@ -48,3 +48,81 @@ body {
     color: #555;
     text-transform: capitalize;
 }
+
+#DonateBtn{
+    background-color: #FF5733; 
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius:0px 5px;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      
+      .DonateBtn:hover {
+        background-color: #FF8C66;
+      }
+/* Form Container */
+#paymentForm {
+    width: 35%;
+    color:whitesmoke;
+    text-align: center;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #239494;
+    padding: 70px;
+    border-radius: 10px;
+    box-shadow: 0px 500px 500px 500px rgba(255, 255, 255, 0.6);
+    transition: box-shadow 0.3s ease; /* Add a subtle shadow */
+    transition: all 10s ease;
+    transition: background-color 0.5s, backdrop-filter 0.5s;
+  }
+  
+
+  /* Form Header */
+  .form-submit h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Fields */
+  .form-submit label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-submit input[type="text"],
+  .form-submit input[type="email"],
+  .form-submit input[type="number"] {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Submit Button */
+  .form-submit button[type="submit"] {
+    background-color: #FF5733;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px; 
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form-submit button[type="submit"]:hover {
+    background-color: #FF8C66; 
+  }
+  
