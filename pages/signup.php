@@ -81,9 +81,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
 
         if ($insertResult) {
-            echo "User created successfully";
+            echo '<div class="success-message">User created successfully</div>';
         } else {
-            echo "Error creating user";
+            echo '<div class="error-message">Error creating user</div>';
         }
     }
 }
