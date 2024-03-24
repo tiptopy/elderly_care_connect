@@ -73,7 +73,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="summary">Summary:</label>
             <textarea id="summary" name="summary" required><?php echo $profile['summary']; ?></textarea>
             <label for="picture">Picture URL:</label>
-            <?php echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['name'] . '">';?>
+                  <div class="image-container">
+                                  <?php echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['name'] . '">';?>
+                </div>
+
             <input type="file" id="picture" name="picture" accept="image/*" required>
             <button type="submit">Update Profile</button>
         </form>
