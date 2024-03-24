@@ -112,7 +112,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           echo '</div>';
       }
       ?>
-      
       <?php
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $_SESSION['donorName'] = $_POST['donorName']; // Store donor name in session
