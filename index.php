@@ -117,8 +117,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           echo '</div>';
       }
       ?>
-      
-
 
       <?php
       if (isset($_GET['logout'])) {
