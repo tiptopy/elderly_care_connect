@@ -20,7 +20,7 @@ $sms = "Greetings $donorName, your donation of KES $donorAmount was received. Th
 
 if (!empty($_POST['creator_phone_number'])) {
     // Additional message for creator_phone_number
-    $creator_phone_message = "Hello, a donation of KES $donorAmount was received from $donorName. Thank you.";
+    $creator_phone_message = "Greetings, $donorName just made a donation of $donorAmount to one of your elderly profiles. Thank you.";
     $result_creator = sendSMS($creator_phone_number, $creator_phone_message, $mobile_iden, $mobile_token);
     // Handle result or errors for creator's message if necessary
 }

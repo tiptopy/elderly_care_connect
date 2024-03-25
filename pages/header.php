@@ -15,7 +15,7 @@ require_once '../includes/authenticate.php';
 <body>
 <header>
     <div class="container-header">
-        <h1>EC Care</h1>
+        <h1>ECC Care</h1>
         <nav class="nav-header">
             <ul>
                 <?php

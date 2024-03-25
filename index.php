@@ -15,7 +15,7 @@ require_once './includes/db_connection.php';
     <link rel="stylesheet" href="./css/header.css">
     <header>
     <div class="container-header">
-        <h1>EC Care</h1>
+        <h1>ECC Care</h1>
         <nav class="nav-header">
             <ul>
                 <?php
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $donorAmount = $_POST["donorAmount"];
 
     if ($donorAmount < 0) {
-        $errorMessage = "Please enter a positive donation amount.";
+        $errorMessage = "Please enter a valid amount.";
     } else {
         // Donation amount is valid, process the form data further
         // Your code to process the form data goes here...
