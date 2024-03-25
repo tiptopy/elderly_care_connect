@@ -110,9 +110,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           // Base64 encode the image data and set it as the src attribute
           $imageData = base64_encode($profile['pictureData']->getData());
           $imageSrc = 'data:' . $profile['pictureMimeType'] . ';base64,' . $imageData;
-          echo '<img src="' . $imageSrc . '" alt="' . $profile['name'] . '">';
-          echo '<h3>' . $profile['name'] . '</h3>';
-          echo '<p>' . $profile['summary'] . '</p>';
+          echo '<img src="' . $imageSrc . '" alt="' . $profile['fname'] . '">';
+          echo '<h3>' . $profile['fname'] . ' ' . $profile['sname'] . '</h3>';
+          echo '<p>' . 'Age: ' . $profile['age'] . '</p>';
           echo '<a href="./pages/profile.php?id=' . $profile['_id'] . '">View Full Profile</a>';
           echo '</div>';
       }

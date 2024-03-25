@@ -11,10 +11,16 @@ if (!isLoggedIn()) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle form submission for creating profile
-    // Assuming the form fields are 'name', 'summary', and 'picture'
-    $name = $_POST['name'];
+    $fname = $_POST['fname'];
+    $mname = $_POST['mname'];
+    $sname = $_POST['sname'];
+    $idno = $_POST['idno'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    $location = $_POST['location'];
+    $county = $_POST['county'];
     $age = $_POST['age'];
-    $summary = $_POST['summary'];
+    $additional = $_POST['additional'];
     $user_id = $_SESSION['user_id'];
 
     // File upload handling
@@ -23,9 +29,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Insert profile into MongoDB with associated user ID and image data
     $insertResult = $db->profiles->insertOne([
-        'name' => $name,
+        'fname' => $fname,
+        'mname' => $mname,
+        'sname' => $sname,
+        'idno' => $idno,
+        'phone' => $phone,
+        'address' => $address,
+        'location' => $location,
+        'county' => $county,
         'age' => $age,
-        'summary' => $summary,
+        'additional' => $additional,
         'pictureData' => new MongoDB\BSON\Binary($pictureData, MongoDB\BSON\Binary::TYPE_GENERIC),
         'pictureMimeType' => $pictureMimeType,
         'created_by' => $user_id
@@ -41,36 +54,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elderly Care Connect</title>
     <link rel="stylesheet" href="../css/homepage.css">
 </head>
+
 <body>
-   <div class="homepage-container">
-   <div class="container-homepage">
+    <div class="homepage-container">
+        <div class="container-homepage">
 
-<?php
-// Retrieve and display elderly profiles created by the logged-in user
-$profiles = $db->profiles->find(['created_by' => $_SESSION['user_id']]);
+            <?php
+            // Retrieve and display elderly profiles created by the logged-in user
+            $profiles = $db->profiles->find(['created_by' => $_SESSION['user_id']]);
 
-foreach ($profiles as $profile) {
-    echo '<div class="profile">';
-    echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['name'] . '">';
-    echo '<h3>' . $profile['name'] . '</h3>';
-    echo 'age: ' . '<p>' . $profile['age'] . '</p>';
-    echo '<a href="profile.php?id=' . $profile['_id'] . '" class="view-profile-link ">View Profile</a>';
-    echo '<a href="edit_profile.php?id=' . $profile['_id'] . '" class="view-profile-link">Edit Profile</a>';
+            foreach ($profiles as $profile) {
+                echo '<div class="profile">';
+                echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['fname'] . '">';
+                echo '<h3>' . $profile['fname'] . '</h3>';
+                echo 'age: ' . '<p>' . $profile['age'] . '</p>';
+                echo '<a href="profile.php?id=' . $profile['_id'] . '" class="view-profile-link ">View Profile</a>';
+                echo '<a href="edit_profile.php?id=' . $profile['_id'] . '" class="view-profile-link">Edit Profile</a>';
 
-    echo '</div>';
-}
-?>
+                echo '</div>';
+            }
+            ?>
 
 
-</div>
-<a href="createprofile.php" class="create-profile-link">Create Profile</a>
-   </div>
+        </div>
+        <a href="createprofile.php" class="create-profile-link">Create Profile</a>
+    </div>
 </body>
+
 </html>
 <?php include '../pages/footer.php'; ?>

@@ -70,15 +70,15 @@ $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['cre
 
 <body>
     <div class="container-profile">
-        <h1><?php echo $profile['name']; ?></h1>
+        <h1><?php echo $profile['fname'] . $profile['sname'] ; ?></h1>
 
         <div class="profile">
             <?php
             $imageData = base64_encode($profile['pictureData']->getData());
             $imageSrc = 'data:' . $profile['pictureMimeType'] . ';base64,' . $imageData;
-            echo '<img src="' . $imageSrc . '" alt="' . $profile['name'] . '">';
+            echo '<img src="' . $imageSrc . '" alt="' . $profile['fname'] . '">';
             ?>
-            <p><?php echo $profile['summary']; ?></p>
+            <p><?php echo $profile['additional']; ?></p>
 
 
             <button id="DonateBtn" onclick="toggleDonateForm()">Donate</button>
