@@ -2,6 +2,25 @@
 <?php
 require_once './includes/authenticate.php';
 require_once './includes/db_connection.php';
+
+// Define the number of profiles per page
+$profilesPerPage = 20;
+
+// Calculate the total number of profiles
+$totalProfiles = $db->profiles->count();
+
+// Calculate the total number of pages
+$totalPages = ceil($totalProfiles / $profilesPerPage);
+
+// Determine the current page
+$currentpage = isset($_GET['page']) ? $_GET['page'] : 1;
+
+// Calculate the offset for MongoDB query
+$offset = ($currentpage - 1) * $profilesPerPage;
+
+// Retrieve profiles for the current page
+$profiles = $db->profiles->find([], ['skip' => $offset, 'limit' => $profilesPerPage]);
+
 ?>
 
 <!DOCTYPE html>
@@ -102,8 +121,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container-index">
       
       <?php
-      // Retrieve and display elderly profiles created by the logged-in user
-      $profiles = $db->profiles->find();
 
       foreach ($profiles as $profile) {
           echo '<div class="profile">';
@@ -125,6 +142,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       }
       ?>
   </div>
+  <!-- Pagination links -->
+  <div class="pagination">
+            <?php
+            // Display pagination links
+            for ($page = 1; $page <= $totalPages; $page++) {
+                echo '<a href="?page=' . $page . '" ' . ($currentpage == $page ? 'class="current"' : '') . '>' . $page . '</a>';
+            }
+            ?>
+        </div>
     </div>
     
        
