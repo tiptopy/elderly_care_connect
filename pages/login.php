@@ -28,7 +28,7 @@
            </div>
         </form>
         <div class="links">
-           <a href="./forgot_password.php">forgort password?</a>
+           <a href="./forgot_password.php">forgot password?</a>
           <div class=links-items2> Dont have an account?<a href="./signup.php" id="item2">Sign Up</a></div>
         </div>
        </div>

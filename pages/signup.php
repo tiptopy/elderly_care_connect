@@ -15,7 +15,7 @@
     <div class="box form-box">
     <h1>Sign Up</h1>
     <div class="contain-box">     
-        <form action="signup.php" method="post" enctype="multipart/form-data">
+        <form action="signup.php" method="post" enctype="multipart/form-data" >
         <div class="field input">
             <label for="FullName">Full Name:</label>
             <input type="text" id="FullName" name="FullName" required>
@@ -36,7 +36,7 @@
             <input type="text" id="security_answer" name="security_answer" required>
             <label for="image">Profile Image:</label>
             <input type="file" id="image" name="image" accept="image/*" required>
-            <button type="submit">Signup</button>
+            <button type="submit" >Signup</button>
         </div>
         </form>
      <div class="links">
@@ -82,6 +82,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($insertResult) {
             echo '<div class="success-message">User created successfully</div>';
+        } else {
+            echo '<div class="error-message">Error creating user</div>';
+        }
+        if ($insertResult) {
+            // Redirect to index.php after successful signup
+            header("Location: index.php");
+            exit(); // Ensure script stops execution after redirection
         } else {
             echo '<div class="error-message">Error creating user</div>';
         }

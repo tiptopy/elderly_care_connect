@@ -24,9 +24,16 @@ if (!$profile) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle form submission for updating profile
     // Assuming the form fields are 'name', 'summary', 'picture'
-    $name = $_POST['name'];
+    $fname = $_POST['fname'];
+    $mname = $_POST['mname'];
+    $sname = $_POST['sname'];
+    $idno = $_POST['idno'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    $location = $_POST['location'];
+    $county = $_POST['county'];
     $age = $_POST['age'];
-    $summary = $_POST['summary'];
+    $additional = $_POST['additional'];
 
     // File upload handling
     $pictureData = file_get_contents($_FILES['picture']['tmp_name']);
@@ -34,9 +41,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Update profile in MongoDB
     $updateResult = $db->profiles->updateOne(['_id' => new MongoDB\BSON\ObjectId($profile_id)], ['$set' => [
-        'name' => $name,
+        'fname' => $fname,
+        'mname' => $mname,
+        'sname' => $sname,
+        'idno' => $idno,
+        'phone' => $phone,
+        'address' => $address,
+        'location' => $location,
+        'county' => $county,
         'age' => $age,
-        'summary' => $summary,
+        'additional' => $additional,
         'pictureData' => new MongoDB\BSON\Binary($pictureData, MongoDB\BSON\Binary::TYPE_GENERIC),
         'pictureMimeType' => $pictureMimeType
     ]]);
@@ -73,10 +87,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="age">Age:</label>
             <input type="number" id="age" name="age" value="<?php echo $profile['age']; ?>" required>
             <label for="summary">Summary:</label>
-            <textarea id="summary" name="sugmmary" required><?php echo $profile['summary']; ?></textarea>
+            <textarea id="summary" name="summary" required><?php echo $profile['summary']; ?></textarea>
             <label for="picture">Picture URL:</label>
             <div class="image-container">
-                <?php echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['name'] . '">'; ?>
+                <?php echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['fname'] . '">'; ?>
             </div>
 
             <input type="file" id="picture" name="picture" accept="image/*" required>

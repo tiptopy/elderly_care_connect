@@ -31,7 +31,11 @@ body {
     transition: transform 0.3s ease;
     padding: 0px 0px 30px;
     width: 300px;
+<<<<<<< HEAD
     height: 500px;
+=======
+    height: auto;
+>>>>>>> 1e66706702892f8a81b4460d561bcdd654a0eb38
     text-align: center;
     margin-left: 30px;
 }
