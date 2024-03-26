@@ -34,14 +34,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Update profile in MongoDB
     $updateResult = $db->profiles->updateOne(['_id' => new MongoDB\BSON\ObjectId($profile_id)], ['$set' => [
-        'name' => $name, 
-        'age' => $age, 
-        'summary' => $summary, 
-        'pictureData' => new MongoDB\BSON\Binary($pictureData, MongoDB\BSON\Binary::TYPE_GENERIC), 
-        'pictureMimeType' => $pictureMimeType]]);
+        'name' => $name,
+        'age' => $age,
+        'summary' => $summary,
+        'pictureData' => new MongoDB\BSON\Binary($pictureData, MongoDB\BSON\Binary::TYPE_GENERIC),
+        'pictureMimeType' => $pictureMimeType
+    ]]);
 
     if ($updateResult) {
         echo "Profile updated successfully";
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
     } else {
         echo "Error updating profile";
     }
@@ -72,9 +75,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="summary">Summary:</label>
             <textarea id="summary" name="sugmmary" required><?php echo $profile['summary']; ?></textarea>
             <label for="picture">Picture URL:</label>
-                  <div class="image-container">
-                                  <?php echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['name'] . '">';?>
-                </div>
+            <div class="image-container">
+                <?php echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['name'] . '">'; ?>
+            </div>
 
             <input type="file" id="picture" name="picture" accept="image/*" required>
             <button type="submit">Update Profile</button>
