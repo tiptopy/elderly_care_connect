@@ -82,37 +82,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container-edit-profile">
         <h1>Edit Profile</h1>
         <form action="edit_profile.php?id=<?php echo $profile_id; ?>" method="post" enctype="multipart/form-data">
-        <label for="fname">First Name*</label>
-            <input type="text" id="fname" name="fname" placeholder="Enter First Name" autocomplete="given-name" value = <?php echo $profile['fname']?> required>
-
-            <label for="mname">Middle Name</label>
-            <input type="text" id="mname" name="mname" placeholder="Enter Middle Name" autocomplete="additional-name" value =<?php echo $profile['mname']?>>
-
-            <label for="sname">Surname*</label>
-            <input type="text" id="sname" name="sname" placeholder="Enter Surname" autocomplete="family-name" value = <?php echo $profile['sname']?> required>
-
-            <label for="idno">ID Number*</label>
-            <input type="number" id="idno" name="idno" placeholder="Enter National ID number" value = <?php echo $profile['idno']?> required>
-
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="Enter phone number" autocomplete="tel" value = <?php echo $profile['phone']?> required>
-
-            <label for="address">Address</label>
-            <input type="text" id="address" name="address" placeholder="Enter address" autocomplete="street-address" value = <?php echo $profile['address']?> required>
-
-            <label for="location">Location</label>
-            <input type="text" id="location" name="location" placeholder="Enter location" autocomplete="address-level2" value = <?php echo $profile['location']?> required>
-
-            <label for="county">County</label>
-            <input type="text" id="county" name="county" placeholder="Enter county" autocomplete="address-level1" value = <?php echo $profile['county']?> required>
-
-            <label for="age">Age*</label>
-            <input type="number" id="age" name="age" placeholder="Enter age" autocomplete="bday" value = <?php echo $profile['age']?> required>
-
-            <label for="additional">Additional info</label>
-            <textarea id="additional" name="additional" placeholder="Enter any additional info"value = <?php echo $profile['additional']?>></textarea>
-
-            <label for="picture">Picture*</label>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<?php echo $profile['name']; ?>" required>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" value="<?php echo $profile['age']; ?>" required>
+            <label for="summary">Summary:</label>
+            <textarea id="summary" name="summary" required><?php echo $profile['summary']; ?></textarea>
+            <label for="picture">Picture URL:</label>
             <div class="image-container">
                 <?php echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['fname'] . '">'; ?>
             </div>
