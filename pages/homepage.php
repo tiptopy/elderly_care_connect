@@ -81,6 +81,7 @@ foreach ($profiles as $profile) {
     echo '<p>County:  ' . $profile['county'] . '</p>'; // Display homecounty
     echo '<a href="profile.php?id=' . $profile['_id'] . '" class="view-profile-link ">View Profile</a>';
     echo '<a href="edit_profile.php?id=' . $profile['_id'] . '" class="view-profile-link">Edit Profile</a>';
+    echo '<a href="delete_profile.php?id=' . $profile['_id'] . '" class="view-profile-link">Delete Profile</a>';
     echo '</div>';
 }
 ?>

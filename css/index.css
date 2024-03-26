@@ -1,4 +1,3 @@
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #e6e1e1;
@@ -10,12 +9,22 @@ body {
 .container-index {
     display: flex;
     flex-wrap: wrap;
+<<<<<<< HEAD
       width: 100%;
         margin: 0 auto;
         padding: 20px;
         min-height: 90vh;
         
     
+=======
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 90vh;
+    align-items: center;
+    justify-content: center;
+
+>>>>>>> a054a508e75d29bc4c355b2a397587d8fbd98425
 }
 .index-container{
     justify-content: center;
@@ -33,7 +42,7 @@ body {
 .index-headeritems h2 {
     font-size: 24px;
     margin-top: 20px;
-    color: #666; 
+    color: #666;
     text-align: center;
 }
 
@@ -52,9 +61,13 @@ body {
     height: auto;
     text-align: center;
     margin-left: 30px;
+<<<<<<< HEAD
     justify-content: center;
     align-items: center;
     
+=======
+
+>>>>>>> a054a508e75d29bc4c355b2a397587d8fbd98425
 }
 
 .profile:hover {
@@ -129,11 +142,11 @@ body {
 }
 
 .actions p {
-    color: #666; 
+    color: #666;
 }
 
 .actions a {
-    color: #007bff; 
+    color: #007bff;
     text-decoration: none;
     margin-left: 10px;
     transition: color 0.3s ease;
@@ -143,26 +156,27 @@ body {
     color: #0056b3;
 }
 
-#DonateBtn{
-    background-color: #FF5733; 
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius:0px 5px;
-        font-size: 16px;
-        font-weight: bold;
-        text-transform: uppercase;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-      
-      .DonateBtn:hover {
-        background-color: #FF8C66;
-      }
+#DonateBtn {
+    background-color: #FF5733;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 0px 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.DonateBtn:hover {
+    background-color: #FF8C66;
+}
+
 /* Form Container */
 #paymentForm {
     width: 35%;
-    color:whitesmoke;
+    color: whitesmoke;
     text-align: center;
     display: none;
     position: fixed;
@@ -173,9 +187,11 @@ body {
     padding: 70px;
     border-radius: 10px;
     box-shadow: 0px 500px 500px 500px rgba(255, 255, 255, 0.6);
-    transition: box-shadow 0.3s ease; /* Add a subtle shadow */
+    transition: box-shadow 0.3s ease;
+    /* Add a subtle shadow */
     transition: all 10s ease;
     transition: background-color 0.5s, backdrop-filter 0.5s;
+<<<<<<< HEAD
   }
   .close-button{
     top: 5px;
@@ -199,43 +215,71 @@ body {
   
   /* Form Header */
   .form-submit h2 {
+=======
+}
+
+/* Form Header */
+.form-submit h2 {
+>>>>>>> a054a508e75d29bc4c355b2a397587d8fbd98425
     text-align: center;
     margin-bottom: 20px;
-  }
-  
-  /* Form Fields */
-  .form-submit label {
+}
+
+/* Form Fields */
+.form-submit label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
-  }
-  
-  .form-submit input[type="text"],
-  .form-submit input[type="email"],
-  .form-submit input[type="number"] {
+}
+
+.form-submit input[type="text"],
+.form-submit input[type="email"],
+.form-submit input[type="number"] {
     width: 100%;
     padding: 15px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-  }
-  
-  /* Submit Button */
-  .form-submit button[type="submit"] {
+}
+
+/* Submit Button */
+.form-submit button[type="submit"] {
     background-color: #FF5733;
     color: #fff;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px; 
+    border-radius: 5px;
     font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .form-submit button[type="submit"]:hover {
-    background-color: #FF8C66; 
-  }
-  
-      
+}
+
+.form-submit button[type="submit"]:hover {
+    background-color: #FF8C66;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-right: 5px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}
+
+.pagination .current {
+    background-color: #007bff;
+    color: #fff;
+}
