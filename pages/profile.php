@@ -70,7 +70,7 @@ $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['cre
 
 <body>
     <div class="container-profile">
-        <h1><?php echo $profile['fname'] . $profile['sname'] ; ?></h1>
+        <h1><?php echo $profile['fname'] . ' ' . $profile['mname'] . ' ' . $profile['sname']; ?></h1>
 
         <div class="profile">
             <?php
@@ -78,7 +78,23 @@ $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['cre
             $imageSrc = 'data:' . $profile['pictureMimeType'] . ';base64,' . $imageData;
             echo '<img src="' . $imageSrc . '" alt="' . $profile['fname'] . '">';
             ?>
-            <p><?php echo $profile['additional']; ?></p>
+            <p>
+                <?php 
+                
+                        echo '<p>Age: ' . $profile['age'] . '</p>'; // Display age
+                        echo '<p>ID Number: ' . $profile['idno'] . '</p>'; // Display ID number
+                        echo '<p>Phone: ' . $profile['phone'] . '</p>'; // Display phone
+                        echo '<p>Address: ' . $profile['address'] .'</p>'; // Display address
+                        echo '<p>Phone: ' . $profile['phone'] . '</p>'; // Display phone
+                        echo '<p>Location:  ' . $profile['location'] . '</p>'; // Display  location
+                        echo '<p>County:  ' . $profile['county'] . '</p>'; // Display homecount
+                        echo '<p>Additional Information: ' . $profile['additional'] . '</p>'; // Display additional information
+                        echo '<a href="profile.php?id=' . $profile['_id'] . '" class="view-profile-link ">View Profile</a>';
+                        echo '<a href="edit_profile.php?id=' . $profile['_id'] . '" class="view-profile-link">Edit Profile</a>';
+                        echo '</div>';
+                    ?>
+
+            </p>
 
 
             <button id="DonateBtn" onclick="toggleDonateForm()">Donate</button>
