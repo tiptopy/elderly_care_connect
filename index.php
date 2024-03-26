@@ -55,10 +55,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 <form id="paymentForm" method="post" style="display: none;" class="form-container">
     <div class="form-header">
         <h2>Donate Now</h2>
+        <button type="button" class="close-button" onclick="closeForm()">&#10006;</button>
     </div>
     <div class="form-submit">
         <div class="form-group">
@@ -79,12 +79,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="form-group">
             <label for="donorAmount"><b>Donation Amount</b></label>
             <input type="number" placeholder="Enter Amount" name="donorAmount" id="donorAmount" min="1" max="1000" required>
-            <?php if(isset($errorMessage)) { echo "<p class='error'>$errorMessage</p>"; } ?>
         </div>
 
-        <input type="hidden" name="creator_phone_number" id="creator_phone_number" value="">
         <input type="hidden" name="donorEmail" id="hiddenEmail">
         <input type="hidden" name="donorAmount" id="hiddenAmount">
+        <input type="hidden" name="creator_phone_number" id="creator_phone_number" value="<?php echo htmlspecialchars($creator['PhoneNumber']); ?>">
         <button type="submit" onclick="payWithPaystack()" class="submit-button">Donate</button>
     </div>
 </form>
@@ -106,17 +105,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $profiles = $db->profiles->find();
 
       foreach ($profiles as $profile) {
-          echo '<div class="profile">';
-          // Base64 encode the image data and set it as the src attribute
-          $imageData = base64_encode($profile['pictureData']->getData());
-          $imageSrc = 'data:' . $profile['pictureMimeType'] . ';base64,' . $imageData;
-          echo '<img src="' . $imageSrc . '" alt="' . $profile['fname'] . '">';
-          echo '<h3>' . $profile['fname'] . ' ' . $profile['sname'] . '</h3>';
-          echo '<p>' . 'Age: ' . $profile['age'] . '</p>';
-          echo '<a href="./pages/profile.php?id=' . $profile['_id'] . '">View Full Profile</a>';
-          echo '</div>';
-      }
-      ?>
+        echo '<div class="profile">';
+        echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['fname'] . '">';
+        echo '<h3>' . $profile['fname'] . ' ' . $profile['mname'] . ' ' . $profile['sname'] . '</h3>';
+        echo '<p>Age: ' . $profile['age'] . '</p>'; // Display age
+        echo '<p>Phone: ' . $profile['phone'] . '</p>'; // Display phone
+        echo '<p>Location:  ' . $profile['location'] . '</p>'; // Display  location
+        echo '<p>County:  ' . $profile['county'] . '</p>'; // Display homecounty
+        echo '<a href="../pages/profile.php?id=' . $profile['_id'] . '" class="view-profile-link ">View Profile</a>';
+        echo '</div>';
+    }
+    ?>
+    
 
       <?php
       if (isset($_GET['logout'])) {
