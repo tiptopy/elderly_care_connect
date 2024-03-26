@@ -86,8 +86,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo '<div class="error-message">Error creating user</div>';
         }
         if ($insertResult) {
+<<<<<<< HEAD
             // Redirect to index.php after successful signup
             header("Location: ../index.php");
+=======
+            // Redirect to edit_profile.php after successful signup
+            header("Location: edit_profile.php");
+>>>>>>> cccc4bac971092ff840d6ba3e449371f9f58cc61
             exit(); // Ensure script stops execution after redirection
         } else {
             echo '<div class="error-message">Error creating user</div>';

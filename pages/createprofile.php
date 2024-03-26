@@ -41,7 +41,7 @@
             <input type="number" id="age" name="age" placeholder="Enter age" autocomplete="bday" required>
 
             <label for="additional">Additional info</label>
-            <textarea id="additional" name="additional" placeholder="Enter any additional info"></textarea>
+            <textarea id="additional" name="additional" placeholder="Enter any additional info e.g hobbies"></textarea>
 
             <label for="picture">Picture*</label>
             <input type="file" id="picture" name="picture" accept="image/*" required>
