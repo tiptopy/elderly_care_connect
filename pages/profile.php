@@ -89,8 +89,7 @@ $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['cre
                         echo '<p>Location:  ' . $profile['location'] . '</p>'; // Display  location
                         echo '<p>County:  ' . $profile['county'] . '</p>'; // Display homecount
                         echo '<p>Additional Information: ' . $profile['additional'] . '</p>'; // Display additional information
-                        echo '<a href="profile.php?id=' . $profile['_id'] . '" class="view-profile-link ">View Profile</a>';
-                        echo '<a href="edit_profile.php?id=' . $profile['_id'] . '" class="view-profile-link">Edit Profile</a>';
+
                         echo '</div>';
                     ?>
 

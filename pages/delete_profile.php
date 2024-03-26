@@ -18,6 +18,7 @@ $deleteResult = $db->profiles->deleteOne(['_id' => new MongoDB\BSON\ObjectId($pr
 
 if ($deleteResult) {
     echo "Profile deleted successfully";
+    header("refresh:1;url=../pages/homepage.php");
 } else {
     echo "Error deleting profile";
 }

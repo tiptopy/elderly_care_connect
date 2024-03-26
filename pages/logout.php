@@ -22,7 +22,7 @@ session_destroy();
 
     <?php
     // Redirect to the index page after a short delay
-    header("refresh:0;url=../index.php");
+    header("refresh:1;url=../index.php");
     ?>
 </body>
 </html>
