@@ -12,6 +12,7 @@
 <body>
     <div class="container-createprofile">
         <h2>Create New Profile</h2>
+        <!-- Form to create a new profile -->
         <form action="homepage.php" method="post" enctype="multipart/form-data">
             <label for="fname">First Name*</label>
             <input type="text" id="fname" name="fname" placeholder="Enter First Name" autocomplete="given-name" required>
@@ -46,7 +47,7 @@
             <label for="picture">Picture*</label>
             <input type="file" id="picture" name="picture" accept="image/*" required>
 
-            <button type="submit">Create Profile</button>
+            <button type="submit">Create Profile</button> <!-- Submit button to create profile -->
         </form>
 
     </div>

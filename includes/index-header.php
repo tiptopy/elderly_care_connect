@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +8,8 @@
 </head>
 
 <?php
-require_once './includes/authenticate.php';
-require_once './includes/db_connection.php';
+require_once './includes/authenticate.php'; // Include authentication functions
+require_once './includes/db_connection.php'; // Include database connection
 ?>
 <body>
     <!-- index_header.php -->
@@ -22,13 +20,11 @@ require_once './includes/db_connection.php';
             <ul>
             <?php
             if (!isLoggedIn()) {
-                echo '<a href="./pages/login.php"> Create profile here</a>';
-
+                echo '<a href="./pages/login.php"> Create profile here</a>'; // Display link to create profile if user is not logged in
             }
-            else
-            {
-                echo '<a href="./pages/homepage.php">View my created profiles </a>';
-            echo '<a href="?logout=true">Logout</a>';
+            else {
+                echo '<a href="./pages/homepage.php">View my created profiles </a>'; // Display link to view created profiles if user is logged in
+                echo '<a href="?logout=true">Logout</a>'; // Display logout link
             }
             ?>
             </ul>

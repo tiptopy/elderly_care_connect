@@ -1,22 +1,21 @@
 <?php
-require_once __DIR__ . '/vendor/autoload.php';
-require_once './authenticate.php';
+require_once __DIR__ . '/vendor/autoload.php'; // Include Composer's autoloader
+require_once './authenticate.php'; // Include authentication functions
 
-use Dotenv\Dotenv as Dotenv;
+use Dotenv\Dotenv as Dotenv; // Import Dotenv namespace
 
-$Dotenv = Dotenv::createImmutable(__DIR__ . '/../');
-$Dotenv->load();
+$Dotenv = Dotenv::createImmutable(__DIR__ . '/../'); // Create a new instance of Dotenv
+$Dotenv->load(); // Load environment variables from .env file
 
-$donorName = $_POST['donorName'];
-$donorPhone = $_POST['donorPhone'];
-$donorAmount = $_POST['donorAmount'];
-$creator_phone_number = $_POST['creator_phone_number'];
-// Retrieve donor name from session
+$donorName = $_POST['donorName']; // Retrieve donor name from POST data
+$donorPhone = $_POST['donorPhone']; // Retrieve donor phone number from POST data
+$donorAmount = $_POST['donorAmount']; // Retrieve donation amount from POST data
+$creator_phone_number = $_POST['creator_phone_number']; // Retrieve creator's phone number from POST data
 
-$mobile_iden = $_ENV['IDEN']; // as you have copied from the url, explained above
-$mobile_token = $_ENV['TOKEN']; // as per your creation of token
-$addresses = "+254" . substr($donorPhone, -9); // mobile number to send text to
-$sms = "Greetings $donorName, your donation of KES $donorAmount was received. Thank you for your donation. May God bless you.";
+$mobile_iden = $_ENV['IDEN']; // Get mobile identifier from environment variables
+$mobile_token = $_ENV['TOKEN']; // Get mobile token from environment variables
+$addresses = "+254" . substr($donorPhone, -9); // Format mobile number to send text to
+$sms = "Greetings $donorName, your donation of KES $donorAmount was received. Thank you for your donation. May God bless you."; // Create SMS message for donor
 
 if (!empty($_POST['creator_phone_number'])) {
     // Additional message for creator_phone_number
@@ -27,9 +26,9 @@ if (!empty($_POST['creator_phone_number'])) {
 
 // Sending message for donor
 $result_donor = sendSMS($addresses, $sms, $mobile_iden, $mobile_token);
-
 // Handle result or errors for donor's message if necessary
 
+// Function to send SMS
 function sendSMS($addresses, $message, $mobile_iden, $mobile_token) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, 'https://api.pushbullet.com/v2/texts');
@@ -44,8 +43,9 @@ function sendSMS($addresses, $message, $mobile_iden, $mobile_token) {
 
     $result = curl_exec($ch);
     if (curl_errno($ch)) {
-        echo 'Error:' . curl_error($ch);
+        echo 'Error:' . curl_error($ch); // Echo error if cURL fails
     }
-    curl_close($ch);
-    return $result;
+    curl_close($ch); // Close cURL session
+    return $result; // Return cURL result
 }
+?>

@@ -1,9 +1,10 @@
 <?php
-include 'configs.php';
+include 'configs.php'; // Include configuration file
+
 if (isset($_GET['reference'])) {
   $referenceId = $_GET['reference'];
   if ($referenceId == '') {
-    header("Location: index.php");
+    header("Location: index.php"); // Redirect to index page if reference ID is empty
   } else {
     $curl = curl_init();
     curl_setopt_array($curl, array(
@@ -26,27 +27,29 @@ if (isset($_GET['reference'])) {
     curl_close($curl);
 
     if ($err) {
-      echo "cURL Error #:" . $err;
+      echo "cURL Error #:" . $err; // Echo cURL error if occurred
     } else {
       $data = json_decode($response);
       if ($data->status == true) {
-      echo $transaction_message = $data->message;
-      echo "<br>";
-      echo  $paid_reference = $data->data->reference;
-      echo "<br>";
-      echo  $message = $data->data->message;
-      echo "<br>";
-      echo  $gateway_response = $data->data->gateway_response;
-      echo "<br>";
-      echo  $receipt_number = $data->data->receipt_number;
-      echo "<br>";
+        // Display transaction details if verification is successful
+        echo $transaction_message = $data->message;
+        echo "<br>";
+        echo  $paid_reference = $data->data->reference;
+        echo "<br>";
+        echo  $message = $data->data->message;
+        echo "<br>";
+        echo  $gateway_response = $data->data->gateway_response;
+        echo "<br>";
+        echo  $receipt_number = $data->data->receipt_number;
+        echo "<br>";
       } else {
-        // echo $response;
+        // Display error message if verification fails
         echo $transaction_message = $data->message;
       }
       
     }
   }
 } else {
-  header("Location: index.php");
+  header("Location: index.php"); // Redirect to index page if reference ID is not set
 }
+?>

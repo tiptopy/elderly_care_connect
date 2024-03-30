@@ -64,34 +64,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <div class="homepage-container">
-    <a href="createprofile.php" class="create-profile-link">Create Profile</a>
+        <a href="create_profile.php" class="create-profile-link">Create Profile</a>
         <div class="container-homepage">
+            <?php
+            // Retrieve and display elderly profiles created by the logged-in user
+            $profiles = $db->profiles->find(['created_by' => $_SESSION['user_id']]);
 
-        <?php
-// Retrieve and display elderly profiles created by the logged-in user
-$profiles = $db->profiles->find(['created_by' => $_SESSION['user_id']]);
-
-foreach ($profiles as $profile) {
-    echo '<div class="profile">';
-    echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['fname'] . '">';
-    echo '<h3>' . $profile['fname'] . ' ' . $profile['mname'] . ' ' . $profile['sname'] . '</h3>';
-    echo '<p>Age: ' . $profile['age'] . '</p>'; // Display age
-    echo '<p>Phone: ' . $profile['phone'] . '</p>'; // Display phone
-    echo '<p>Location:  ' . $profile['location'] . '</p>'; // Display  location
-    echo '<p>County:  ' . $profile['county'] . '</p>'; // Display homecounty
-    echo '<a href="profile.php?id=' . $profile['_id'] . '" class="view-profile-link ">View Profile</a>';
-    echo '<a href="edit_profile.php?id=' . $profile['_id'] . '" class="view-profile-link">Edit Profile</a>';
-    echo '<a href="delete_profile.php?id=' . $profile['_id'] . '" class="view-profile-link">Delete Profile</a>';
-    echo '</div>';
-}
-?>
-
-
-
+            foreach ($profiles as $profile) {
+                echo '<div class="profile">';
+                echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['fname'] . '">';
+                echo '<h3>' . $profile['fname'] . ' ' . $profile['mname'] . ' ' . $profile['sname'] . '</h3>';
+                echo '<p>Age: ' . $profile['age'] . '</p>'; // Display age
+                echo '<p>Phone: ' . $profile['phone'] . '</p>'; // Display phone
+                echo '<p>Location:  ' . $profile['location'] . '</p>'; // Display  location
+                echo '<p>County:  ' . $profile['county'] . '</p>'; // Display homecounty
+                echo '<a href="profile.php?id=' . $profile['_id'] . '" class="view-profile-link">View Profile</a>';
+                echo '<a href="edit_profile.php?id=' . $profile['_id'] . '" class="view-profile-link">Edit Profile</a>';
+                echo '<a href="delete_profile.php?id=' . $profile['_id'] . '" class="view-profile-link">Delete Profile</a>';
+                echo '</div>';
+            }
+            ?>
         </div>
-       
     </div>
 </body>
-
 </html>
 <?php include '../pages/footer.php'; ?>
