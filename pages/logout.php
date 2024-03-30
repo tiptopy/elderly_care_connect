@@ -1,12 +1,9 @@
 <?php
-// Start the session
-session_start();
+session_start(); // Start the session
 
-// Unset all of the session variables
-$_SESSION = array();
+$_SESSION = array(); // Unset all of the session variables
 
-// Destroy the session
-session_destroy();
+session_destroy(); // Destroy the session
 ?>
 
 <!DOCTYPE html>
@@ -21,8 +18,7 @@ session_destroy();
     <p>You have been logged out. Redirecting you to the index page...</p>
 
     <?php
-    // Redirect to the index page after a short delay
-    header("refresh:1;url=../index.php");
+    header("refresh:1;url=../index.php"); // Redirect to the index page after a short delay
     ?>
 </body>
 </html>

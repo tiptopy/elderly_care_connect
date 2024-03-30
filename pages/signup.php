@@ -11,39 +11,39 @@
 </head>
 
 <body>
-<div class="container-signup">
-    <div class="box form-box">
-    <h1>Sign Up</h1>
-    <div class="contain-box">     
-        <form action="signup.php" method="post" enctype="multipart/form-data" >
-        <div class="field input">
-            <label for="FullName">Full Name:</label>
-            <input type="text" id="FullName" name="FullName" required>
-            <label for="PhoneNumber">Phone Number:</label>
-            <input type="text" id="PhoneNumber" name="PhoneNumber" required>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <label for="security_question">Security Question:</label>
-            <select id="security_question" name="security_question">
-                <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
-                <option value="What city were you born in?">What city were you born in?</option>
-                <!-- Add more security questions here -->
-            </select>
+    <div class="container-signup">
+        <div class="box form-box">
+            <h1>Sign Up</h1>
+            <div class="contain-box">
+                <form action="signup.php" method="post" enctype="multipart/form-data">
+                    <div class="field input">
+                        <label for="FullName">Full Name:</label>
+                        <input type="text" id="FullName" name="FullName" required>
+                        <label for="PhoneNumber">Phone Number:</label>
+                        <input type="text" id="PhoneNumber" name="PhoneNumber" required>
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                        <label for="security_question">Security Question:</label>
+                        <select id="security_question" name="security_question">
+                            <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+                            <option value="What city were you born in?">What city were you born in?</option>
+                            <!-- Add more security questions here -->
+                        </select>
 
-            <label for="security_answer">Answer:</label>
-            <input type="text" id="security_answer" name="security_answer" required>
-            <label for="image">Profile Image:</label>
-            <input type="file" id="image" name="image" accept="image/*" required>
-            <button type="submit" >Signup</button>
+                        <label for="security_answer">Answer:</label>
+                        <input type="text" id="security_answer" name="security_answer" required>
+                        <label for="image">Profile Image:</label>
+                        <input type="file" id="image" name="image" accept="image/*" required>
+                        <button type="submit">Signup</button>
+                    </div>
+                </form>
+                <div class="links">
+                    <p>Have an account? <a href="./login.php">Login</a></p>
+                </div>
+            </div>
         </div>
-        </form>
-     <div class="links">
-        <p>Have an account? <a href="./login.php">Login</a></p>
-  </div>
-    </div>
-    </div>
     </div>
 </body>
 
