@@ -53,3 +53,10 @@ if (isset($_GET['reference'])) {
   header("Location: index.php"); // Redirect to index page if reference ID is not set
 }
 ?>
+<link rel="stylesheet" href="../css/homepage.css">
+
+<body>
+    <div class="homepage-container">
+        <a href="../index.php" class="create-profile-link">Return Home</a>
+    </div>
+</body>

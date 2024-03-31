@@ -122,7 +122,7 @@ $profiles = $db->profiles->find([], ['skip' => $offset, 'limit' => $profilesPerP
                 echo '<p>Phone: ' . $profile['phone'] . '</p>'; // Display phone
                 echo '<p>Location:  ' . $profile['location'] . '</p>'; // Display location
                 echo '<p>County:  ' . $profile['county'] . '</p>'; // Display county
-                echo '<a href="../pages/profile.php?id=' . $profile['_id'] . '" class="view-profile-link">View Profile</a>';
+                echo '<a href="./pages/profile.php?id=' . $profile['_id'] . '" class="view-profile-link">View Profile</a>';
                 echo '</div>';
             }
             ?>

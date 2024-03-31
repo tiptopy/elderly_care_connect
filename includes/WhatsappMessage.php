@@ -21,7 +21,7 @@ $data_donor = sendWhatsAppMessage($baseUrl, $phoneNumber, $message, $messageType
 
 // Check if creator_phone_number is not empty and send a different message
 if (!empty($creator_phone_number)) {
-    $creator_message = "Hello, a donation of KES $donorAmount was received from $donorName. Thank you.";
+    $creator_message = "Greetings, $donorName just made a donation of KES $donorAmount to one of your elderly profiles. Thank you.";
     $creator_phone_number = "+254" . substr($creator_phone_number, -9); // Format creator's phone number
     $data_creator = sendWhatsAppMessage($baseUrl, $creator_phone_number, $creator_message, $messageType, $apiKey);
     // Handle response for creator's message if necessary
