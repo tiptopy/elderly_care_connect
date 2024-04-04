@@ -18,7 +18,10 @@ function login($username, $password) {
         return false; // Return false if user is not found
     }
 }
-        $loggeduser = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($_SESSION['user_id'])]);
+if (isLoggedIn()) {
+    $loggeduser = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($_SESSION['user_id'])]);
+}
+        
 // Function to log out the user
 function logout() {
     session_unset(); // Unset all session variables
