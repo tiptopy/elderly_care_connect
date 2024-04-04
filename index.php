@@ -3,7 +3,7 @@ require_once './includes/authenticate.php';
 require_once './includes/db_connection.php';
 
 // Define the number of profiles per page
-$profilesPerPage = 20;
+$profilesPerPage = 12;
 
 // Calculate the total number of profiles
 $totalProfiles = $db->profiles->count();
@@ -36,8 +36,9 @@ $profiles = $db->profiles->find([], ['skip' => $offset, 'limit' => $profilesPerP
 <body>
     <header>
         <div class="container-header">
-            <h1>ECC Care</h1>
-            <nav class="nav-header">
+            <div class="head"><h1>ECC Care</h1></div>
+            <div class="nav-header">
+            <nav >
                 <ul>
                     <?php
                     if (!isLoggedIn()) {
@@ -54,7 +55,41 @@ $profiles = $db->profiles->find([], ['skip' => $offset, 'limit' => $profilesPerP
                     ?>
                 </ul>
             </nav>
+            </div>
         </div>
+        <nav id="humberger-nav">
+
+  <div class="humberger-menu">
+    <div class="humberger-icon" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </div>
+    <div class="menu-links">
+    <nav >
+                <ul onclick="toggleMenu()">
+                    <?php
+                    if (!isLoggedIn()) {
+                        echo '<a href="#"> Home</a>';
+                        echo '<a href="#"> About Us</a>';
+                        echo '<a href="./pages/login.php"> Login</a>';
+                        echo '<a href="./pages/signup.php"> Sign Up</a>';
+                    } else {
+                        echo '<a href="#"> Home</a>';
+                        echo '<a href="#"> About Us</a>';
+                        echo '<a href="./pages/profile.php">My profiles</a>';
+                        echo '<a href="./pages/logout.php">Logout</a>';
+                    }
+                    ?>
+                </ul>
+            </nav>
+
+    </div>
+  </div
+  >
+
+</nav>
     </header>
 
     <?php
