@@ -8,8 +8,6 @@ body {
 }
 
 .container-profile {
-    max-width: 800px;
-    margin: 0 auto;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -193,5 +191,26 @@ body {
 .view-profile-link:hover {
     opacity: 0.8;
     text-decoration: none;
+}
+
+@media screen and (max-width: 850px) {
+  .profile {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    padding: 0px 0px 10px;
+    width:90%;
+    text-align: center;
+    justify-content: center;
+    height: auto;
+    align-items: center;
+    margin: 0;
+}
+  
 }
   
