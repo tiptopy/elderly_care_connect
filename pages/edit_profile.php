@@ -21,6 +21,10 @@ if (!$profile) {
     exit;
 }
 
+if (!($loggeduser['_id']==$profile['created_by'])){
+    header("Location: ./access_denied.php");
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle form submission for updating profile
     // Assuming the form fields are 'name', 'summary', 'picture'
