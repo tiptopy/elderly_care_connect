@@ -12,12 +12,13 @@ function login($username, $password) {
     // If user is found, set the user ID in session and return true
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = (string)$user['_id'];
+
         return true;
     } else {
         return false; // Return false if user is not found
     }
 }
-
+        $loggeduser = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($_SESSION['user_id'])]);
 // Function to log out the user
 function logout() {
     session_unset(); // Unset all session variables
