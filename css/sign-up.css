@@ -115,3 +115,7 @@ button[type="submit"]:hover {
   0% { opacity: 1; }
   100% { opacity: 0; display: none; }
 }
+.alert {
+  color: red;
+  font-size: small;
+}

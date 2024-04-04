@@ -7,10 +7,10 @@ function login($username, $password) {
     global $db; // Access global variable for database connection
 
     // Find user in the database based on provided username and password
-    $user = $db->users->findOne(['username' => $username, 'password' => $password]);
+    $user = $db->users->findOne(['username' => $username]);
 
     // If user is found, set the user ID in session and return true
-    if ($user) {
+    if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = (string)$user['_id'];
         return true;
     } else {

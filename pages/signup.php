@@ -9,8 +9,68 @@
     <link rel="stylesheet" href="../css/sign-up.css">
     <link rel="stylesheet" href="../css/general.css">
 </head>
-
 <body>
+<?php
+require_once '../includes/db_connection.php';
+
+$error="";
+function validatePassword($password) {
+    // Password length should be between 6 and 20 characters
+    if (strlen($password) < 6 || strlen($password) > 20) {
+        return false;
+    }
+    // Password should contain at least one lowercase letter, one uppercase letter, and one number
+    if (!preg_match('/[a-z]/', $password) || !preg_match('/[A-Z]/', $password) || !preg_match('/[0-9]/', $password)) {
+        return false;
+    }
+    return true;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $FullName = $_POST['FullName'];
+    $PhoneNumber = $_POST['PhoneNumber'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $security_question = $_POST['security_question'];
+    $security_answer = $_POST['security_answer'];
+
+    // File upload handling
+    $imageData = file_get_contents($_FILES['image']['tmp_name']);
+    $imageMimeType = mime_content_type($_FILES['image']['tmp_name']);
+
+    $existing_user = $db->users->findOne(['username' => $username]);
+
+    if ($existing_user) {
+        echo '<div class="user-name-exists">Username already exists</div>';
+    } else {
+        if (!validatePassword($password)) {
+            $error = "Password must be between 6 and 20 characters and contain at least one lowercase letter, one uppercase letter, and one number.";
+        } else {
+        $insertResult = $db->users->insertOne([
+            'FullName' => $FullName,
+            'PhoneNumber' => $PhoneNumber,
+            'username' => $username,
+            'password' => password_hash($password, PASSWORD_DEFAULT),
+            'security_question' => $security_question,
+            'security_answer' => $security_answer,
+            'imageData' => new MongoDB\BSON\Binary($imageData, MongoDB\BSON\Binary::TYPE_GENERIC),
+            'imageMimeType' => $imageMimeType
+        ]);
+    
+
+        if ($insertResult) {
+            echo '<div class="success-message">User created successfully</div>';
+            // Redirect to index.php after successful signup
+            header("refresh:1;url=./login.php");
+            exit(); // Ensure script stops execution after redirection
+        } else {
+            echo '<div class="error-message">Error creating user</div>';
+        }
+    }
+}
+}
+?>
+
     <div class="container-signup">
         <div class="box form-box">
             <h1>Sign Up</h1>
@@ -25,6 +85,7 @@
                         <input type="text" id="username" name="username" required>
                         <label for="password">Password:</label>
                         <input type="password" id="password" name="password" required>
+                        <span class="alert"><?php echo $error; ?></span><br>
                         <label for="security_question">Security Question:</label>
                         <select id="security_question" name="security_question">
                             <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
@@ -49,49 +110,3 @@
 
 </html>
 <!-- pages/signup.php -->
-<?php
-require_once '../includes/db_connection.php';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $FullName = $_POST['FullName'];
-    $PhoneNumber = $_POST['PhoneNumber'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $security_question = $_POST['security_question'];
-    $security_answer = $_POST['security_answer'];
-
-    // File upload handling
-    $imageData = file_get_contents($_FILES['image']['tmp_name']);
-    $imageMimeType = mime_content_type($_FILES['image']['tmp_name']);
-
-    $existing_user = $db->users->findOne(['username' => $username]);
-
-    if ($existing_user) {
-        echo '<div class="user-name-exists">Username already exists</div>';
-    } else {
-        $insertResult = $db->users->insertOne([
-            'FullName' => $FullName,
-            'PhoneNumber' => $PhoneNumber,
-            'username' => $username,
-            'password' => $password,
-            'security_question' => $security_question,
-            'security_answer' => $security_answer,
-            'imageData' => new MongoDB\BSON\Binary($imageData, MongoDB\BSON\Binary::TYPE_GENERIC),
-            'imageMimeType' => $imageMimeType
-        ]);
-
-        if ($insertResult) {
-            echo '<div class="success-message">User created successfully</div>';
-        } else {
-            echo '<div class="error-message">Error creating user</div>';
-        }
-        if ($insertResult) {
-            // Redirect to index.php after successful signup
-            header("Location: ../index.php");
-            exit(); // Ensure script stops execution after redirection
-        } else {
-            echo '<div class="error-message">Error creating user</div>';
-        }
-    }
-}
-?>
