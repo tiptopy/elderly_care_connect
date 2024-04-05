@@ -67,15 +67,37 @@ if (isset($_GET['reference'])) {
     }
       
     }
-  }
 } else {
   header("Location: ../index.php"); // Redirect to index page if reference ID is not set
 }
 ?>
-<link rel="stylesheet" href="../css/homepage.css">
+
+    <link rel="stylesheet" href="..//css/verification.css">
+</head>
 
 <body>
     <div class="homepage-container">
-        <a href="../index.php" class="create-profile-link">Return Home</a>
+        <div class="notification-box">
+            <?php if (isset($transaction_message)) : ?>
+                <p><?php echo $transaction_message; ?></p>
+                <?php if (isset($paid_reference)) : ?>
+                    <p>Reference: <?php echo $paid_reference; ?></p>
+                <?php endif; ?>
+                <?php if (isset($message)) : ?>
+                    <p>Message: <?php echo $message; ?></p>
+                <?php endif; ?>
+                <?php if (isset($gateway_response)) : ?>
+                    <p>Gateway Response: <?php echo $gateway_response; ?></p>
+                <?php endif; ?>
+                <?php if (isset($receipt_number)) : ?>
+                    <p>Receipt Number: <?php echo $receipt_number; ?></p>
+                <?php endif; ?>
+            <?php else : ?>
+                <p>No transaction details available.</p>
+            <?php endif; ?>
+            <a href="../index.php" class="create-profile-link">Return Home</a>
+        </div>
     </div>
 </body>
+
+</html>
