@@ -12,7 +12,7 @@
 <body>
     <div class="container-fpassword">
         <!-- Title -->
-        <h1>Forgot Password</h1>
+        <h1>Forgot/Reset Password</h1>
         <!-- Forgot password form -->
         <form action="forgot_password.php" method="post">
             <!-- Username input -->
@@ -63,6 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($updateResult->getModifiedCount() === 1) {
             // Password updated successfully
             echo '<div class="success-message">Password updated successfully</div>';
+            header("Refresh:1; url=./login.php");
         } else {
             // Failed to update password
             echo '<div class="error-message">Failed to update password</div>';
