@@ -51,12 +51,12 @@ require_once '../includes/authenticate.php';
               <ul onclick="toggleMenu()">
                   <?php
                   if (!isLoggedIn()) {
-                      echo '<a href="#"> Home</a>';
+                      echo '<a href="..//index.php"> Home</a>';
                       echo '<a href="#"> About Us</a>';
                       echo '<a href="./login.php"> Login</a>';
                       echo '<a href="./signup.php"> Sign Up</a>';
                   } else {
-                      echo '<a href="#"> Home</a>';
+                      echo '<a href="..//index.php"> Home</a>';
                       echo '<a href="#"> About Us</a>';
                       echo '<a href="./profile.php">My profiles</a>';
                       echo '<a href="./logout.php">Logout</a>';

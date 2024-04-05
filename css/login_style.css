@@ -75,3 +75,26 @@ button[type="submit"]:hover {
 .links a:hover {
   color: #0056b3;
 }
+
+.user-name-exists{
+  position: fixed;
+  top: 50%;
+  right: 44%;
+    padding: 10px 20px;
+    background-color: #f13202; /* Green color */
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    cursor: pointer;
+    animation: fadeOut 5s forwards; /* Adjust the duration as needed */
+
+}
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; display: none; }
+}
+.alert {
+  color: red;
+  font-size: small;
+}

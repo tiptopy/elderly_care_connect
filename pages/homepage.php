@@ -63,7 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <?php echo '<img src="data:' . $loggeduser['imageMimeType'] . ';base64,' . base64_encode($loggeduser['imageData']->getData()) . '" alt="' . $loggeduser['username'] . '">'; ?>
+   <div class="propic"> <?php echo '<img src="data:' . $loggeduser['imageMimeType'] . ';base64,' . base64_encode($loggeduser['imageData']->getData()) . '" alt="' . $loggeduser['username'] . '">'; ?>
+</div>
     <div class="homepage-container">
         <a href="create_profile.php" class="create-profile-link">Create Profile</a>
         <div class="container-homepage">

@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: homepage.php");
         exit;
     } else {
-        echo "Invalid username or password";
+        echo '<div class="user-name-exists">Invalid username or password</div>';
     }
 }
 ?>

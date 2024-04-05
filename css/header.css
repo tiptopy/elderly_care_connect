@@ -72,6 +72,8 @@ ul li a {
 ul li a:hover {
     text-decoration: underline;
 }
+  
+  
     /* Media query for mobile display */
     @media screen and (max-width: 850px) {
         .nav-header {

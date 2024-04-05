@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo '<div class="user-name-exists">Username already exists</div>';
     } else {
         if (!validatePassword($password)) {
-            $error = "Password must be between 6 and 20 characters and contain at least one lowercase letter, one uppercase letter, and one number.";
+            $error = "Password must atleast 6 and should contain at least  one uppercase letter.";
         } else {
         $insertResult = $db->users->insertOne([
             'FullName' => $FullName,
