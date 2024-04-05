@@ -108,7 +108,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <input type="file" id="image" name="image" accept="image/*" required>
             <button type="submit">Update Profile</button> <!-- Submit button to update profile -->
-    </div>
+            <br>
+            <a href="./forgot_password.php">reset Password</a>
+        </div>
 </body>
 
 </html>
