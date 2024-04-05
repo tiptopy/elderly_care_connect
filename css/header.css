@@ -141,7 +141,7 @@ ul li a:hover {
      .menu-links{
       position: absolute;
       top: 100%;
-      right: 0;
+      right: 20px;
       background-color: #05364d;
       width: fit-content;
       max-height: 0;

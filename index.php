@@ -31,6 +31,7 @@ $profiles = $db->profiles->find([], ['skip' => $offset, 'limit' => $profilesPerP
     <title>Elderly Care Connect</title>
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="../css/general.css">
 </head>
 
 <body>
