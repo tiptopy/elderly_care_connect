@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Update password for the user
         $updateResult = $db->users->updateOne(
             ['username' => $username],
-            ['$set' => ['password' => $newPassword]]
+            ['$set' => ['password' => password_hash($newPassword, PASSWORD_DEFAULT)]]
         );
 
         if ($updateResult->getModifiedCount() === 1) {
