@@ -3,29 +3,29 @@ include 'configs.php'; // Include configuration file
 require_once '../includes/db_connection.php'; // Include the database connection file
 
 if (isset($_GET['reference'])) {
-  $referenceId = $_GET['reference'];
-  if ($referenceId == '') {
-    header("Location: ../index.php"); // Redirect to index page if reference ID is empty
-  } else {
-    $curl = curl_init();
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => "https://api.paystack.co/transaction/verify/$referenceId",
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => "",
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 30,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => "GET",
-      CURLOPT_HTTPHEADER => array(
-        "Authorization: Bearer $SecretKey",
-        "Cache-Control: no-cache",
-      ),
-    ));
+    $referenceId = $_GET['reference'];
+    if ($referenceId == '') {
+        header("Location: ../index.php"); // Redirect to index page if reference ID is empty
+    } else {
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.paystack.co/transaction/verify/$referenceId",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: Bearer $SecretKey",
+                "Cache-Control: no-cache",
+            ),
+        ));
 
-    $response = curl_exec($curl);
-    $err = curl_error($curl);
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
 
-    curl_close($curl);
+        curl_close($curl);
 
     if ($err) {
       echo "cURL Error #:" . $err; // Echo cURL error if occurred
@@ -65,16 +65,15 @@ if (isset($_GET['reference'])) {
     } else {
         echo "No data received from webhook."; // Echo message if no data is received from webhook
     }
+}}
       
-  }} 
 } else {
-  header("Location: ../index.php"); // Redirect to index page if reference ID is not set
+    header("Location: ../index.php"); // Redirect to index page if reference ID is not set
 }
-
 
 ?>
 
-    <link rel="stylesheet" href="..//css/verification.css">
+<link rel="stylesheet" href="..//css/verification.css">
 </head>
 
 <body>
