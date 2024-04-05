@@ -19,6 +19,9 @@
             <p>&copy; <?php echo date("Y"); ?> Elderly Care Connect. All rights reserved.</p>
             <!-- Navigation links -->
             <ul>
+                <li><a href="../">Home</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="../pages/logout.php">Log out</a></li>
                 <li><a href="homepage.php">Home</a></li>
                 <li><a href="create_profile.php">About us</a></li>
             </ul>

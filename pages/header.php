@@ -24,14 +24,14 @@ require_once '../includes/authenticate.php';
                         // Display links for non-logged-in users
                         echo '<a href="../"> Home</a>';
                         echo '<a href="#"> About Us</a>';
-                        echo '<a href="./pages/login.php"> Login</a>';
+                        echo '<a href="../pages/login.php"> Login</a>';
                         echo '<a href="../pages/signup.php"> Sign Up</a>';
                     } else {
                         // Display links for logged-in users
                         echo '<a href="../"> Home</a>';
                         echo '<a href="#"> About Us</a>';
                         echo '<a href="../pages/profile.php">My Profiles </a>';
-                        echo '<a href="../index.php?logout=true">Logout</a>';
+                        echo '<a href="../pages/logout.php">Logout</a>';
                     }
                     ?>
                 </ul>
@@ -51,7 +51,7 @@ require_once '../includes/authenticate.php';
               <ul onclick="toggleMenu()">
                   <?php
                   if (!isLoggedIn()) {
-                      echo '<a href="..//index.php"> Home</a>';
+                      echo '<a href="../"> Home</a>';
                       echo '<a href="#"> About Us</a>';
                       echo '<a href="./login.php"> Login</a>';
                       echo '<a href="./signup.php"> Sign Up</a>';
