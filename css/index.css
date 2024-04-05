@@ -272,7 +272,9 @@ header{
         text-align: center;
         padding: 0;
     }
-    
+    #paymentForm {
+        width: 70%;
+    }
   
   }
   @media screen and (min-width: 850px) {
