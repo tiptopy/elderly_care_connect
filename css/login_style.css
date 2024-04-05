@@ -98,3 +98,25 @@ button[type="submit"]:hover {
   color: red;
   font-size: small;
 }
+
+
+.input-with-icon {
+  position: relative;
+  align-items: center;
+}
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.password-toggle i {
+  color: #666;
+}
+.password-toggle.active i {
+  color: #007bff;
+}
+.password-toggle.active i:hover {
+  color: #0056b3;
+}

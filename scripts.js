@@ -13,3 +13,21 @@ function toggleMenu(){
   menu.classList.toggle("open");
   icon.classList.toggle("open");
 }
+
+function togglePassword() {
+  var passwordInput = document.getElementById("password");
+  var toggleCheckbox = document.getElementById("show-password");
+  var eyeIcon = document.querySelector(".password-toggle i");
+
+  if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      eyeIcon.classList.add("fa-eye-slash");
+      eyeIcon.classList.remove("fa-eye");
+  } else {
+      passwordInput.type = "password";
+      eyeIcon.classList.add("fa-eye");
+      eyeIcon.classList.remove("fa-eye-slash");
+  }
+  // Toggle checkbox state
+  toggleCheckbox.checked = !toggleCheckbox.checked;
+}

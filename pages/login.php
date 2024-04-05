@@ -7,6 +7,8 @@
     <title>Login - Elderly Care Connect</title>
     <link rel="stylesheet" href="../css/login_style.css">
     <link rel="stylesheet" href="../css/general.css">
+    <!-- Font Awesome for eye icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <div class="container-login">
@@ -18,11 +20,15 @@
                         <label for="username">Username:</label>
                         <input type="text" id="username" name="username" required>
                     </div>
-                    <div class="field input">
+                    <div class="field input input-with-icon">
                         <label for="password">Password:</label>
                         <input type="password" id="password" name="password" required>
-                        <button type="submit">Login</button>
+                        <!-- Checkbox for toggling password visibility -->
+                        <span class="password-toggle" onclick="togglePassword()">
+                            <i class="far fa-eye"></i>
+                        </span>
                     </div>
+                    <button type="submit">Login</button>
                 </form>
                 <div class="links">
                     <a href="./forgot_password.php">Forgot password?</a>
@@ -32,6 +38,7 @@
         </div>
     </div>
 </body>
+<script src="..//scripts.js"></script>
 </html>
 
 <?php
