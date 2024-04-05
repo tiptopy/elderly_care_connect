@@ -1,10 +1,11 @@
 <?php
 include 'configs.php'; // Include configuration file
+require_once '../includes/db_connection.php'; // Include the database connection file
 
 if (isset($_GET['reference'])) {
   $referenceId = $_GET['reference'];
   if ($referenceId == '') {
-    header("Location: index.php"); // Redirect to index page if reference ID is empty
+    header("Location: ../index.php"); // Redirect to index page if reference ID is empty
   } else {
     $curl = curl_init();
     curl_setopt_array($curl, array(
@@ -30,6 +31,7 @@ if (isset($_GET['reference'])) {
       echo "cURL Error #:" . $err; // Echo cURL error if occurred
     } else {
       $data = json_decode($response);
+      print_r($data);
       if ($data->status == true) {
         // Display transaction details if verification is successful
         echo $transaction_message = $data->message;
@@ -46,11 +48,28 @@ if (isset($_GET['reference'])) {
         // Display error message if verification fails
         echo $transaction_message = $data->message;
       }
+      if ($data) {
+        try {
+            // Insert data into MongoDB
+            $result = $db->transactions->insertOne($data);
+    
+            // Check if data insertion was successful
+            if ($result->getInsertedCount() > 0) {
+                echo "Webhook data inserted successfully."; // Echo success message
+            } else {
+                echo "Failed to insert webhook data."; // Echo failure message
+            }
+        } catch (MongoDB\Driver\Exception\Exception $e) {
+            echo "Error: " . $e->getMessage(); // Echo error message if an exception occurs
+        }
+    } else {
+        echo "No data received from webhook."; // Echo message if no data is received from webhook
+    }
       
     }
   }
 } else {
-  header("Location: index.php"); // Redirect to index page if reference ID is not set
+  header("Location: ../index.php"); // Redirect to index page if reference ID is not set
 }
 ?>
 <link rel="stylesheet" href="../css/homepage.css">

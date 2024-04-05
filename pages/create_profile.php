@@ -1,4 +1,15 @@
 <!-- pages/create_profile.php -->
+
+<?php
+require_once('../includes/authenticate.php');
+
+if(!isLoggedIn()){
+    header('Location: ./pages/login.php'); //Redirect to login when user is not logged in.
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -36,7 +36,7 @@ $currency = "KES"; // Define currency
         let handler = PaystackPop.setup({
             key: '<?php echo $PublicKey; ?>', // Set Paystack public key
             email: document.getElementById('donorEmail').value, // Get email from form
-            amount: document.getElementById('donorAmount').value * 100, // Convert amount to kobo
+            amount: document.getElementById('donorAmount').value * 100,
             currency: '<?php echo $currency; ?>', // Set currency
             ref: '' + Math.floor((Math.random() * 1000000000) + 1), // Generate random reference
             onClose: function() {

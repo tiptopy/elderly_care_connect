@@ -64,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
    <div class="propic"> <?php echo '<img src="data:' . $loggeduser['imageMimeType'] . ';base64,' . base64_encode($loggeduser['imageData']->getData()) . '" alt="' . $loggeduser['username'] . '">'; ?>
+<?php echo '<a href="./edit_user.php?id=' . $loggeduser['_id'] . '">Edit my Profile</a>'; ?>
 </div>
     <div class="homepage-container">
         <a href="create_profile.php" class="create-profile-link">Create Profile</a>
