@@ -33,17 +33,12 @@ if (isset($_GET['reference'])) {
             $data = json_decode($response);
             print_r($data);
             if ($data->status == true) {
-                // Display transaction details if verification is successful
-                echo $transaction_message = $data->message;
-                echo "<br>";
-                echo  $paid_reference = $data->data->reference;
-                echo "<br>";
-                echo  $message = $data->data->message;
-                echo "<br>";
-                echo  $gateway_response = $data->data->gateway_response;
-                echo "<br>";
-                echo  $receipt_number = $data->data->receipt_number;
-                echo "<br>";
+                // save transaction details if verification is successful
+                $transaction_message = $data->message;
+                $paid_reference = $data->data->reference;
+                $message = $data->data->message;
+                $gateway_response = $data->data->gateway_response;
+                $receipt_number = $data->data->receipt_number;
             } else {
                 // Display error message if verification fails
                 echo $transaction_message = $data->message;
@@ -52,13 +47,6 @@ if (isset($_GET['reference'])) {
                 try {
                     // Insert data into MongoDB
                     $result = $db->transactions->insertOne($data);
-
-                    // Check if data insertion was successful
-                    if ($result->getInsertedCount() > 0) {
-                        echo "Webhook data inserted successfully."; // Echo success message
-                    } else {
-                        echo "Failed to insert webhook data."; // Echo failure message
-                    }
                 } catch (MongoDB\Driver\Exception\Exception $e) {
                     echo "Error: " . $e->getMessage(); // Echo error message if an exception occurs
                 }
