@@ -78,8 +78,8 @@ button[type="submit"]:hover {
 
 .user-name-exists{
   position: fixed;
-  top: 50%;
-  right: 44%;
+  top: 10%;
+  right: 42%;
     padding: 10px 20px;
     background-color: #f13202; /* Green color */
     color: #fff;

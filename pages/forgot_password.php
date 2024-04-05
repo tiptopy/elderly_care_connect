@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fpassword">
         <!-- Title -->
         <h1>Forgot Password</h1>
         <!-- Forgot password form -->
@@ -62,14 +62,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($updateResult->getModifiedCount() === 1) {
             // Password updated successfully
-            echo "Password updated successfully.";
+            echo '<div class="success-message">Password updated successfully</div>';
         } else {
             // Failed to update password
-            echo "Failed to update password.";
+            echo '<div class="error-message">Failed to update password</div>';
         }
     } else {
         // User not found or security question/answer don't match
-        echo "Invalid username or security question/answer.";
+        echo '<div class="error-message">Invalid username or security question/answer.</div>';
     }
 }
 ?>
