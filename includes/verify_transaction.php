@@ -66,10 +66,12 @@ if (isset($_GET['reference'])) {
         echo "No data received from webhook."; // Echo message if no data is received from webhook
     }
       
-    }
+  }} 
 } else {
   header("Location: ../index.php"); // Redirect to index page if reference ID is not set
 }
+
+
 ?>
 
     <link rel="stylesheet" href="..//css/verification.css">
