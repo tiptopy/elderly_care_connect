@@ -3,76 +3,76 @@ include 'configs.php'; // Include configuration file
 require_once '../includes/db_connection.php'; // Include the database connection file
 
 if (isset($_GET['reference'])) {
-  $referenceId = $_GET['reference'];
-  if ($referenceId == '') {
-    header("Location: ../index.php"); // Redirect to index page if reference ID is empty
-  } else {
-    $curl = curl_init();
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => "https://api.paystack.co/transaction/verify/$referenceId",
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => "",
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 30,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => "GET",
-      CURLOPT_HTTPHEADER => array(
-        "Authorization: Bearer $SecretKey",
-        "Cache-Control: no-cache",
-      ),
-    ));
-
-    $response = curl_exec($curl);
-    $err = curl_error($curl);
-
-    curl_close($curl);
-
-    if ($err) {
-      echo "cURL Error #:" . $err; // Echo cURL error if occurred
+    $referenceId = $_GET['reference'];
+    if ($referenceId == '') {
+        header("Location: ../index.php"); // Redirect to index page if reference ID is empty
     } else {
-      $data = json_decode($response);
-      print_r($data);
-      if ($data->status == true) {
-        // Display transaction details if verification is successful
-        echo $transaction_message = $data->message;
-        echo "<br>";
-        echo  $paid_reference = $data->data->reference;
-        echo "<br>";
-        echo  $message = $data->data->message;
-        echo "<br>";
-        echo  $gateway_response = $data->data->gateway_response;
-        echo "<br>";
-        echo  $receipt_number = $data->data->receipt_number;
-        echo "<br>";
-      } else {
-        // Display error message if verification fails
-        echo $transaction_message = $data->message;
-      }
-      if ($data) {
-        try {
-            // Insert data into MongoDB
-            $result = $db->transactions->insertOne($data);
-    
-            // Check if data insertion was successful
-            if ($result->getInsertedCount() > 0) {
-                echo "Webhook data inserted successfully."; // Echo success message
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.paystack.co/transaction/verify/$referenceId",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: Bearer $SecretKey",
+                "Cache-Control: no-cache",
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err; // Echo cURL error if occurred
+        } else {
+            $data = json_decode($response);
+            print_r($data);
+            if ($data->status == true) {
+                // Display transaction details if verification is successful
+                echo $transaction_message = $data->message;
+                echo "<br>";
+                echo  $paid_reference = $data->data->reference;
+                echo "<br>";
+                echo  $message = $data->data->message;
+                echo "<br>";
+                echo  $gateway_response = $data->data->gateway_response;
+                echo "<br>";
+                echo  $receipt_number = $data->data->receipt_number;
+                echo "<br>";
             } else {
-                echo "Failed to insert webhook data."; // Echo failure message
+                // Display error message if verification fails
+                echo $transaction_message = $data->message;
             }
-        } catch (MongoDB\Driver\Exception\Exception $e) {
-            echo "Error: " . $e->getMessage(); // Echo error message if an exception occurs
+            if ($data) {
+                try {
+                    // Insert data into MongoDB
+                    $result = $db->transactions->insertOne($data);
+
+                    // Check if data insertion was successful
+                    if ($result->getInsertedCount() > 0) {
+                        echo "Webhook data inserted successfully."; // Echo success message
+                    } else {
+                        echo "Failed to insert webhook data."; // Echo failure message
+                    }
+                } catch (MongoDB\Driver\Exception\Exception $e) {
+                    echo "Error: " . $e->getMessage(); // Echo error message if an exception occurs
+                }
+            } else {
+                echo "No data received from webhook."; // Echo message if no data is received from webhook
+            }
         }
-    } else {
-        echo "No data received from webhook."; // Echo message if no data is received from webhook
-    }
-      
     }
 } else {
-  header("Location: ../index.php"); // Redirect to index page if reference ID is not set
+    header("Location: ../index.php"); // Redirect to index page if reference ID is not set
 }
 ?>
 
-    <link rel="stylesheet" href="..//css/verification.css">
+<link rel="stylesheet" href="..//css/verification.css">
 </head>
 
 <body>
