@@ -214,3 +214,16 @@ body {
   
 }
   
+#transactionTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+#transactionTable th, #transactionTable td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+#transactionTable th {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}

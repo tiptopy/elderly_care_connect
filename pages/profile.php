@@ -104,17 +104,21 @@ if (isLoggedIn()) {
         $cursorArray = iterator_to_array($cursor);
 
         if (count($cursorArray) > 0) {
-            //Display data in HTML table
-            echo "<table border='1'>";
-            echo "<tr><th>Transaction ID</th><th>Amount</th><th>Paid At</th><th>Donated By</th></tr>";
+            // Display data in HTML table
+            echo "<table id='transactionTable'>";
+            echo "<thead><tr><th data-sort-order='asc'>Transaction ID</th><th data-sort-order='asc'>Amount</th><th data-sort-order='asc'>Paid At</th><th data-sort-order='asc'>Donated By</th></tr></thead>";
+            echo "<tbody>";
+
             foreach ($cursorArray as $document) {
                 echo "<tr>";
-                echo "<td>" . $document['data']['reference'] . "</td>";  
-                echo "<td>" . $document['data']['amount']/100 . "</td>"; 
+                echo "<td>" . $document['data']['reference'] . "</td>";
+                echo "<td>" . 'KES ' . $document['data']['amount'] / 100 . "</td>";
                 echo "<td>" . $document['data']['paidAt'] . "</td>";
-                echo "<td>" . $document['data']['authorization']['bin'].$document['data']['authorization']['last4'] . "</td>";
+                echo "<td>" . $document['data']['authorization']['bin'] . $document['data']['authorization']['last4'] . "</td>";
                 echo "</tr>";
             }
+
+            echo "</tbody>";
             echo "</table>";
         } else {
             echo "No donations have ever been made to this profile";

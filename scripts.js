@@ -31,3 +31,25 @@ function togglePassword() {
   // Toggle checkbox state
   toggleCheckbox.checked = !toggleCheckbox.checked;
 }
+//function to sort transaction table
+document.addEventListener("DOMContentLoaded", function () {
+  const table = document.getElementById('transactionTable');
+  const tbody = table.querySelector('tbody');
+  const ths = table.querySelectorAll('thead th');
+
+  ths.forEach(th => th.addEventListener('click', () => {
+      const sortOrder = th.dataset.sortOrder === 'asc' ? -1 : 1;
+      const index = th.cellIndex;
+
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      rows.sort((a, b) => {
+          const aValue = a.children[index].textContent.trim();
+          const bValue = b.children[index].textContent.trim();
+          return sortOrder * aValue.localeCompare(bValue, undefined, {numeric: true});
+      });
+
+      tbody.innerHTML = '';
+      rows.forEach(row => tbody.appendChild(row));
+      th.dataset.sortOrder = th.dataset.sortOrder === 'asc' ? 'desc' : 'asc';
+  }));
+});
