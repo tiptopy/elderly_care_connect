@@ -106,12 +106,13 @@ if (isLoggedIn()) {
         if (count($cursorArray) > 0) {
             //Display data in HTML table
             echo "<table border='1'>";
-            echo "<tr><th>Transaction ID</th><th>Status</th><th>Message</th></tr>";
+            echo "<tr><th>Transaction ID</th><th>Amount</th><th>Paid At</th><th>Donated By</th></tr>";
             foreach ($cursorArray as $document) {
                 echo "<tr>";
-                echo "<td>" . $document['_id'] . "</td>";  
-                echo "<td>" . $document['status'] . "</td>"; 
-                echo "<td>" . $document['message'] . "</td>";
+                echo "<td>" . $document['data']['reference'] . "</td>";  
+                echo "<td>" . $document['data']['amount']/100 . "</td>"; 
+                echo "<td>" . $document['data']['paidAt'] . "</td>";
+                echo "<td>" . $document['data']['authorization']['bin'].$document['data']['authorization']['last4'] . "</td>";
                 echo "</tr>";
             }
             echo "</table>";
