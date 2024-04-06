@@ -20,6 +20,10 @@ $offset = ($currentpage - 1) * $profilesPerPage;
 // Retrieve profiles for the current page
 $profiles = $db->profiles->find([], ['skip' => $offset, 'limit' => $profilesPerPage]);
 
+if(isset($_SESSION['profile_id'])) {
+    unset($_SESSION['profile_id']);
+}
+
 ?>
 
 <!DOCTYPE html>

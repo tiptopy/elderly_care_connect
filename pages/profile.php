@@ -12,6 +12,7 @@ if (!isset($_GET['id'])) {
 
 $profile_id = $_GET['id'];
 $profile = $db->profiles->findOne(['_id' => new MongoDB\BSON\ObjectId($profile_id)]);
+$_SESSION['profile_id'] = (string)$profile['_id'];
 
 if (!$profile) {
     echo "Profile not found";
@@ -62,7 +63,6 @@ $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['cre
             <input type="hidden" name="donorEmail" id="hiddenEmail">
             <input type="hidden" name="donorAmount" id="hiddenAmount">
             <input type="hidden" name="creator_phone_number" id="creator_phone_number" value="<?php echo htmlspecialchars($creator['PhoneNumber']); ?>">
-            <input type="text" name="elderly_id" id="elderly_id" value="<?php echo htmlspecialchars($profile['_id']);?>">
             <button type="submit" onclick="payWithPaystack()" class="submit-button">Donate</button>
         </div>
     </form>
@@ -77,14 +77,14 @@ $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['cre
             echo '<img src="' . $imageSrc . '" alt="' . $profile['fname'] . '">'; // Display profile picture
             ?>
             <p>
-                <?php 
-                    echo '<p>Age: ' . $profile['age'] . '</p>'; // Display age
-                    echo '<p>ID Number: ' . $profile['idno'] . '</p>'; // Display ID number
-                    echo '<p>Phone: ' . $profile['phone'] . '</p>'; // Display phone
-                    echo '<p>Address: ' . $profile['address'] .'</p>'; // Display address
-                    echo '<p>Location:  ' . $profile['location'] . '</p>'; // Display location
-                    echo '<p>County:  ' . $profile['county'] . '</p>'; // Display county
-                    echo '<p>Additional Information: ' . $profile['additional'] . '</p>'; // Display additional information
+                <?php
+                echo '<p>Age: ' . $profile['age'] . '</p>'; // Display age
+                echo '<p>ID Number: ' . $profile['idno'] . '</p>'; // Display ID number
+                echo '<p>Phone: ' . $profile['phone'] . '</p>'; // Display phone
+                echo '<p>Address: ' . $profile['address'] . '</p>'; // Display address
+                echo '<p>Location:  ' . $profile['location'] . '</p>'; // Display location
+                echo '<p>County:  ' . $profile['county'] . '</p>'; // Display county
+                echo '<p>Additional Information: ' . $profile['additional'] . '</p>'; // Display additional information
                 ?>
             </p>
             <button id="DonateBtn" onclick="toggleDonateForm()">Donate</button> <!-- Button to toggle donation form -->
@@ -93,6 +93,35 @@ $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['cre
 </body>
 
 </html>
+
+<?php
+if (isLoggedIn()) {
+    if (($loggeduser['_id'] == $profile['created_by'])) {
+        $collection = $db->transactions;
+        $cursor = $collection->find(['DonationTo' => $_SESSION['profile_id']]); // Get all documents from the 'transactions' collection
+
+        // Convert the cursor to an array to use the count function
+        $cursorArray = iterator_to_array($cursor);
+
+        if (count($cursorArray) > 0) {
+            //Display data in HTML table
+            echo "<table border='1'>";
+            echo "<tr><th>Transaction ID</th><th>Status</th><th>Message</th></tr>";
+            foreach ($cursorArray as $document) {
+                echo "<tr>";
+                echo "<td>" . $document['_id'] . "</td>";  
+                echo "<td>" . $document['status'] . "</td>"; 
+                echo "<td>" . $document['message'] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo "No donations have ever been made to this profile";
+        }
+    }
+}
+?>
+
 <?php include '../includes/donation.php'; ?>
 
 <script src="https://js.paystack.co/v1/inline.js"></script>

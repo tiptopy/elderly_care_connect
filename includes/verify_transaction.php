@@ -1,6 +1,7 @@
 <?php
 include 'configs.php'; // Include configuration file
 require_once '../includes/db_connection.php'; // Include the database connection file
+require_once '../includes/authenticate.php';
 
 if (isset($_GET['reference'])) {
     $referenceId = $_GET['reference'];
@@ -27,46 +28,54 @@ if (isset($_GET['reference'])) {
 
         curl_close($curl);
 
-    if ($err) {
-      echo "cURL Error #:" . $err; // Echo cURL error if occurred
-    } else {
-      $data = json_decode($response);
-      print_r($data);
-      if ($data->status == true) {
-        // Display transaction details if verification is successful
-        echo $transaction_message = $data->message;
-        echo "<br>";
-        echo  $paid_reference = $data->data->reference;
-        echo "<br>";
-        echo  $message = $data->data->message;
-        echo "<br>";
-        echo  $gateway_response = $data->data->gateway_response;
-        echo "<br>";
-        echo  $receipt_number = $data->data->receipt_number;
-        echo "<br>";
-      } else {
-        // Display error message if verification fails
-        echo $transaction_message = $data->message;
-      }
-      if ($data) {
-        try {
-            // Insert data into MongoDB
-            $result = $db->transactions->insertOne($data);
-    
-            // Check if data insertion was successful
-            if ($result->getInsertedCount() > 0) {
-                echo "Webhook data inserted successfully."; // Echo success message
+        if ($err) {
+            echo "cURL Error #:" . $err; // Echo cURL error if occurred
+        } else {
+            $data = json_decode($response);
+            print_r($data);
+            if ($data->status == true) {
+                // Display transaction details if verification is successful
+                echo $transaction_message = $data->message;
+                echo "<br>";
+                echo  $paid_reference = $data->data->reference;
+                echo "<br>";
+                echo  $message = $data->data->message;
+                echo "<br>";
+                echo  $gateway_response = $data->data->gateway_response;
+                echo "<br>";
+                echo  $receipt_number = $data->data->receipt_number;
+                echo "<br>";
+                echo $_SESSION['profile_id'];
+                echo "<br";
+                echo "<br>";
+
             } else {
-                echo "Failed to insert webhook data."; // Echo failure message
+                // Display error message if verification fails
+                echo $transaction_message = $data->message;
             }
-        } catch (MongoDB\Driver\Exception\Exception $e) {
-            echo "Error: " . $e->getMessage(); // Echo error message if an exception occurs
+            if ($data) {
+                try {
+                    // Insert data into MongoDB
+                    $result = $db->transactions->insertOne($data);
+                    if (isset($_SESSION['profile_id'])) {
+                        $donation_to = $db->transactions->updateOne(['data.reference' => $data->data->reference], ['$set' => [
+                            'DonationTo' => $_SESSION['profile_id']
+                        ]]);
+                    }
+                    // Check if data insertion was successful
+                    if ($result->getInsertedCount() > 0) {
+                        echo "Webhook data inserted successfully."; // Echo success message
+                    } else {
+                        echo "Failed to insert webhook data."; // Echo failure message
+                    }
+                } catch (MongoDB\Driver\Exception\Exception $e) {
+                    echo "Error: " . $e->getMessage(); // Echo error message if an exception occurs
+                }
+            } else {
+                echo "No data received from webhook."; // Echo message if no data is received from webhook
+            }
         }
-    } else {
-        echo "No data received from webhook."; // Echo message if no data is received from webhook
     }
-}}
-      
 } else {
     header("Location: ../index.php"); // Redirect to index page if reference ID is not set
 }
