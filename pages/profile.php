@@ -6,7 +6,7 @@ require_once '../includes/authenticate.php';
 require_once '../includes/db_connection.php';
 
 if (!isset($_GET['id'])) {
-    header("Location: homepage.php"); // Redirect to homepage if no profile ID is provided
+    header("Location: ../index.php"); // Redirect to homepage if no profile ID is provided
     exit;
 }
 
@@ -62,6 +62,7 @@ $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['cre
             <input type="hidden" name="donorEmail" id="hiddenEmail">
             <input type="hidden" name="donorAmount" id="hiddenAmount">
             <input type="hidden" name="creator_phone_number" id="creator_phone_number" value="<?php echo htmlspecialchars($creator['PhoneNumber']); ?>">
+            <input type="text" name="elderly_id" id="elderly_id" value="<?php echo htmlspecialchars($profile['_id']);?>">
             <button type="submit" onclick="payWithPaystack()" class="submit-button">Donate</button>
         </div>
     </form>

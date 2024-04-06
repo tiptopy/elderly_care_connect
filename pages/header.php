@@ -30,7 +30,7 @@ require_once '../includes/authenticate.php';
                         // Display links for logged-in users
                         echo '<a href="../"> Home</a>';
                         echo '<a href="#"> About Us</a>';
-                        echo '<a href="../pages/profile.php">My Profiles </a>';
+                        echo '<a href="../pages/homepage.php">My Profiles </a>';
                         echo '<a href="../pages/logout.php">Logout</a>';
                     }
                     ?>
@@ -56,9 +56,9 @@ require_once '../includes/authenticate.php';
                       echo '<a href="./login.php"> Login</a>';
                       echo '<a href="./signup.php"> Sign Up</a>';
                   } else {
-                      echo '<a href="..//index.php"> Home</a>';
+                      echo '<a href="../index.php"> Home</a>';
                       echo '<a href="#"> About Us</a>';
-                      echo '<a href="./profile.php">My profiles</a>';
+                      echo '<a href="./homepage.php">My profiles</a>';
                       echo '<a href="./logout.php">Logout</a>';
                   }
                   ?>

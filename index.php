@@ -50,7 +50,7 @@ $profiles = $db->profiles->find([], ['skip' => $offset, 'limit' => $profilesPerP
                     } else {
                         echo '<a href="#"> Home</a>';
                         echo '<a href="#"> About Us</a>';
-                        echo '<a href="./pages/profile.php">My profiles</a>';
+                        echo '<a href="./pages/homepage.php">My profiles</a>';
                         echo '<a href="./pages/logout.php">Logout</a>';
                     }
                     ?>
