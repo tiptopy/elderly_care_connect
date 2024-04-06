@@ -98,9 +98,9 @@ $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['cre
 if (isLoggedIn()) {
     if (($loggeduser['_id'] == $profile['created_by'])) {
         $collection = $db->transactions;
-        $cursor = $collection->find(['DonationTo' => $_SESSION['profile_id']]); // Get all documents from the 'transactions' collection
+        $cursor = $collection->find(['DonationTo' => $_SESSION['profile_id']]); // Get all donations for that specific user
 
-        // Convert the cursor to an array to use the count function
+        // Convert the donations to an array to use the count function
         $cursorArray = iterator_to_array($cursor);
 
         if (count($cursorArray) > 0) {
