@@ -31,6 +31,9 @@ require_once '../includes/authenticate.php';
                         echo '<a href="../"> Home</a>';
                         echo '<a href="#"> About Us</a>';
                         echo '<a href="../pages/homepage.php">My Profiles </a>';
+                        if (($loggeduser['username'] == 'admin')) {
+                            echo '<a href="./all_donations.php">All donations</a>';
+                          }
                         echo '<a href="../pages/logout.php">Logout</a>';
                     }
                     ?>
@@ -59,6 +62,9 @@ require_once '../includes/authenticate.php';
                       echo '<a href="../index.php"> Home</a>';
                       echo '<a href="#"> About Us</a>';
                       echo '<a href="./homepage.php">My profiles</a>';
+                      if (($loggeduser['username'] == 'admin')) {
+                        echo '<a href="./all_donations.php">All donations</a>';
+                      }
                       echo '<a href="./logout.php">Logout</a>';
                   }
                   ?>
@@ -71,7 +77,7 @@ require_once '../includes/authenticate.php';
 
 </nav>
     </header>
-    <script src="..//scripts.js"></script>
+    <script src="../scripts.js"></script>
 </body>
 
 </html>

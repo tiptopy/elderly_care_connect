@@ -130,6 +130,4 @@ if (isLoggedIn()) {
 <?php include '../includes/donation.php'; ?>
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
-
-<script src="../scripts.js"></script>
 <?php include 'footer.php'; ?>
