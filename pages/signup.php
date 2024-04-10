@@ -41,7 +41,7 @@ function compressImage($source, $destination, $quality) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $FullName = $_POST['FullName'];
     $PhoneNumber = $_POST['PhoneNumber'];
-    $username = $_POST['username'];
+    $username = strtolower($_POST['username']);
     $password = $_POST['password'];
     $security_question = $_POST['security_question'];
     $security_answer = $_POST['security_answer'];

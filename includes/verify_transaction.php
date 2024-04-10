@@ -32,22 +32,13 @@ if (isset($_GET['reference'])) {
             echo "cURL Error #:" . $err; // Echo cURL error if occurred
         } else {
             $data = json_decode($response);
-            print_r($data);
             if ($data->status == true) {
-                // Display transaction details if verification is successful
-                echo $transaction_message = $data->message;
-                echo "<br>";
-                echo  $paid_reference = $data->data->reference;
-                echo "<br>";
-                echo  $message = $data->data->message;
-                echo "<br>";
-                echo  $gateway_response = $data->data->gateway_response;
-                echo "<br>";
-                echo  $receipt_number = $data->data->receipt_number;
-                echo "<br>";
-                echo $_SESSION['profile_id'];
-                echo "<br";
-                echo "<br>";
+                // save transaction details if verification is successful
+                $transaction_message = $data->message;
+                $paid_reference = $data->data->reference;
+                $message = $data->data->message;
+                $gateway_response = $data->data->gateway_response;
+                $receipt_number = $data->data->receipt_number;
 
             } else {
                 // Display error message if verification fails
@@ -63,9 +54,7 @@ if (isset($_GET['reference'])) {
                         ]]);
                     }
                     // Check if data insertion was successful
-                    if ($result->getInsertedCount() > 0) {
-                        echo "Webhook data inserted successfully."; // Echo success message
-                    } else {
+                    if (!($result->getInsertedCount() > 0)) {
                         echo "Failed to insert webhook data."; // Echo failure message
                     }
                 } catch (MongoDB\Driver\Exception\Exception $e) {
@@ -82,7 +71,7 @@ if (isset($_GET['reference'])) {
 
 ?>
 
-<link rel="stylesheet" href="..//css/verification.css">
+<link rel="stylesheet" href="../css/verification.css">
 </head>
 
 <body>

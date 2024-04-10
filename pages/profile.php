@@ -12,12 +12,15 @@ if (!isset($_GET['id'])) {
 
 $profile_id = $_GET['id'];
 $profile = $db->profiles->findOne(['_id' => new MongoDB\BSON\ObjectId($profile_id)]);
-$_SESSION['profile_id'] = (string)$profile['_id'];
+
 
 if (!$profile) {
-    echo "Profile not found";
-    exit;
+    echo "Profile not found. Redirecting to home...";
+    header("Refresh:1;url=../");
+    exit();
 }
+
+$_SESSION['profile_id'] = (string)$profile['_id'];
 
 $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['created_by'])]);
 ?>
@@ -107,6 +110,8 @@ if (isLoggedIn()) {
             echo "<thead><tr><th data-sort-order='asc'>Transaction ID</th><th data-sort-order='asc'>Amount</th><th data-sort-order='asc'>Paid At</th><th data-sort-order='asc'>Donated By</th></tr></thead>";
             echo "<tbody>";
 
+            $totalAmount = 0;
+
             foreach ($cursorArray as $document) {
                 echo "<tr>";
                 echo "<td>" . $document['data']['reference'] . "</td>";
@@ -114,10 +119,12 @@ if (isLoggedIn()) {
                 echo "<td>" . $document['data']['paidAt'] . "</td>";
                 echo "<td>" . $document['data']['authorization']['bin'] . $document['data']['authorization']['last4'] . "</td>";
                 echo "</tr>";
+                $totalAmount += $document['data']['amount'] / 100;
             }
 
             echo "</tbody>";
             echo "</table>";
+            echo '<P style="text-align:center">Total Donations: KES ' . $totalAmount . '</p>';
         } else {
             echo "No donations have ever been made to this profile";
         }
