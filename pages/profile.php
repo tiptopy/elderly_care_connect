@@ -72,9 +72,7 @@ $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['cre
 
         <div class="profile">
             <?php
-            $imageData = base64_encode($profile['pictureData']->getData());
-            $imageSrc = 'data:' . $profile['pictureMimeType'] . ';base64,' . $imageData;
-            echo '<img src="' . $imageSrc . '" alt="' . $profile['fname'] . '">'; // Display profile picture
+            echo '<img src="' . $profile['picturePath'] . '" alt="' . $profile['fname'] . '">'; // Display profile picture
             ?>
             <p>
                 <?php
@@ -96,7 +94,7 @@ $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['cre
 
 <?php
 if (isLoggedIn()) {
-    if (($loggeduser['_id'] == $profile['created_by'])) {
+    if (($loggeduser['_id'] == $profile['created_by']) || isAdmin()){
         $collection = $db->transactions;
         $cursor = $collection->find(['DonationTo' => $_SESSION['profile_id']]); // Get all donations for that specific user
 

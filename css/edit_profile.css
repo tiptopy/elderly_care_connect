@@ -51,13 +51,17 @@ button[type="submit"]:hover {
     background-color: #45a049;
 }
 .image-container {
+    width: 300px;
+    height: 300px;
     text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .image-container img {
-    width: 300px;
+    width: 100%;
     height: auto;
-    border-radius: 50%;
+    display: block;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }

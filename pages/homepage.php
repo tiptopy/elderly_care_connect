@@ -9,6 +9,17 @@ if (!isLoggedIn()) {
     exit;
 }
 
+// Function to compress image
+function compressImage($source, $destination, $quality) {
+    $info = getimagesize($source);
+    if ($info['mime'] == 'image/jpeg') 
+        $image = imagecreatefromjpeg($source);
+    elseif ($info['mime'] == 'image/png') 
+        $image = imagecreatefrompng($source);
+    imagejpeg($image, $destination, $quality);
+    return $destination;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle form submission for creating profile
     $fname = $_POST['fname'];
@@ -24,10 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_id = $_SESSION['user_id'];
 
     // File upload handling
-    $pictureData = file_get_contents($_FILES['picture']['tmp_name']);
-    $pictureMimeType = mime_content_type($_FILES['picture']['tmp_name']);
+    $pictureTmpName = $_FILES['picture']['tmp_name'];
+    $pictureName = $_FILES['picture']['name'];
+    $picturePath = '../images/elderlies/' . uniqid() . '_' . $pictureName;
 
-    // Insert profile into MongoDB with associated user ID and image data
+    // Compress and save image
+    $compressedImage = compressImage($pictureTmpName, $picturePath, 50);
+
+    // Insert profile into MongoDB with associated user ID and image path
     $insertResult = $db->profiles->insertOne([
         'fname' => $fname,
         'mname' => $mname,
@@ -39,8 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'county' => $county,
         'age' => $age,
         'additional' => $additional,
-        'pictureData' => new MongoDB\BSON\Binary($pictureData, MongoDB\BSON\Binary::TYPE_GENERIC),
-        'pictureMimeType' => $pictureMimeType,
+        'picturePath' => $compressedImage,
         'created_by' => $user_id
     ]);
 
@@ -63,24 +77,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-   <div class="propic"> <?php echo '<img src="data:' . $loggeduser['imageMimeType'] . ';base64,' . base64_encode($loggeduser['imageData']->getData()) . '" alt="' . $loggeduser['username'] . '">'; ?>
-<?php echo '<a href="./edit_user.php?id=' . $loggeduser['_id'] . '">Edit my Profile</a>'; ?>
-</div>
+    <div class="propic">
+        <?php echo '<img src="' . $loggeduser['picturePath'] . '" alt="' . $loggeduser['username'] . '">'; ?>
+        <?php echo '<a href="./edit_user.php?id=' . $loggeduser['_id'] . '">Edit my Profile</a>'; ?>
+    </div>
     <div class="homepage-container">
         <a href="create_profile.php" class="create-profile-link">Create Profile</a>
         <div class="container-homepage">
             <?php
             // Retrieve and display elderly profiles created by the logged-in user
-            $profiles = $db->profiles->find(['created_by' => $_SESSION['user_id']]);
+            if (isAdmin()) {
+            $profiles = $db->profiles->find();
+            } else{
+                $profiles = $db->profiles->find(['created_by' => $_SESSION['user_id']]);
+            }
 
             foreach ($profiles as $profile) {
                 echo '<div class="profile">';
-                echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['fname'] . '">';
+                echo '<img src="' . $profile['picturePath'] . '" alt="' . $profile['fname'] . '">';
                 echo '<h3>' . $profile['fname'] . ' ' . $profile['mname'] . ' ' . $profile['sname'] . '</h3>';
                 echo '<p>Age: ' . $profile['age'] . '</p>'; // Display age
                 echo '<p>Phone: ' . $profile['phone'] . '</p>'; // Display phone
-                echo '<p>Location:  ' . $profile['location'] . '</p>'; // Display  location
-                echo '<p>County:  ' . $profile['county'] . '</p>'; // Display homecounty
+                echo '<p>Location:  ' . $profile['location'] . '</p>'; // Display location
+                echo '<p>County:  ' . $profile['county'] . '</p>'; // Display home county
                 echo '<a href="profile.php?id=' . $profile['_id'] . '" class="view-profile-link">View Profile</a>';
                 echo '<a href="edit_profile.php?id=' . $profile['_id'] . '" class="view-profile-link">Edit Profile</a>';
                 echo '<a href="delete_profile.php?id=' . $profile['_id'] . '" class="view-profile-link">Delete Profile</a>';
@@ -90,5 +109,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 </body>
+
 </html>
 <?php include '../pages/footer.php'; ?>

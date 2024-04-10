@@ -23,9 +23,21 @@ if (!$user) {
     exit;
 }
 
-if (!($loggeduser['_id'] == $user['_id'])) {
+if (($loggeduser['_id']!=$profile['created_by']) && !isAdmin()){
     header("Location: ./access_denied.php"); //Redirect if it is an access not granted
 }
+
+// Function to compress image
+function compressImage($source, $destination, $quality) {
+    $info = getimagesize($source);
+    if ($info['mime'] == 'image/jpeg') 
+        $image = imagecreatefromjpeg($source);
+    elseif ($info['mime'] == 'image/png') 
+        $image = imagecreatefrompng($source);
+    imagejpeg($image, $destination, $quality);
+    return $destination;
+}
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $FullName = $_POST['FullName'];
@@ -34,13 +46,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $security_question = $_POST['security_question'];
     $security_answer = $_POST['security_answer'];
 
-    // File upload handling
-    $imageData = file_get_contents($_FILES['image']['tmp_name']);
-    $imageMimeType = mime_content_type($_FILES['image']['tmp_name']);
+    // Check if an image was uploaded
+    if (!empty($_FILES['picture']['tmp_name'])) {
+        // File upload handling
+        $pictureTmpName = $_FILES['picture']['tmp_name'];
+        $pictureName = $_FILES['picture']['name'];
+        $picturePath = '../images/users/' . uniqid() . '_' . $pictureName;
+
+        // Compress and save image
+        $compressedImage = compressImage($pictureTmpName, $picturePath, 50);
+
+        //delete previous uploaded picture
+        unlink($user['picturePath']);
+    } else {
+        // Set default image path if no image was uploaded
+        $compressedImage = $user['picturePath'];
+    }
 
     $existing_user = $db->users->findOne(['username' => $username]);
 
-    if ($existing_user) {
+    if (($username!=$user['username']) && $existing_user) {
         echo '<div class="user-name-exists">Username already exists</div>';
     } else {
         
@@ -50,13 +75,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'username' => $username,
                 'security_question' => $security_question,
                 'security_answer' => $security_answer,
-                'imageData' => new MongoDB\BSON\Binary($imageData, MongoDB\BSON\Binary::TYPE_GENERIC),
-                'imageMimeType' => $imageMimeType
+                'picturePath' => $compressedImage
             ]]);
 
 
             if ($updateResult) {
-                echo '<div class="success-message">User updated successfully</div>';
+                echo '<div class="success-message">User updated successfully. Redirecting...</div>';
                 // Redirect to index.php after successful signup
                 header("refresh:1;url=./homepage.php");
                 exit(); // Ensure script stops execution after redirection
@@ -101,12 +125,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <label for="security_answer">Answer:</label>
             <input type="text" id="security_answer" name="security_answer" value="<?php echo $user['security_answer']; ?>" required>
-            <label for="image">Picture:</label>
+            <label for="picture">Picture:</label>
             <div class="image-container">
-                <?php echo '<img src="data:' . $user['imageMimeType'] . ';base64,' . base64_encode($user['imageData']->getData()) . '" alt="' . $user['FullName'] . '">'; ?>
+            <?php echo '<img src="' . $user['picturePath'] . '" alt="' . $user['FullName'] . '">'; ?>
             </div>
 
-            <input type="file" id="image" name="image" accept="image/*" required>
+            <input type="file" id="picture" name="picture" accept="image/*" >
             <button type="submit">Update Profile</button> <!-- Submit button to update profile -->
             <br>
             <a href="./forgot_password.php">reset Password</a>

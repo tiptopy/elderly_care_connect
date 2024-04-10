@@ -21,13 +21,23 @@ if (!$profile) {
     exit;
 }
 
-if (!($loggeduser['_id']==$profile['created_by'])){
+if (($loggeduser['_id']!=$profile['created_by']) && !isAdmin()){
     header("Location: ./access_denied.php");
 }
+// Function to compress image
+function compressImage($source, $destination, $quality) {
+    $info = getimagesize($source);
+    if ($info['mime'] == 'image/jpeg') 
+        $image = imagecreatefromjpeg($source);
+    elseif ($info['mime'] == 'image/png') 
+        $image = imagecreatefrompng($source);
+    imagejpeg($image, $destination, $quality);
+    return $destination;
+}
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle form submission for updating profile
-    // Assuming the form fields are 'name', 'summary', 'picture'
     $fname = $_POST['fname'];
     $mname = $_POST['mname'];
     $sname = $_POST['sname'];
@@ -39,9 +49,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $age = $_POST['age'];
     $additional = $_POST['additional'];
 
-    // File upload handling
-    $pictureData = file_get_contents($_FILES['picture']['tmp_name']);
-    $pictureMimeType = mime_content_type($_FILES['picture']['tmp_name']);
+    // Check if an image was uploaded
+    if (!empty($_FILES['picture']['tmp_name'])) {
+        // File upload handling
+        $pictureTmpName = $_FILES['picture']['tmp_name'];
+        $pictureName = $_FILES['picture']['name'];
+        $picturePath = '../images/elderlies/' . uniqid() . '_' . $pictureName;
+
+        // Compress and save image
+        $compressedImage = compressImage($pictureTmpName, $picturePath, 50);
+        
+        //delete previous uploaded picture
+        unlink($profile['picturePath']);
+    } else {
+        // Set default image path if no image was uploaded
+        $compressedImage = $profile['picturePath'];
+    }
 
     // Update profile in MongoDB
     $updateResult = $db->profiles->updateOne(['_id' => new MongoDB\BSON\ObjectId($profile_id)], ['$set' => [
@@ -55,13 +78,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'county' => $county,
         'age' => $age,
         'additional' => $additional,
-        'pictureData' => new MongoDB\BSON\Binary($pictureData, MongoDB\BSON\Binary::TYPE_GENERIC),
-        'pictureMimeType' => $pictureMimeType
+        'picturePath' => $compressedImage
     ]]);
 
     if ($updateResult) {
-        echo "Profile updated successfully"; // Echo success message if profile updated successfully
-        header("Location: " . $_SERVER['PHP_SELF']); // Redirect to current page
+        echo "Profile updated successfully. Redirecting..."; // Echo success message if profile updated successfully
+        header("refresh:1;url=profile.php?id=" . $profile['_id']); // Redirect to current page
         exit();
     } else {
         echo "Error updating profile"; // Echo error message if update fails
@@ -117,10 +139,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <label for="picture">Picture:</label>
             <div class="image-container">
-                <?php echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['fname'] . '">'; ?>
+                <?php echo '<img src="' . $profile['picturePath'] . '" alt="' . $profile['fname'] . '">'; ?>
             </div>
 
-            <input type="file" id="picture" name="picture" accept="image/*" required>
+            <input type="file" id="picture" name="picture" accept="image/*">
             <button type="submit">Update Profile</button> <!-- Submit button to update profile -->
         </form>
     </div>

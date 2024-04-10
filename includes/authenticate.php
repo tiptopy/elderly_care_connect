@@ -21,6 +21,8 @@ function login($username, $password) {
 if (isLoggedIn()) {
     $loggeduser = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($_SESSION['user_id'])]);
 }
+
+
         
 // Function to log out the user
 function logout() {
@@ -31,5 +33,12 @@ function logout() {
 // Function to check if user is logged in
 function isLoggedIn() {
     return isset($_SESSION['user_id']); // Return true if user ID is set in session
+}
+
+//function to check if logged in user is an admin
+function isAdmin() {
+    global $db;
+    $loggeduser = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($_SESSION['user_id'])]);
+    return $loggeduser['username'] == 'admin';
 }
 ?>

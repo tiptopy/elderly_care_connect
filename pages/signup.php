@@ -26,6 +26,18 @@ function validatePassword($password) {
     return true;
 }
 
+
+// Function to compress image
+function compressImage($source, $destination, $quality) {
+    $info = getimagesize($source);
+    if ($info['mime'] == 'image/jpeg') 
+        $image = imagecreatefromjpeg($source);
+    elseif ($info['mime'] == 'image/png') 
+        $image = imagecreatefrompng($source);
+    imagejpeg($image, $destination, $quality);
+    return $destination;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $FullName = $_POST['FullName'];
     $PhoneNumber = $_POST['PhoneNumber'];
@@ -35,8 +47,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $security_answer = $_POST['security_answer'];
 
     // File upload handling
-    $imageData = file_get_contents($_FILES['image']['tmp_name']);
-    $imageMimeType = mime_content_type($_FILES['image']['tmp_name']);
+    $pictureTmpName = $_FILES['picture']['tmp_name'];
+    $pictureName = $_FILES['picture']['name'];
+    $picturePath = '../images/users/' . uniqid() . '_' . $pictureName;
+
+    // Compress and save image
+    $compressedImage = compressImage($pictureTmpName, $picturePath, 50);
 
     $existing_user = $db->users->findOne(['username' => $username]);
 
@@ -53,8 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'password' => password_hash($password, PASSWORD_DEFAULT),
             'security_question' => $security_question,
             'security_answer' => $security_answer,
-            'imageData' => new MongoDB\BSON\Binary($imageData, MongoDB\BSON\Binary::TYPE_GENERIC),
-            'imageMimeType' => $imageMimeType
+            'picturePath' => $compressedImage
         ]);
     
 
@@ -95,8 +110,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         <label for="security_answer">Answer:</label>
                         <input type="text" id="security_answer" name="security_answer" required>
-                        <label for="image">Profile Image:</label>
-                        <input type="file" id="image" name="image" accept="image/*" required>
+                        <label for="picture">Profile Picture:</label>
+                        <input type="file" id="picture" name="picture" accept="image/*" required>
                         <button type="submit">Signup</button>
                     </div>
                 </form>

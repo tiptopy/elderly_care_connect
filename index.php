@@ -87,7 +87,7 @@ if(isset($_SESSION['profile_id'])) {
                         echo '<a href="#"> Home</a>';
                         echo '<a href="#"> About Us</a>';
                         echo '<a href="./pages/profile.php">My profiles</a>';
-                        if (($loggeduser['username'] == 'admin')) {
+                        if (isAdmin()) {
                             echo '<a href="./all_donations.php">All donations</a>';
                           }
                         echo '<a href="./pages/logout.php">Logout</a>';
@@ -162,7 +162,7 @@ if(isset($_SESSION['profile_id'])) {
             <?php
             foreach ($profiles as $profile) {
                 echo '<div class="profile">';
-                echo '<img src="data:' . $profile['pictureMimeType'] . ';base64,' . base64_encode($profile['pictureData']->getData()) . '" alt="' . $profile['fname'] . '">';
+                echo '<img src="' . $profile['picturePath'] . '" alt="' . $profile['fname'] . '">';
                 echo '<h3>' . $profile['fname'] . ' ' . $profile['mname'] . ' ' . $profile['sname'] . '</h3>';
                 echo '<p>Age: ' . $profile['age'] . '</p>'; // Display age
                 echo '<p>Phone: ' . $profile['phone'] . '</p>'; // Display phone

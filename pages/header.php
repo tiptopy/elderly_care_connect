@@ -31,7 +31,7 @@ require_once '../includes/authenticate.php';
                         echo '<a href="../"> Home</a>';
                         echo '<a href="#"> About Us</a>';
                         echo '<a href="../pages/homepage.php">My Profiles </a>';
-                        if (($loggeduser['username'] == 'admin')) {
+                        if (isAdmin()) {
                             echo '<a href="./all_donations.php">All donations</a>';
                           }
                         echo '<a href="../pages/logout.php">Logout</a>';
