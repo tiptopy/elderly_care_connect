@@ -16,9 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pictureName = $_FILES['picture']['name'];
     $picturePath = '../images/users/' . uniqid() . '_' . $pictureName;
 
-    // Compress and save image
-    $compressedImage = compressImage($pictureTmpName, $picturePath, 50);
-
     $existing_user = $db->users->findOne(['username' => $username]);
 
     if ($existing_user) {
@@ -26,6 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (!validatePassword($password)) {
         $error = "Password must be at least 6 characters long, contain at least one uppercase, one lowercase and one number.";
     } else {
+        // Compress and save image
+        $compressedImage = compressImage($pictureTmpName, $picturePath, 50);
+
+        //insert data into mongodb database.
         $insertResult = $db->users->insertOne([
             'FullName' => $FullName,
             'PhoneNumber' => $PhoneNumber,
@@ -47,7 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-function validatePassword($password) {
+function validatePassword($password)
+{
     // Password length should be between 6 and 20 characters
     if (strlen($password) < 6 || strlen($password) > 20) {
         return false;
@@ -60,11 +62,12 @@ function validatePassword($password) {
 }
 
 // Function to compress image
-function compressImage($source, $destination, $quality) {
+function compressImage($source, $destination, $quality)
+{
     $info = getimagesize($source);
-    if ($info['mime'] == 'image/jpeg') 
+    if ($info['mime'] == 'image/jpeg')
         $image = imagecreatefromjpeg($source);
-    elseif ($info['mime'] == 'image/png') 
+    elseif ($info['mime'] == 'image/png')
         $image = imagecreatefrompng($source);
     imagejpeg($image, $destination, $quality);
     return $destination;
@@ -73,6 +76,7 @@ function compressImage($source, $destination, $quality) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,6 +84,7 @@ function compressImage($source, $destination, $quality) {
     <link rel="stylesheet" href="../css/sign-up.css">
     <link rel="stylesheet" href="../css/general.css">
 </head>
+
 <body>
     <div class="container-signup">
         <div class="box form-box">
@@ -116,4 +121,5 @@ function compressImage($source, $destination, $quality) {
         </div>
     </div>
 </body>
+
 </html>
