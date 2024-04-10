@@ -55,8 +55,9 @@ if(isset($_SESSION['profile_id'])) {
                         echo '<a href="#"> Home</a>';
                         echo '<a href="#"> About Us</a>';
                         echo '<a href="./pages/homepage.php">My profiles</a>';
-                        if (($loggeduser['username'] == 'admin')) {
+                        if (isAdmin()) {
                             echo '<a href="./pages/all_donations.php">All donations</a>';
+                            echo '<a href="./pages/all_users.php">All Users</a>';
                           }
                         echo '<a href="./pages/logout.php">Logout</a>';
                     }
@@ -89,6 +90,7 @@ if(isset($_SESSION['profile_id'])) {
                         echo '<a href="./pages/profile.php">My profiles</a>';
                         if (isAdmin()) {
                             echo '<a href="./all_donations.php">All donations</a>';
+                            echo '<a href="./pages/all_users.php">All Users</a>';
                           }
                         echo '<a href="./pages/logout.php">Logout</a>';
                     }

@@ -23,7 +23,7 @@ if (!$user) {
     exit;
 }
 
-if (($loggeduser['_id']!=$profile['created_by']) && !isAdmin()){
+if (($loggeduser['_id']!=$user['_id']) && !isAdmin()){
     header("Location: ./access_denied.php"); //Redirect if it is an access not granted
 }
 
