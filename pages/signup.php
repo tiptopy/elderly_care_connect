@@ -1,43 +1,8 @@
-<!-- pages/signup.php -->
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup - Elderly Care Connect</title>
-    <link rel="stylesheet" href="../css/sign-up.css">
-    <link rel="stylesheet" href="../css/general.css">
-</head>
-<body>
 <?php
 require_once '../includes/db_connection.php';
 
-$error="";
-function validatePassword($password) {
-    // Password length should be between 6 and 20 characters
-    if (strlen($password) < 6 || strlen($password) > 20) {
-        return false;
-    }
-    // Password should contain at least one lowercase letter, one uppercase letter, and one number
-    if (!preg_match('/[a-z]/', $password) || !preg_match('/[A-Z]/', $password) || !preg_match('/[0-9]/', $password)) {
-        return false;
-    }
-    return true;
-}
-
-
-// Function to compress image
-function compressImage($source, $destination, $quality) {
-    $info = getimagesize($source);
-    if ($info['mime'] == 'image/jpeg') 
-        $image = imagecreatefromjpeg($source);
-    elseif ($info['mime'] == 'image/png') 
-        $image = imagecreatefrompng($source);
-    imagejpeg($image, $destination, $quality);
-    return $destination;
-}
-
+$error = "";
+$FullName = $PhoneNumber = $username = $security_question = $security_answer = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $FullName = $_POST['FullName'];
     $PhoneNumber = $_POST['PhoneNumber'];
@@ -58,10 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($existing_user) {
         echo '<div class="user-name-exists">Username already exists</div>';
+    } elseif (!validatePassword($password)) {
+        $error = "Password must be at least 6 characters long, contain at least one uppercase, one lowercase and one number.";
     } else {
-        if (!validatePassword($password)) {
-            $error = "Password must atleast 6 and should contain at least  one uppercase letter.";
-        } else {
         $insertResult = $db->users->insertOne([
             'FullName' => $FullName,
             'PhoneNumber' => $PhoneNumber,
@@ -71,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'security_answer' => $security_answer,
             'picturePath' => $compressedImage
         ]);
-    
 
         if ($insertResult) {
             echo '<div class="success-message">User created successfully</div>';
@@ -83,9 +46,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
+function validatePassword($password) {
+    // Password length should be between 6 and 20 characters
+    if (strlen($password) < 6 || strlen($password) > 20) {
+        return false;
+    }
+    // Password should contain at least one lowercase letter, one uppercase letter, and one number
+    if (!preg_match('/[a-z]/', $password) || !preg_match('/[A-Z]/', $password) || !preg_match('/[0-9]/', $password)) {
+        return false;
+    }
+    return true;
+}
+
+// Function to compress image
+function compressImage($source, $destination, $quality) {
+    $info = getimagesize($source);
+    if ($info['mime'] == 'image/jpeg') 
+        $image = imagecreatefromjpeg($source);
+    elseif ($info['mime'] == 'image/png') 
+        $image = imagecreatefrompng($source);
+    imagejpeg($image, $destination, $quality);
+    return $destination;
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - Elderly Care Connect</title>
+    <link rel="stylesheet" href="../css/sign-up.css">
+    <link rel="stylesheet" href="../css/general.css">
+</head>
+<body>
     <div class="container-signup">
         <div class="box form-box">
             <h1>Sign Up</h1>
@@ -93,23 +88,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <form action="signup.php" method="post" enctype="multipart/form-data">
                     <div class="field input">
                         <label for="FullName">Full Name:</label>
-                        <input type="text" id="FullName" name="FullName" required>
+                        <input type="text" id="FullName" name="FullName" required value="<?php echo $FullName; ?>">
                         <label for="PhoneNumber">Phone Number:</label>
-                        <input type="text" id="PhoneNumber" name="PhoneNumber" required>
+                        <input type="text" id="PhoneNumber" name="PhoneNumber" required value="<?php echo $PhoneNumber; ?>">
                         <label for="username">Username:</label>
-                        <input type="text" id="username" name="username" required>
+                        <input type="text" id="username" name="username" required value="<?php echo $username; ?>">
                         <label for="password">Password:</label>
                         <input type="password" id="password" name="password" required>
                         <span class="alert"><?php echo $error; ?></span><br>
                         <label for="security_question">Security Question:</label>
                         <select id="security_question" name="security_question">
-                            <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
-                            <option value="What city were you born in?">What city were you born in?</option>
+                            <option value="What is your mother's maiden name?" <?php if ($security_question === "What is your mother's maiden name?") echo "selected"; ?>>What is your mother's maiden name?</option>
+                            <option value="What city were you born in?" <?php if ($security_question === "What city were you born in?") echo "selected"; ?>>What city were you born in?</option>
                             <!-- Add more security questions here -->
                         </select>
-
                         <label for="security_answer">Answer:</label>
-                        <input type="text" id="security_answer" name="security_answer" required>
+                        <input type="text" id="security_answer" name="security_answer" required value="<?php echo $security_answer; ?>">
                         <label for="picture">Profile Picture:</label>
                         <input type="file" id="picture" name="picture" accept="image/*" required>
                         <button type="submit">Signup</button>
@@ -122,6 +116,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 </body>
-
 </html>
-<!-- pages/signup.php -->
