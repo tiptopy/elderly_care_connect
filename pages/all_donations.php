@@ -12,6 +12,8 @@ if (isLoggedIn()) {
         if (count($transactions) > 0) {
             // Output search input and filter options
             echo '<input type="text" id="searchInput" placeholder="Search transactions">';
+            echo 'From: <input type="date" id="startDate">';
+            echo 'To: <input type="date" id="endDate">';
             echo '<select id="filterSelect">';
             echo '<option value="all">All</option>';
             echo '<option value="General Donation">General Donation</option>';
@@ -32,7 +34,7 @@ if (isLoggedIn()) {
                 echo "<td>" . $transaction['data']['reference'] . "</td>";
                 echo "<td>" . $transaction['data']['receipt_number'] . "</td>";
                 echo "<td class='amount'>" . 'KES ' . $transaction['data']['amount'] / 100 . "</td>";
-                echo "<td>" . $transaction['data']['paidAt'] . "</td>";
+                echo "<td class='paidAt'>" . $transaction['data']['paidAt'] . "</td>";
                 echo "<td>" . $transaction['data']['authorization']['mobile_money_number'] . "</td>";
                 echo "<td>";
                 if (isset($transaction['DonationTo'])) {
@@ -69,6 +71,20 @@ if (isLoggedIn()) {
                             $(this).show();
                         } else {
                             $(this).toggle(text.indexOf(value) > -1);
+                        }
+                    });
+                    updateTotalAmount();
+                });
+
+                $('#startDate, #endDate').on('change', function() {
+                    var startDate = $('#startDate').val();
+                    var endDate = $('#endDate').val();
+                    $('#transactionTable tbody tr').each(function() {
+                        var paidAt = $(this).find('.paidAt').text();
+                        if ((startDate && paidAt < startDate) || (endDate && paidAt > endDate)) {
+                            $(this).hide();
+                        } else {
+                            $(this).show();
                         }
                     });
                     updateTotalAmount();
