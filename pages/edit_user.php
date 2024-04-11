@@ -130,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php echo '<img src="' . $user['picturePath'] . '" alt="' . $user['FullName'] . '">'; ?>
             </div>
 
-            <input type="file" id="picture" name="picture" accept="image/*" >
+            <input type="file" id="picture" name="picture" accept="image/jpeg, image/png" >
             <button type="submit">Update Profile</button> <!-- Submit button to update profile -->
             <br>
             <a href="./forgot_password.php">reset Password</a>

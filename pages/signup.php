@@ -95,11 +95,11 @@ function compressImage($source, $destination, $quality)
                         <label for="FullName">Full Name:</label>
                         <input type="text" id="FullName" name="FullName" required value="<?php echo $FullName; ?>">
                         <label for="PhoneNumber">Phone Number:</label>
-                        <input type="text" id="PhoneNumber" name="PhoneNumber" required value="<?php echo $PhoneNumber; ?>">
+                        <input type="text" id="PhoneNumber" name="PhoneNumber" required value="<?php echo $PhoneNumber; ?>" pattern="(\+2547|07|+2541|01)\d{8}" title="Please enter a valid Kenya phone number starting with 07 or 01, followed by 8 digits">
                         <label for="username">Username:</label>
                         <input type="text" id="username" name="username" required value="<?php echo $username; ?>">
                         <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" required>
+                        <input type="password" id="password" name="password" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,20}" title="Password must be at least 6 characters long, contain at least one uppercase letter, one lowercase letter, and one number">
                         <span class="alert"><?php echo $error; ?></span><br>
                         <label for="security_question">Security Question:</label>
                         <select id="security_question" name="security_question">
@@ -110,7 +110,7 @@ function compressImage($source, $destination, $quality)
                         <label for="security_answer">Answer:</label>
                         <input type="text" id="security_answer" name="security_answer" required value="<?php echo $security_answer; ?>">
                         <label for="picture">Profile Picture:</label>
-                        <input type="file" id="picture" name="picture" accept="image/*" required>
+                        <input type="file" id="picture" name="picture" accept="image/jpeg, image/png" required>
                         <button type="submit">Signup</button>
                     </div>
                 </form>

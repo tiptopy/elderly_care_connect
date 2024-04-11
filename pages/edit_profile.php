@@ -142,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php echo '<img src="' . $profile['picturePath'] . '" alt="' . $profile['fname'] . '">'; ?>
             </div>
 
-            <input type="file" id="picture" name="picture" accept="image/*">
+            <input type="file" id="picture" name="picture" accept="image/jpeg, image/png">
             <button type="submit">Update Profile</button> <!-- Submit button to update profile -->
         </form>
     </div>

@@ -56,7 +56,7 @@ if(!isLoggedIn()){
             <textarea id="additional" name="additional" placeholder="Enter any additional info e.g hobbies"></textarea>
 
             <label for="picture">Picture*</label>
-            <input type="file" id="picture" name="picture" accept="image/*" required>
+            <input type="file" id="picture" name="picture" accept="image/jpeg, image/png" required>
 
             <button type="submit">Create Profile</button> <!-- Submit button to create profile -->
         </form>
