@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <?php
@@ -16,7 +16,7 @@ require_once '../includes/authenticate.php';
 <body>
     <header>
         <div class="container-header">
-            <h1>ECC Care</h1>
+            <h4>ECC Care</h4>
             <nav class="nav-header">
                 <ul>
                     <?php
