@@ -21,9 +21,6 @@
             <ul>
                 <li><a href="../">Home</a></li>
                 <li><a href="#">About us</a></li>
-                <li><a href="../pages/logout.php">Log out</a></li>
-                <li><a href="homepage.php">Home</a></li>
-                <li><a href="create_profile.php">About us</a></li>
             </ul>
         </div>
     </footer>
