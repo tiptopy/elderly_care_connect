@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Elderly Care Connect</title>
-    <link rel="stylesheet" href="../css/forgotpassword.css">
-    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
-    <div class="container-fpassword">
+   <div class="fpassword">
+   <div class="container-fpassword">
         <!-- Title -->
         <h1>Forgot/Reset Password</h1>
         <!-- Forgot password form -->
@@ -40,6 +40,7 @@
             <a href="./signup.php">Sign Up</a>
         </div>
     </div>
+   </div>
 </body>
 <?php
 require_once '../includes/db_connection.php';
