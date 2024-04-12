@@ -51,7 +51,7 @@ if(isset($_SESSION['profile_id'])) {
                         echo '<a href="./pages/signup.php"> Sign Up</a>';
                     } else {
                         echo '<a href="#"> Home</a>';
-                        echo '<a href="#"> About Us</a>';
+                        echo '<a href="./pages/about_us.php"> About Us</a>';
                         echo '<a href="./pages/homepage.php">My profiles</a>';
                         if (isAdmin()) {
                             echo '<a href="./pages/all_donations.php">All donations</a>';
@@ -80,7 +80,7 @@ if(isset($_SESSION['profile_id'])) {
                     <?php
                     if (!isLoggedIn()) {
                         echo '<a href="#"> Home</a>';
-                        echo '<a href="#"> About Us</a>';
+                        echo '<a href="./pages/about_us.php"> About Us</a>';
                         echo '<a href="./pages/login.php"> Login</a>';
                         echo '<a href="./pages/signup.php"> Sign Up</a>';
                     } else {
