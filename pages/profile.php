@@ -34,10 +34,33 @@ $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['cre
     <title><?php echo $profile['name']; ?> - Elderly Care Connect</title>
     
     <link rel="stylesheet" href="./css/style.css">
+    <style>
+        /* Styling for the popup message */
+        .popup-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+        }
+
+        .popup-message p {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
 </head>
 
 <body>
-    <form id="paymentForm" method="post" style="display: none;" class="form-container">
+    <form id="paymentForm" method="post" style="display: none;" class="form-container" onsubmit="return validateDonationAmount()">
         <div class="form-header">
             <button type="button" class="close-button" onclick="closeForm()">&#10006;</button>
             <h2>Donate Now</h2>
@@ -60,13 +83,13 @@ $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['cre
 
             <div class="form-group">
                 <label for="donorAmount"><b>Donation Amount</b></label>
-                <input type="number" placeholder="Enter Amount" name="donorAmount" id="donorAmount" min="1" max="1000" required>
+                <input type="number" placeholder="Enter Amount" name="donorAmount" id="donorAmount" required>
             </div>
 
             <input type="hidden" name="donorEmail" id="hiddenEmail">
             <input type="hidden" name="donorAmount" id="hiddenAmount">
             <input type="hidden" name="creator_phone_number" id="creator_phone_number" value="<?php echo htmlspecialchars($creator['PhoneNumber']); ?>">
-            <button type="submit" onclick="payWithPaystack()" class="submit-button">Donate</button>
+            <button type="submit" class="submit-button">Donate</button>
         </div>
     </form>
 
@@ -90,6 +113,11 @@ $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['cre
             </p>
             <button id="DonateBtn" onclick="toggleDonateForm()">Donate</button> <!-- Button to toggle donation form -->
         </div>
+    </div>
+
+    <!-- Popup message for validation -->
+    <div id="popupMessage" class="popup-message">
+        <p id="popupText"></p>
     </div>
 </body>
 
@@ -135,4 +163,29 @@ if (isLoggedIn()) {
 <?php include '../includes/donation.php'; ?>
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+    function toggleDonateForm() {
+        var form = document.getElementById("paymentForm");
+        if (form.style.display === "none") {
+            form.style.display = "block";
+        } else {
+            form.style.display = "none";
+        }
+    }
+
+    function validateDonationAmount() {
+        var amount = document.getElementById("donorAmount").value;
+        if (amount < 1 || amount > 1000) {
+            var popupMessage = document.getElementById("popupMessage");
+            var popupText = document.getElementById("popupText");
+            popupText.innerText = "Donation amount must be between 1 and 1000.";
+            popupMessage.style.display = "block";
+            setTimeout(function() {
+                popupMessage.style.display = "none";
+            }, 3000); // Hide popup after 3 seconds
+            return false;
+        }
+        return true;
+    }
+</script>
 <?php include 'footer.php'; ?>

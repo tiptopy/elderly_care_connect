@@ -1,7 +1,20 @@
 function toggleDonateForm() {
-    const DonateForm = document.getElementById('paymentForm');
-    DonateForm.style.display = DonateForm.style.display === 'none' ? 'block' : 'none';
+  var form = document.getElementById("paymentForm");
+  if (form.style.display === "none") {
+      form.style.display = "block";
+  } else {
+      form.style.display = "none";
   }
+}
+
+function validateDonationAmount() {
+  var amount = document.getElementById("donorAmount").value;
+  if (amount < 1 || amount > 1000) {
+      alert("Donation amount must be between 1 and 1000.");
+      return false;
+  }
+  return true;
+}
   
   function closeForm() {
     document.getElementById("paymentForm").style.display = "none";
