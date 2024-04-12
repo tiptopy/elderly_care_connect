@@ -12,7 +12,7 @@ function validateDonationAmount() {
   if (amount < 1 || amount > 1000) {
       var popupMessage = document.getElementById("popupMessage");
       var popupText = document.getElementById("popupText");
-      popupText.innerText = "Donation amount must be between 1 and 1000.";
+      popupText.innerText = "Enter a valid amount";
       popupMessage.style.display = "block";
       setTimeout(function() {
           popupMessage.style.display = "none";
