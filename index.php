@@ -33,15 +33,13 @@ if(isset($_SESSION['profile_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elderly Care Connect</title>
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
     <header>
         <div class="container-header">
-            <div class="head"><h1>ECC Care</h1></div>
+            <div class="head"><h4>ECC Care</h4></div>
             <div class="nav-header">
             <nav >
                 <ul>
@@ -66,6 +64,7 @@ if(isset($_SESSION['profile_id'])) {
             </nav>
             </div>
         </div>
+        
         <nav id="humberger-nav">
 
   <div class="humberger-menu">
@@ -121,7 +120,7 @@ if(isset($_SESSION['profile_id'])) {
     ?>
     <form id="paymentForm" method="post" style="display: none;" class="form-container">
         <div class="form-header">
-            <h2>Donate Now</h2>
+            <h3>Donate Now</h3>
             <button type="button" class="close-button" onclick="closeForm()">&#10006;</button>
         </div>
         <div class="form-submit">

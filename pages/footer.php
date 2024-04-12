@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
@@ -20,10 +20,7 @@
             <!-- Navigation links -->
             <ul>
                 <li><a href="../">Home</a></li>
-                <li><a href="#">About us</a></li>
-                <li><a href="../pages/logout.php">Log out</a></li>
-                <li><a href="homepage.php">Home</a></li>
-                <li><a href="create_profile.php">About us</a></li>
+                <li><a href="..//pages/about_us.php">About us</a></li>
             </ul>
         </div>
     </footer>

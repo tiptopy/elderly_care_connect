@@ -100,13 +100,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile - Elderly Care Connect</title>
-    <link rel="stylesheet" href="../css/edit_profile.css">
-    <link rel="stylesheet" href="../css/general.css">
+
+
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
-    <div class="container-edit-user">
-        <h1>Edit user</h1>
+    <div class="container-edit-profile">
+        <h2>Edit user</h2>
         <!-- Form to edit user -->
         <form action="edit_user.php?id=<?php echo $user_id; ?>" method="post" enctype="multipart/form-data">
             <label for="FullName">Full Name:</label>
@@ -130,11 +131,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php echo '<img src="' . $user['picturePath'] . '" alt="' . $user['FullName'] . '">'; ?>
             </div>
 
-            <input type="file" id="picture" name="picture" accept="image/*" >
+            <div class="last-items"><input type="file" id="picture" name="picture" accept="image/jpeg, image/png" >
             <button type="submit">Update Profile</button> <!-- Submit button to update profile -->
             <br>
-            <a href="./forgot_password.php">reset Password</a>
+            <a href="./forgot_password.php" class="reset-button">reset Password</a>
         </div>
+    </div>
 </body>
 
 </html>

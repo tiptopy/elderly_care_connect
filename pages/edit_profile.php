@@ -98,13 +98,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile - Elderly Care Connect</title>
-    <link rel="stylesheet" href="../css/edit_profile.css">
-    <link rel="stylesheet" href="../css/general.css">
+    
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
     <div class="container-edit-profile">
-        <h1>Edit Profile</h1>
+        <h2>Edit Profile</h2>
         <!-- Form to edit profile -->
         <form action="edit_profile.php?id=<?php echo $profile_id; ?>" method="post" enctype="multipart/form-data">
             <label for="fname">First Name*</label>
@@ -142,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php echo '<img src="' . $profile['picturePath'] . '" alt="' . $profile['fname'] . '">'; ?>
             </div>
 
-            <input type="file" id="picture" name="picture" accept="image/*">
+            <input type="file" id="picture" name="picture" accept="image/jpeg, image/png">
             <button type="submit">Update Profile</button> <!-- Submit button to update profile -->
         </form>
     </div>

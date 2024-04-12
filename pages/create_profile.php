@@ -17,7 +17,7 @@ if(!isLoggedIn()){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Profile - Elderly Care Connect</title>
-    <link rel="stylesheet" href="../css/createprofile.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -56,7 +56,7 @@ if(!isLoggedIn()){
             <textarea id="additional" name="additional" placeholder="Enter any additional info e.g hobbies"></textarea>
 
             <label for="picture">Picture*</label>
-            <input type="file" id="picture" name="picture" accept="image/*" required>
+            <input type="file" id="picture" name="picture" accept="image/jpeg, image/png" required>
 
             <button type="submit">Create Profile</button> <!-- Submit button to create profile -->
         </form>
