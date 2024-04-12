@@ -96,6 +96,9 @@
           <div class="social-links">
             <a href="https://web.facebook.com/eric.muteti.5201" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
             <a href="https://twitter.com/ErickMuteti254" target="_blank" rel="noopener noreferrer">   <i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/ericx00_/" target="_blank" rel="noopener noreferrer">   <i class="fab fa-instagram"></i></a>
+          <a href="http://Github.com/ericx00" target="_blank" rel="noopener noreferrer">   <i class="fab fa-github"></i></a>
+
             <!-- Add more social media links as needed -->
           </div>
         </div>
@@ -103,45 +106,53 @@
     </div>
     <div class="team-member">
       <div class="member-card">
-        <img src="../images/erick.jpg" alt="Erick" style="width:100px; height:100px; border-radius:50%;">
+        <img src="../images/erick.jpg" alt="Peter" style="width:100px; height:100px; border-radius:50%;">
         <div class="member-info">
-          <div class="member-name">Petetr Wafula</div>
+          <div class="member-name">Peter Wafula</div>
           <div class="member-role">Founder</div>
           <p>One of the founding members involved in developing ECC. He believes the elderly are a paramount part of our society.</p>
           <div class="social-links">
-          <a href="https://www.facebook.com/erick.profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
-          <a href="https://www.Twitter.com/erick.profile" target="_blank" rel="noopener noreferrer">   <i class="fab fa-twitter"></i></a>
-            <!-- Add more social media links as needed -->
+          <a href="http://Facebook.com/tiptopy.codes" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+          <a href="http://Twitter.com/tiptopycodes" target="_blank" rel="noopener noreferrer">   <i class="fab fa-twitter"></i></a>
+          <a href="http://Instagram.com/tiptopy.codes" target="_blank" rel="noopener noreferrer">   <i class="fab fa-instagram"></i></a>
+          <a href="http://Github.com/tiptopy" target="_blank" rel="noopener noreferrer">   <i class="fab fa-github"></i></a>
+
+          <!-- Add more social media links as needed -->
           </div>
         </div>
       </div>
     </div>
     <div class="team-member">
       <div class="member-card">
-        <img src="../images/erick.jpg" alt="Erick" style="width:100px; height:100px; border-radius:50%;">
+        <img src="../images/erick.jpg" alt="Fidelis" style="width:100px; height:100px; border-radius:50%;">
         <div class="member-info">
           <div class="member-name"> Fidelis Kisevu</div>
           <div class="member-role">Founder</div>
           <p>One of the founding members involved in developing ECC. He believes the elderly are a paramount part of our society.</p>
           <div class="social-links">
-          <a href="https://www.facebook.com/erick.profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
-          <a href="https://www.Twitter.com/erick.profile" target="_blank" rel="noopener noreferrer">   <i class="fab fa-twitter"></i></a>
-            <!-- Add more social media links as needed -->
+          <a href="https://web.facebook.com/eric.muteti.5201" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+            <a href="https://twitter.com/ErickMuteti254" target="_blank" rel="noopener noreferrer">   <i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/ericx00_/" target="_blank" rel="noopener noreferrer">   <i class="fab fa-instagram"></i></a>
+          <a href="http://Github.com/Fidel-kisevu" target="_blank" rel="noopener noreferrer">   <i class="fab fa-github"></i></a>
+
+          <!-- Add more social media links as needed -->
           </div>
         </div>
       </div>
     </div>
     <div class="team-member">
       <div class="member-card">
-        <img src="../images/erick.jpg" alt="Erick" style="width:100px; height:100px; border-radius:50%;">
+        <img src="../images/erick.jpg" alt="Sandra" style="width:100px; height:100px; border-radius:50%;">
         <div class="member-info">
-          <div class="member-name">Kerry</div>
+          <div class="member-name">Sandra Kerry </div>
           <div class="member-role">Founder</div>
-          <p>One of the founding members involved in developing ECC. He believes the elderly are a paramount part of our society.</p>
+          <p>One of the founding members involved in developing ECC. She believes the elderly are a paramount part of our society.</p>
           <div class="social-links">
-          <a href="https://www.facebook.com/erick.profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
-          <a href="https://www.Twitter.com/erick.profile" target="_blank" rel="noopener noreferrer">   <i class="fab fa-twitter"></i></a>
-            <!-- Add more social media links as needed -->
+          <a href="https://web.facebook.com/eric.muteti.5201" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+            <a href="https://twitter.com/ErickMuteti254" target="_blank" rel="noopener noreferrer">   <i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/ericx00_/" target="_blank" rel="noopener noreferrer">   <i class="fab fa-instagram"></i></a>
+          <a href="http://Twitter.com/tiptopycodes" target="_blank" rel="noopener noreferrer">   <i class="fab fa-github"></i></a>
+<!-- Add more social media links as needed -->
           </div>
         </div>
       </div>
