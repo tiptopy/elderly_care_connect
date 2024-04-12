@@ -727,6 +727,7 @@ input[type="submit"] {
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease;
+  
 }
 
 input[type="submit"]:hover {
@@ -867,9 +868,6 @@ input[type="file"] {
     border-radius: 5px;
     font-size: 16px;
 }
-
-
-
 /*footer*/
 
 footer {
@@ -878,8 +876,6 @@ footer {
   padding: 20px 0;
   text-align: center;
 }
-
-
 .container-footer{
   max-width: 1200px;
   margin: 0 auto;
@@ -889,8 +885,6 @@ footer {
   align-items: center;
   flex-direction: column;
 }
-
-
 /*verification css*/
 .homepage-container {
   display: flex;
@@ -918,30 +912,26 @@ footer {
   margin-bottom: 0;
 }
 
+.reset-button {
+  display: inline-block;
+  background-color: #007bff;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+}
+.last-items{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.reset-button:hover{
+  opacity: 0.9;
+}
 
     /* Media query for mobile display */
     @media screen and (max-width: 850px) {
