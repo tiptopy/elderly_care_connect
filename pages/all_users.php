@@ -9,7 +9,6 @@ if (!isLoggedIn()) {
     exit;
 }
 
-
 if (!isAdmin()){
     header("Location: access_denied.php");
     exit();
@@ -24,6 +23,28 @@ if (!isAdmin()){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elderly Care Connect</title>
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -45,12 +66,39 @@ if (!isAdmin()){
                 echo '<p>Username: ' . $user['username'] . '</p>'; // Display phone
                 echo '<a href="user.php?id=' . $user['_id'] . '" class="view-profile-link">View user</a>';
                 echo '<a href="edit_user.php?id=' . $user['_id'] . '" class="view-profile-link">Edit user</a>';
-                echo '<a href="delete_user.php?id=' . $user['_id'] . '" class="view-profile-link">Delete user</a>';
+                echo '<a href="#" onclick="openModal(\'' . $user['_id'] . '\')" class="view-profile-link">Delete user</a>';
                 echo '</div>';
             }
             ?>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to delete this user?</p>
+            <button onclick="deleteUser()">Yes</button>
+            <button onclick="closeModal()">No</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal(userId) {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "block";
+            // Pass userId to deleteUser function
+            modal.dataset.userId = userId;
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        function deleteUser() {
+            var userId = document.getElementById("myModal").dataset.userId;
+            window.location.href = "delete_user.php?id=" + userId;
+        }
+    </script>
 </body>
 
 </html>

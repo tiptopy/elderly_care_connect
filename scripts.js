@@ -9,17 +9,22 @@ function toggleDonateForm() {
 
 function validateDonationAmount() {
   var amount = document.getElementById("donorAmount").value;
-  if (amount < 1 || amount > 1000) {
+
+  if (amount <=0 || amount.startsWith("-") || amount.startsWith(".")) {
       var popupMessage = document.getElementById("popupMessage");
       var popupText = document.getElementById("popupText");
-      popupText.innerText = "Enter a valid amount";
+      popupText.innerText = "Enter a valid Amount!";
       popupMessage.style.display = "block";
-      setTimeout(function() {
-          popupMessage.style.display = "none";
-      }, 3000); // Hide popup after 3 seconds
       return false;
   }
   return true;
+}
+
+function closePopup() {
+  var popupMessage = document.getElementById("popupMessage");
+  popupMessage.style.display = "none";
+  donorAmount.value = "";
+  document.getElementById("donorAmount").focus();
 }
   
   function closeForm() {
@@ -72,3 +77,9 @@ document.addEventListener("DOMContentLoaded", function () {
       th.dataset.sortOrder = th.dataset.sortOrder === 'asc' ? 'desc' : 'asc';
   }));
 });
+
+function confirmDelete() {
+  if (confirm("Are you sure you want to delete this profile?")) {
+      window.location.href = "delete_profile.php?id=' . $user_id . '";
+  }
+}

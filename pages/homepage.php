@@ -10,11 +10,12 @@ if (!isLoggedIn()) {
 }
 
 // Function to compress image
-function compressImage($source, $destination, $quality) {
+function compressImage($source, $destination, $quality)
+{
     $info = getimagesize($source);
-    if ($info['mime'] == 'image/jpeg') 
+    if ($info['mime'] == 'image/jpeg')
         $image = imagecreatefromjpeg($source);
-    elseif ($info['mime'] == 'image/png') 
+    elseif ($info['mime'] == 'image/png')
         $image = imagecreatefrompng($source);
     imagejpeg($image, $destination, $quality);
     return $destination;
@@ -74,6 +75,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elderly Care Connect</title>
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -87,8 +111,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php
             // Retrieve and display elderly profiles created by the logged-in user
             if (isAdmin()) {
-            $profiles = $db->profiles->find();
-            } else{
+                $profiles = $db->profiles->find();
+            } else {
                 $profiles = $db->profiles->find(['created_by' => $_SESSION['user_id']]);
             }
 
@@ -101,14 +125,62 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo '<p>Location:  ' . $profile['location'] . '</p>'; // Display location
                 echo '<p>County:  ' . $profile['county'] . '</p>'; // Display home county
                 echo '<a href="profile.php?id=' . $profile['_id'] . '" class="view-profile-link">View Profile</a>';
-                echo '<a href="edit_profile.php?id=' . $profile['_id'] . '" class="view-profile-link">Edit Profile</a>';
-                echo '<a href="delete_profile.php?id=' . $profile['_id'] . '" class="view-profile-link">Delete Profile</a>';
+                echo '<a href="#" onclick="openModal1(\'' . $profile['_id'] . '\')" class="view-profile-link">Edit Profile</a>';
+                echo '<a href="#" onclick="openModal(\'' . $profile['_id'] . '\')" class="view-profile-link">Delete Profile</a>';
                 echo '</div>';
             }
             ?>
         </div>
     </div>
 </body>
+<!-- Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to delete this user?</p>
+        <button onclick="deleteUser()">Yes</button>
+        <button onclick="closeModal()">No</button>
+    </div>
+</div>
+
+<div id="myModal1" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to edit this user?</p>
+        <button onclick="editUser()">Yes</button>
+        <button onclick="closeModal1()">No</button>
+    </div>
+</div>
+
+<script>
+    function openModal(userId) {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
+        // Pass userId to deleteUser function
+        modal.dataset.userId = userId;
+    }
+    function openModal1(userId) {
+        var modal = document.getElementById("myModal1");
+        modal.style.display = "block";
+        // Pass userId to deleteUser function
+        modal.dataset.userId = userId;
+    }
+
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+    function closeModal1() {
+        document.getElementById("myModal1").style.display = "none";
+    }
+
+    function deleteUser() {
+        var userId = document.getElementById("myModal").dataset.userId;
+        window.location.href = "delete_profile.php?id=" + userId;
+    }
+
+    function editUser() {
+        var userId = document.getElementById("myModal1").dataset.userId;
+        window.location.href = "edit_profile.php?id=" + userId;
+    }
+</script>
 
 </html>
 <?php include '../pages/footer.php'; ?>

@@ -34,6 +34,7 @@ $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['cre
     <title><?php echo $profile['name']; ?> - Elderly Care Connect</title>
     
     <link rel="stylesheet" href="./css/style.css">
+    
 </head>
 
 <body>
@@ -73,7 +74,7 @@ $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['cre
     <div class="container-profile">
         <h1><?php echo $profile['fname'] . ' ' . $profile['mname'] . ' ' . $profile['sname']; ?></h1>
 
-        <div class="profile1" id="profile-page">
+        <div class="profile" id="profile-page">
             <?php
             echo '<img src="' . $profile['picturePath'] . '" alt="' . $profile['fname'] . '">'; // Display profile picture
             ?>
@@ -95,7 +96,10 @@ $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['cre
     <!-- Popup message for validation -->
     <div id="popupMessage" class="popup-message">
         <p id="popupText"></p>
+        <button onclick="closePopup()">OK</button>
     </div>
+
+    
 </body>
 
 </html>
