@@ -261,6 +261,9 @@ ul li a:hover {
   font-size: 18px;
   margin-top: 20px;
   transition: background-color 0.3s ease;
+  position: absolute;
+  top: 200px;
+  left: 30px;
 }
 
 .create-profile-link:hover {

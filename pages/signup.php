@@ -97,7 +97,8 @@ function compressImage($source, $destination, $quality)
                         <label for="FullName">Full Name:</label>
                         <input type="text" id="FullName" name="FullName" required value="<?php echo $FullName; ?>">
                         <label for="PhoneNumber">Phone Number:</label>
-                        <input type="text" id="PhoneNumber" name="PhoneNumber" required value="<?php echo $PhoneNumber; ?>" pattern="(\+2547|07|+2541|01)\d{8}" title="Please enter a valid Kenya phone number starting with 07 or 01, followed by 8 digits">
+                        <input type="text" id="PhoneNumber" name="PhoneNumber" required pattern="(07|\+2547|01|\+2541)[0-9]{8}" 
+       title="Please enter a valid Kenyan phone number starting with 07 or +2547 for old numbers, or 01 or +2541 for new numbers">
                         <label for="username">Username:</label>
                         <input type="text" id="username" name="username" required value="<?php echo $username; ?>">
                        <div class="field input input-with-icon">

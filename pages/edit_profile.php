@@ -120,7 +120,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="number" id="idno" name="idno" placeholder="Enter National ID number" value="<?php echo $profile['idno']; ?>" required>
 
             <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="Enter phone number" autocomplete="tel" value="<?php echo $profile['phone']; ?>">
+            <input type="tel" id="phone" name="phone" placeholder="Enter phone number" autocomplete="tel" value="<?php echo $profile['phone']; ?>" pattern="(07|\+2547|01|\+2541)[0-9]{8}" 
+       title="Please enter a valid Kenyan phone number starting with 07 or +2547 for old numbers, or 01 or +2541 for new numbers">
 
             <label for="address">Address</label>
             <input type="text" id="address" name="address" placeholder="Enter address" autocomplete="street-address" value="<?php echo $profile['address']; ?>">
