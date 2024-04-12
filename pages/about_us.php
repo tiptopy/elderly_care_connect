@@ -135,9 +135,9 @@
       <div class="member-card">
         <img src="../images/erick.jpg" alt="Erick" style="width:100px; height:100px; border-radius:50%;">
         <div class="member-info">
-          <div class="member-name">Kerry</div>
+          <div class="member-name">Sandra Kerry </div>
           <div class="member-role">Founder</div>
-          <p>One of the founding members involved in developing ECC. He believes the elderly are a paramount part of our society.</p>
+          <p>One of the founding members involved in developing ECC. She believes the elderly are a paramount part of our society.</p>
           <div class="social-links">
           <a href="https://www.facebook.com/erick.profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
           <a href="https://www.Twitter.com/erick.profile" target="_blank" rel="noopener noreferrer">   <i class="fab fa-twitter"></i></a>

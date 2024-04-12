@@ -29,11 +29,7 @@ require_once '../includes/authenticate.php';
                     } else {
                         // Display links for logged-in users
                         echo '<a href="../"> Home</a>';
-<<<<<<< HEAD
                         echo '<a href="./about_us.php"> About Us</a>';
-=======
-                        echo '<a href="../pages/about_us.php"> About Us</a>';
->>>>>>> 7881c6fa17ede739e2408e13242d5fddab36ac62
                         echo '<a href="../pages/homepage.php">My Profiles </a>';
                         if (isAdmin()) {
                             echo '<a href="./all_donations.php">All donations</a>';
@@ -60,20 +56,12 @@ require_once '../includes/authenticate.php';
                   <?php
                   if (!isLoggedIn()) {
                       echo '<a href="../"> Home</a>';
-<<<<<<< HEAD
                       echo '<a href="./about_us.php"> About Us</a>';
-=======
-                      echo '<a href="../about_us.php"> About Us</a>';
->>>>>>> 7881c6fa17ede739e2408e13242d5fddab36ac62
                       echo '<a href="./login.php"> Login</a>';
                       echo '<a href="./signup.php"> Sign Up</a>';
                   } else {
                       echo '<a href="../index.php"> Home</a>';
-<<<<<<< HEAD
                       echo '<a href="./about_us.php"> About Us</a>';
-=======
-                      echo '<a href="../about_us.php"> About Us</a>';
->>>>>>> 7881c6fa17ede739e2408e13242d5fddab36ac62
                       echo '<a href="./homepage.php">My profiles</a>';
                       if (isAdmin()) {
                         echo '<a href="./all_donations.php">All donations</a>';
