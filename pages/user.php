@@ -44,6 +44,8 @@ if (!$user) {
     </div>
     <div class="homepage-container">
         <h3 style="text-align:center">Elderly Profiles Created:</h3>
+        <br>
+        <br>
         <div class="container-homepage">
             <?php
             // Retrieve and display elderly profiles created by the user
