@@ -20,7 +20,7 @@
             <!-- Navigation links -->
             <ul>
                 <li><a href="../">Home</a></li>
-                <li><a href="#">About us</a></li>
+                <li><a href="..//pages/about_us.php">About us</a></li>
             </ul>
         </div>
     </footer>
