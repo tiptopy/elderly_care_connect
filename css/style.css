@@ -154,6 +154,31 @@ ul li a:hover {
     justify-content: center;
     align-items: center;
 }
+.profile1 {
+  display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    padding: 0px 0px 10px;
+    width: 300px;
+    height: auto;
+    text-align: center;
+    margin-left: 30px;
+    justify-content: center;
+    align-items: center;
+}
+.profile1 img {
+  width: 100%;
+  height: 500px;
+  border-bottom: 1px solid #ddd;
+
+}
+
+
 #profile-page{
     display: flex;
       flex-direction: column;
@@ -175,6 +200,7 @@ ul li a:hover {
 .profile:hover {
   transform: translateY(-5px);
 }
+
 
 .profile img {
   width: 100%;
@@ -492,6 +518,7 @@ ul li a:hover {
 .humberger-menu{
   position: relative;
 display: inline-block;
+z-index:;
 
 }
 .humberger-icon{
@@ -520,6 +547,7 @@ max-height: 0;
 overflow: hidden;
 transition: all 0. ease-in-out;
 margin-top:18px;
+z-index: 999;
 }
 .menu-links a{
 display: block;

@@ -96,7 +96,7 @@ $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['cre
     <div class="container-profile">
         <h1><?php echo $profile['fname'] . ' ' . $profile['mname'] . ' ' . $profile['sname']; ?></h1>
 
-        <div class="profile" id="profile-page">
+        <div class="profile1" id="profile-page">
             <?php
             echo '<img src="' . $profile['picturePath'] . '" alt="' . $profile['fname'] . '">'; // Display profile picture
             ?>
