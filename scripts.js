@@ -10,7 +10,13 @@ function toggleDonateForm() {
 function validateDonationAmount() {
   var amount = document.getElementById("donorAmount").value;
   if (amount < 1 || amount > 1000) {
-      alert("Donation amount must be between 1 and 1000.");
+      var popupMessage = document.getElementById("popupMessage");
+      var popupText = document.getElementById("popupText");
+      popupText.innerText = "Donation amount must be between 1 and 1000.";
+      popupMessage.style.display = "block";
+      setTimeout(function() {
+          popupMessage.style.display = "none";
+      }, 3000); // Hide popup after 3 seconds
       return false;
   }
   return true;

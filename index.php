@@ -118,7 +118,7 @@ if(isset($_SESSION['profile_id'])) {
         }
     }
     ?>
-    <form id="paymentForm" method="post" style="display: none;" class="form-container">
+    <form id="paymentForm" method="post" style="display: none;" class="form-container" onsubmit="return validateDonationAmount()">
         <div class="form-header">
             <h3>Donate Now</h3>
             <button type="button" class="close-button" onclick="closeForm()">&#10006;</button>
@@ -141,7 +141,7 @@ if(isset($_SESSION['profile_id'])) {
 
             <div class="form-group">
                 <label for="donorAmount"><b>Donation Amount</b></label>
-                <input type="number" placeholder="Enter Amount" name="donorAmount" id="donorAmount" min="1" max="1000" required>
+                <input type="number" placeholder="Enter Amount" name="donorAmount" id="donorAmount" required>
             </div>
 
             <input type="hidden" name="donorEmail" id="hiddenEmail">

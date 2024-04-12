@@ -34,29 +34,6 @@ $creator = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($profile['cre
     <title><?php echo $profile['name']; ?> - Elderly Care Connect</title>
     
     <link rel="stylesheet" href="./css/style.css">
-    <style>
-        /* Styling for the popup message */
-        .popup-message {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            z-index: 9999;
-        }
-
-        .popup-message p {
-            margin: 0;
-            padding: 0;
-            font-size: 16px;
-            color: #333;
-        }
-    </style>
 </head>
 
 <body>
@@ -163,29 +140,5 @@ if (isLoggedIn()) {
 <?php include '../includes/donation.php'; ?>
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
-<script>
-    function toggleDonateForm() {
-        var form = document.getElementById("paymentForm");
-        if (form.style.display === "none") {
-            form.style.display = "block";
-        } else {
-            form.style.display = "none";
-        }
-    }
-
-    function validateDonationAmount() {
-        var amount = document.getElementById("donorAmount").value;
-        if (amount < 1 || amount > 1000) {
-            var popupMessage = document.getElementById("popupMessage");
-            var popupText = document.getElementById("popupText");
-            popupText.innerText = "Donation amount must be between 1 and 1000.";
-            popupMessage.style.display = "block";
-            setTimeout(function() {
-                popupMessage.style.display = "none";
-            }, 3000); // Hide popup after 3 seconds
-            return false;
-        }
-        return true;
-    }
-</script>
+<script src="../scripts.js"></script>
 <?php include 'footer.php'; ?>
