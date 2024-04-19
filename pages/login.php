@@ -1,6 +1,7 @@
 <!-- pages/login.php -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <!-- Font Awesome for eye icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
     <div class="container-login">
         <div class="box form-box">
@@ -37,7 +39,8 @@
         </div>
     </div>
 </body>
-<script src="..//scripts.js"></script>
+<script src="../scripts.js"></script>
+
 </html>
 
 <?php

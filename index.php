@@ -20,7 +20,7 @@ $offset = ($currentpage - 1) * $profilesPerPage;
 // Retrieve profiles for the current page
 $profiles = $db->profiles->find([], ['skip' => $offset, 'limit' => $profilesPerPage]);
 
-if(isset($_SESSION['profile_id'])) {
+if (isset($_SESSION['profile_id'])) {
     unset($_SESSION['profile_id']);
 }
 
@@ -39,69 +39,70 @@ if(isset($_SESSION['profile_id'])) {
 <body>
     <header>
         <div class="container-header">
-            <div class="head"><h4>ECC Care</h4></div>
+            <div class="head">
+                <h4>ECC Care</h4>
+            </div>
             <div class="nav-header">
-            <nav >
-                <ul>
-                    <?php
-                    if (!isLoggedIn()) {
-                        echo '<a href="#"> Home</a>';
-                        echo '<a href="#"> About Us</a>';
-                        echo '<a href="./pages/login.php"> Login</a>';
-                        echo '<a href="./pages/signup.php"> Sign Up</a>';
-                    } else {
-                        echo '<a href="#"> Home</a>';
-                        echo '<a href="./pages/about_us.php"> About Us</a>';
-                        echo '<a href="./pages/homepage.php">My profiles</a>';
-                        if (isAdmin()) {
-                            echo '<a href="./pages/all_donations.php">All donations</a>';
-                            echo '<a href="./pages/all_users.php">All Users</a>';
-                          }
-                        echo '<a href="./pages/logout.php">Logout</a>';
-                    }
-                    ?>
-                </ul>
-            </nav>
+                <nav>
+                    <ul>
+                        <?php
+                        if (!isLoggedIn()) {
+                            echo '<a href="#"> Home</a>';
+                            echo '<a href="#"> About Us</a>';
+                            echo '<a href="./pages/login.php"> Login</a>';
+                            echo '<a href="./pages/signup.php"> Sign Up</a>';
+                        } else {
+                            echo '<a href="#"> Home</a>';
+                            echo '<a href="./pages/about_us.php"> About Us</a>';
+                            echo '<a href="./pages/homepage.php">My profiles</a>';
+                            if (isAdmin()) {
+                                echo '<a href="./pages/all_donations.php">All donations</a>';
+                                echo '<a href="./pages/all_users.php">All Users</a>';
+                            }
+                            echo '<a href="./pages/logout.php">Logout</a>';
+                        }
+                        ?>
+                    </ul>
+                </nav>
             </div>
         </div>
-        
+
         <nav id="humberger-nav">
 
-  <div class="humberger-menu">
-    <div class="humberger-icon" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+            <div class="humberger-menu">
+                <div class="humberger-icon" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
 
-    </div>
-    <div class="menu-links">
-    <nav >
-                <ul onclick="toggleMenu()">
-                    <?php
-                    if (!isLoggedIn()) {
-                        echo '<a href="#"> Home</a>';
-                        echo '<a href="./pages/about_us.php"> About Us</a>';
-                        echo '<a href="./pages/login.php"> Login</a>';
-                        echo '<a href="./pages/signup.php"> Sign Up</a>';
-                    } else {
-                        echo '<a href="#"> Home</a>';
-                        echo '<a href="#"> About Us</a>';
-                        echo '<a href="./pages/profile.php">My profiles</a>';
-                        if (isAdmin()) {
-                            echo '<a href="./all_donations.php">All donations</a>';
-                            echo '<a href="./pages/all_users.php">All Users</a>';
-                          }
-                        echo '<a href="./pages/logout.php">Logout</a>';
-                    }
-                    ?>
-                </ul>
-            </nav>
+                </div>
+                <div class="menu-links">
+                    <nav>
+                        <ul onclick="toggleMenu()">
+                            <?php
+                            if (!isLoggedIn()) {
+                                echo '<a href="#"> Home</a>';
+                                echo '<a href="./pages/about_us.php"> About Us</a>';
+                                echo '<a href="./pages/login.php"> Login</a>';
+                                echo '<a href="./pages/signup.php"> Sign Up</a>';
+                            } else {
+                                echo '<a href="#"> Home</a>';
+                                echo '<a href="#"> About Us</a>';
+                                echo '<a href="./pages/profile.php">My profiles</a>';
+                                if (isAdmin()) {
+                                    echo '<a href="./all_donations.php">All donations</a>';
+                                    echo '<a href="./pages/all_users.php">All Users</a>';
+                                }
+                                echo '<a href="./pages/logout.php">Logout</a>';
+                            }
+                            ?>
+                        </ul>
+                    </nav>
 
-    </div>
-  </div
-  >
+                </div>
+            </div>
 
-</nav>
+        </nav>
     </header>
 
     <?php
@@ -112,9 +113,6 @@ if(isset($_SESSION['profile_id'])) {
 
         if ($donorAmount < 0) {
             $errorMessage = "Please enter a valid amount.";
-        } else {
-            // Donation amount is valid, process the form data further
-            // Your code to process the form data goes here...
         }
     }
     ?>

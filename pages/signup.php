@@ -82,8 +82,8 @@ function compressImage($source, $destination, $quality)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup - Elderly Care Connect</title>
     <link rel="stylesheet" href="../css/style.css">
-     <!-- Font Awesome for eye icon -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Font Awesome for eye icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 </head>
 
@@ -97,18 +97,17 @@ function compressImage($source, $destination, $quality)
                         <label for="FullName">Full Name:</label>
                         <input type="text" id="FullName" name="FullName" required value="<?php echo $FullName; ?>">
                         <label for="PhoneNumber">Phone Number:</label>
-                        <input type="text" id="PhoneNumber" name="PhoneNumber" required pattern="(07|\+2547|01|\+2541)[0-9]{8}" 
-       title="Please enter a valid Kenyan phone number starting with 07 or +2547 for old numbers, or 01 or +2541 for new numbers">
+                        <input type="text" id="PhoneNumber" name="PhoneNumber" required pattern="(07|\+2547|01|\+2541)[0-9]{8}" title="Please enter a valid Kenyan phone number starting with 07 or +2547 for old numbers, or 01 or +2541 for new numbers">
                         <label for="username">Username:</label>
                         <input type="text" id="username" name="username" required value="<?php echo $username; ?>">
-                       <div class="field input input-with-icon">
-                       <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,20}" title="Password must be at least 6 characters long, contain at least one uppercase letter, one lowercase letter, and one number">
-                        <span class="password-toggle" onclick="togglePassword()">
-                            <i class="far fa-eye"></i>
-                        </span>
-                        <span class="alert"><?php echo $error; ?></span><br>
-                       </div>
+                        <div class="field input input-with-icon">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,20}" title="Password must be at least 6 characters long, contain at least one uppercase letter, one lowercase letter, and one number">
+                            <span class="password-toggle" onclick="togglePassword()">
+                                <i class="far fa-eye"></i>
+                            </span>
+                            <span class="alert"><?php echo $error; ?></span><br>
+                        </div>
                         <label for="security_question">Security Question:</label>
                         <select id="security_question" name="security_question">
                             <option value="What is your mother's maiden name?" <?php if ($security_question === "What is your mother's maiden name?") echo "selected"; ?>>What is your mother's maiden name?</option>
